@@ -1,0 +1,280 @@
+[
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "configparser",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "configparser",
+        "description": "configparser",
+        "detail": "configparser",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "glob",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "glob",
+        "description": "glob",
+        "detail": "glob",
+        "documentation": {}
+    },
+    {
+        "label": "print_and_log",
+        "kind": 2,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "def print_and_log(message, level=\"info\"):\n    # Removendo qualquer espaço em branco no início da mensagem\n    message = '\\n'.join([m.lstrip() for m in message.split('\\n')])\n    match level:\n        case \"info\":\n            print(message)\n            logging.info(message.strip())\n        case \"debug\":\n            print(message)\n            logging.debug(message.strip())",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "end_script",
+        "kind": 2,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "def end_script(finish_code: 0):\n    match finish_code:\n        case 0:\n            print_and_log(f\"\"\"\\n#########################################################\\n\n                        Programa finalizado com sucesso!\n                        \\n#########################################################\\n\"\"\")\n            sys.exit(0)\n        case 1:\n            print_and_log(f\"\"\"\\n#########################################################\\n\n                        Programa finalizado com erro!",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "log_dir",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "log_dir = \"logs\"\n# Criando o diretório caso não exista\nos.makedirs(log_dir, exist_ok=True)\n# Criando um nome para o log (formato: log__data__horário__id.log)\nlog_filename = os.path.join(\n    log_dir,\n    f\"log__{datetime.now().strftime('%d-%m-%Y__%H-%M-%S')}__{uuid.uuid4().hex}.log\")\n# Configurando o logging\nlogging.basicConfig(\n    filename=log_filename,",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "log_filename",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "log_filename = os.path.join(\n    log_dir,\n    f\"log__{datetime.now().strftime('%d-%m-%Y__%H-%M-%S')}__{uuid.uuid4().hex}.log\")\n# Configurando o logging\nlogging.basicConfig(\n    filename=log_filename,\n    level=logging.INFO,\n    encoding=\"utf-8\",\n    format=\"%(asctime)s - %(levelname)s:\\n%(message)s\\n\"\n)",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "save_on_db",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "save_on_db = false\n# O programa deve verificar uma data personalizada? (true / false)\n# (Caso falso, o programa verificará os dados de ontem)\ncustom_verify = false\n# Caso verdadeiro, qual data deve ser verificada? (Dia/Mês/Ano - xx/xx/xxxx)\nverify_date = 18/03/2025\n#--------------------------------------------------------\n# Configurações do funcionamento dos logs\n[log_settings]\n# Máximo de logs a serem guardados no sistema (integer)",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "custom_verify",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "custom_verify = false\n# Caso verdadeiro, qual data deve ser verificada? (Dia/Mês/Ano - xx/xx/xxxx)\nverify_date = 18/03/2025\n#--------------------------------------------------------\n# Configurações do funcionamento dos logs\n[log_settings]\n# Máximo de logs a serem guardados no sistema (integer)\nmax_logs = 5\n#--------------------------------------------------------\n# Dados para conexão com o banco PostgreSQL:",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "verify_date",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "verify_date = 18/03/2025\n#--------------------------------------------------------\n# Configurações do funcionamento dos logs\n[log_settings]\n# Máximo de logs a serem guardados no sistema (integer)\nmax_logs = 5\n#--------------------------------------------------------\n# Dados para conexão com o banco PostgreSQL:\n[db_info]\n# Endereço do servidor: (string)",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "max_logs",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "max_logs = 5\n#--------------------------------------------------------\n# Dados para conexão com o banco PostgreSQL:\n[db_info]\n# Endereço do servidor: (string)\nhost = 127.0.0.1\n# Usuário com acesso de leitura/escrita (string)\nuser = Shakya\n# Senha do usuário (string)\npassword = shk",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "host",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "host = 127.0.0.1\n# Usuário com acesso de leitura/escrita (string)\nuser = Shakya\n# Senha do usuário (string)\npassword = shk\n# Nome do banco a ser utilizado (string)\ndbname = UNIFI\n# Porta de acesso do servidor (integer)\nport = 5432\n# Nome da tabela que ficará salvo os dados (string)",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "user",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "user = Shakya\n# Senha do usuário (string)\npassword = shk\n# Nome do banco a ser utilizado (string)\ndbname = UNIFI\n# Porta de acesso do servidor (integer)\nport = 5432\n# Nome da tabela que ficará salvo os dados (string)\ntable = diagnostics\n#--------------------------------------------------------",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "password",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "password = shk\n# Nome do banco a ser utilizado (string)\ndbname = UNIFI\n# Porta de acesso do servidor (integer)\nport = 5432\n# Nome da tabela que ficará salvo os dados (string)\ntable = diagnostics\n#--------------------------------------------------------\n\"\"\"\n#########################################################",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "dbname",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "dbname = UNIFI\n# Porta de acesso do servidor (integer)\nport = 5432\n# Nome da tabela que ficará salvo os dados (string)\ntable = diagnostics\n#--------------------------------------------------------\n\"\"\"\n#########################################################\nprint_and_log(f\"\"\"\\n*********************************************************\\n\n              Iniciando leitura das configurações...\"\"\")",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "port",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "port = 5432\n# Nome da tabela que ficará salvo os dados (string)\ntable = diagnostics\n#--------------------------------------------------------\n\"\"\"\n#########################################################\nprint_and_log(f\"\"\"\\n*********************************************************\\n\n              Iniciando leitura das configurações...\"\"\")\n# Inicializando o configparser\nconfig = configparser.ConfigParser()",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "table",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "table = diagnostics\n#--------------------------------------------------------\n\"\"\"\n#########################################################\nprint_and_log(f\"\"\"\\n*********************************************************\\n\n              Iniciando leitura das configurações...\"\"\")\n# Inicializando o configparser\nconfig = configparser.ConfigParser()\n# Tentando abrir o arquivo settings.cfg\ntry:",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "config",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "config = configparser.ConfigParser()\n# Tentando abrir o arquivo settings.cfg\ntry:\n    # Abrindo o aquivo\n    with open('settings.cfg') as file:\n        # Lendo o arquivo\n        config.read_file(file)\n# Caso encontre algum erro\nexcept IOError as error:\n    print_and_log(f\"\"\"\\nErro ao tentar abrir o arquivo settings.cfg:\\n",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "max_logs",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "max_logs = None\nvms_to_backup = []\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1)\n# Lendo e validando o parâmetro vms_to_backup -> vms_list",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "vms_to_backup",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "vms_to_backup = []\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1)\n# Lendo e validando o parâmetro vms_to_backup -> vms_list\ntry:",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "logs",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "logs = sorted(glob.glob(os.path.join(log_dir, \"log_*.log\")),\n              key=os.path.getctime)\n# Caso exceda o número máximo de logs\nif len(logs) > max_logs:\n    print_and_log(f\"\"\"Quantidade de logs excedida!\"\"\")\n    # Pegar os logs excedentes\n    logs_a_excluir = logs[:len(logs) - max_logs]\n    # Iterar sobre cada log\n    for log in logs_a_excluir:\n        # Excluir o log",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "path = os.getcwd()\nencoding = os.device_encoding(1)\nbackup_script_name = \"script_teste\"\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vms_to_backup[0]}\"],\n    capture_output=True, text=True, encoding=encoding\n)",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "encoding",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "encoding = os.device_encoding(1)\nbackup_script_name = \"script_teste\"\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vms_to_backup[0]}\"],\n    capture_output=True, text=True, encoding=encoding\n)\nif p.stderr:",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "backup_script_name",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "backup_script_name = \"script_teste\"\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vms_to_backup[0]}\"],\n    capture_output=True, text=True, encoding=encoding\n)\nif p.stderr:\n    print(\"\\nErro ao executar backup!\")",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "p",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "p = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vms_to_backup[0]}\"],\n    capture_output=True, text=True, encoding=encoding\n)\nif p.stderr:\n    print(\"\\nErro ao executar backup!\")\n    print(\"Retorno do script:\")",
+        "detail": "backup_vm",
+        "documentation": {}
+    }
+]
