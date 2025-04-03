@@ -1,5 +1,13 @@
 [
     {
+        "label": "FTP",
+        "importPath": "ftplib",
+        "description": "ftplib",
+        "isExtraImport": true,
+        "detail": "ftplib",
+        "documentation": {}
+    },
+    {
         "label": "subprocess",
         "kind": 6,
         "isExtraImport": true,
@@ -215,20 +223,56 @@
         "documentation": {}
     },
     {
-        "label": "max_logs",
+        "label": "ftp_info",
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "max_logs = None\nvms_to_backup = []\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1)\n# Lendo e validando o parâmetro vms_to_backup -> vms_list",
+        "peekOfCode": "ftp_info = {}\nupload_backup_to_ftp = None\nclean_local_backup_after_upload = None\nmax_logs = None\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nbase_path = \"C:/vm_backups\"\nvm_name = \"ZABBIX_OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')",
         "detail": "backup_vm",
         "documentation": {}
     },
     {
-        "label": "vms_to_backup",
+        "label": "upload_backup_to_ftp",
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "vms_to_backup = []\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1)\n# Lendo e validando o parâmetro vms_to_backup -> vms_list\ntry:",
+        "peekOfCode": "upload_backup_to_ftp = None\nclean_local_backup_after_upload = None\nmax_logs = None\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nbase_path = \"C:/vm_backups\"\nvm_name = \"ZABBIX_OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "clean_local_backup_after_upload",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "clean_local_backup_after_upload = None\nmax_logs = None\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nbase_path = \"C:/vm_backups\"\nvm_name = \"ZABBIX_OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "max_logs",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "max_logs = None\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nbase_path = \"C:/vm_backups\"\nvm_name = \"ZABBIX_OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "base_path",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "base_path = \"C:/vm_backups\"\nvm_name = \"ZABBIX_OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1)\n# Lendo e validando o parâmetro script_settings -> upload_backup_to_ftp",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "vm_name",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "vm_name = \"ZABBIX_OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1)\n# Lendo e validando o parâmetro script_settings -> upload_backup_to_ftp\ntry:",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -246,7 +290,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "path = os.getcwd()\nencoding = os.device_encoding(1)\nbackup_script_name = \"script_teste\"\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vms_to_backup[0]}\"],\n    capture_output=True, text=True, encoding=encoding\n)",
+        "peekOfCode": "path = os.getcwd()\nencoding = os.device_encoding(1)\nbackup_script_name = \"script_teste\"\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vm_name}\"],\n    capture_output=True, text=True, encoding=encoding",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -255,7 +299,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "encoding = os.device_encoding(1)\nbackup_script_name = \"script_teste\"\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vms_to_backup[0]}\"],\n    capture_output=True, text=True, encoding=encoding\n)\nif p.stderr:",
+        "peekOfCode": "encoding = os.device_encoding(1)\nbackup_script_name = \"script_teste\"\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vm_name}\"],\n    capture_output=True, text=True, encoding=encoding\n)",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -264,7 +308,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "backup_script_name = \"script_teste\"\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vms_to_backup[0]}\"],\n    capture_output=True, text=True, encoding=encoding\n)\nif p.stderr:\n    print(\"\\nErro ao executar backup!\")",
+        "peekOfCode": "backup_script_name = \"script_teste\"\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vm_name}\"],\n    capture_output=True, text=True, encoding=encoding\n)\nif p.stderr:",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -273,7 +317,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "p = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vms_to_backup[0]}\"],\n    capture_output=True, text=True, encoding=encoding\n)\nif p.stderr:\n    print(\"\\nErro ao executar backup!\")\n    print(\"Retorno do script:\")",
+        "peekOfCode": "p = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vm_name}\"],\n    capture_output=True, text=True, encoding=encoding\n)\nif p.stderr:\n    print_and_log(\"Erro ao executar backup!\", \"critical\")\n    print_and_log(",
         "detail": "backup_vm",
         "documentation": {}
     }

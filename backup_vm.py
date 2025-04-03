@@ -21,6 +21,9 @@
 # Importando as bibliotecas utilizadas:
 #########################################################
 
+# Biblioteca para interagir com o servidor FTP
+from ftplib import FTP
+
 # Biblioteca para gerenciar subprocessos (Janela do Powershell) e capturar o retorno
 import subprocess
 
@@ -189,12 +192,14 @@ except IOError as error:
     end_script(1)
 
 # Inicializando variáveis que serão lidas
-# db_info = {}
-# save_on_db = None
-# custom_verify = None
-# verify_date = ""
+ftp_info = {}
+upload_backup_to_ftp = None
+clean_local_backup_after_upload = None
 max_logs = None
-vms_to_backup = []
+
+# Inicializando variáveis fixas (que não podem ser alteradas via "settings.cfg")
+base_path = "C:/vm_backups"
+vm_name = "ZABBIX_OLT"
 
 # Lendo e validando o parâmetro log_settings -> max_logs
 try:
@@ -204,7 +209,71 @@ except ValueError:
         "\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.", "critical")
     end_script(1)
 
+# Lendo e validando o parâmetro script_settings -> upload_backup_to_ftp
+try:
+    upload_backup_to_ftp = config.getboolean(
+        'script_settings', 'upload_backup_to_ftp')
+except ValueError:
+    print_and_log(
+        "\nErro: Parâmetro 'script_settings -> upload_backup_to_ftp' precisa ser um booleano.", "critical")
+    end_script(1)
 
+# Lendo e validando o parâmetro script_settings -> clean_local_backup_after_upload
+try:
+    clean_local_backup_after_upload = config.getboolean(
+        'script_settings', 'clean_local_backup_after_upload')
+except ValueError:
+    print_and_log(
+        "\nErro: Parâmetro 'script_settings -> clean_local_backup_after_upload' precisa ser um booleano.", "critical")
+    end_script(1)
+
+# Caso configurado para fazer upload do backup pro servidor FTP
+if upload_backup_to_ftp is True:
+    # Lendo e validando o parâmetro ftp_info -> host
+    try:
+        ftp_info["host"] = config.get('ftp_info', 'host')
+        if ftp_info["host"].strip() == "":
+            print_and_log(
+                "\nErro: Parâmetro 'ftp_info -> host' não pode estar vazio.", "critical")
+            end_script(1)
+    except ValueError:
+        print_and_log(
+            "\nErro: Parâmetro 'ftp_info -> host' precisa ser uma string.", "critical")
+        end_script(1)
+
+    # Lendo e validando o parâmetro ftp_info -> port
+    try:
+        ftp_info["port"] = config.getint('ftp_info', 'port')
+    except ValueError:
+        print_and_log(
+            "\nErro: Parâmetro 'ftp_info -> port' precisa ser um número inteiro.", "critical")
+        end_script(1)
+
+    # Lendo e validando o parâmetro ftp_info -> user
+    try:
+        ftp_info["user"] = config.get('ftp_info', 'user')
+        if ftp_info["user"].strip() == "":
+            print_and_log(
+                "\nErro: Parâmetro 'ftp_info -> user' não pode estar vazio.", "critical")
+            end_script(1)
+    except ValueError:
+        print_and_log(
+            "\nErro: Parâmetro 'ftp_info -> user' precisa ser uma string.", "critical")
+        end_script(1)
+
+    # Lendo e validando o parâmetro ftp_info -> pass
+    try:
+        ftp_info["pass"] = config.get('ftp_info', 'pass')
+        if ftp_info["pass"].strip() == "":
+            print_and_log(
+                "\nErro: Parâmetro 'ftp_info -> pass' não pode estar vazio.", "critical")
+            end_script(1)
+    except ValueError:
+        print_and_log(
+            "\nErro: Parâmetro 'ftp_info -> pass' precisa ser uma string.", "critical")
+        end_script(1)
+
+'''
 # Lendo e validando o parâmetro vms_to_backup -> vms_list
 try:
     vms_to_backup = json.loads(config.get("vms_to_backup", "vms_list"))
@@ -219,7 +288,7 @@ except ValueError:
     end_script(1)
 
 print(vms_to_backup)
-
+'''
 '''
 # Lendo e validando o parâmetro script_settings -> save_on_db
 try:
@@ -364,35 +433,171 @@ print_and_log(f"""Limpeza dos logs antigos finalizada com sucesso!""")
 # Rodar script para fazer backup nas VMs
 #########################################################
 
+print_and_log(f"""\n*********************************************************\n
+              Inciando backup da VM: {vm_name}""")
+
 path = os.getcwd()
 encoding = os.device_encoding(1)
 backup_script_name = "script_teste"
+
+print_and_log(f"""Abrindo o script de backup no powershell...""")
 
 p = subprocess.run(
     ["powershell.exe",
      "-NoProfile",
      "-ExecutionPolicy", "Bypass",
-     "-File", f"{path}\\{backup_script_name}.ps1", f"{vms_to_backup[0]}"],
+     "-File", f"{path}\\{backup_script_name}.ps1", f"{vm_name}"],
     capture_output=True, text=True, encoding=encoding
 )
 
 if p.stderr:
-    print("\nErro ao executar backup!")
-    print("Retorno do script:")
-    print(p.stdout)
-    print("Erro:")
-    print(p.stderr)
+    print_and_log("Erro ao executar backup!", "critical")
+    print_and_log(
+        f"Retorno da execução do powershell:\n{p.stdout}", "critical")
+    print_and_log(f"Erro:\n{p.stderr}", "critical")
+    end_script(1)
 else:
-    print("\nBackup concluído com sucesso!")
-    print("Retorno do script:")
-    print(p.stdout)
+    print_and_log("Backup concluído com sucesso!")
+    print_and_log(
+        f"Retorno da execução do powershell:\n{p.stdout}")
 
 #########################################################
-# TODO
+# Conectar com o servidor FTP e fazer upload do backup realizado
+# (caso habilitado nas configurações: "settings.cfg")
 #########################################################
+
+# Caso configurado para fazer upload do backup para o servidor FTP
+if upload_backup_to_ftp:
+    print_and_log(f"""\n*********************************************************\n
+                Realizando upload do backup da VM {vm_name} para o servidor FTP...""")
+
+    # A função abaixo verifica cada pasta e arquivo do backup recursivamente
+    # e os envia para o servidor FTP
+
+    def upload_folder(ftp, local_folder, remote_folder):
+
+        print_and_log(
+            f"Criando diretório {local_folder} no FTP...")
+
+        try:
+            # Tenta criar, no servidor FTP, a pasta informada ao chamar a função
+            # (Recursivamente irá criar a pasta raiz e todas as subpastas)
+            ftp.mkd(remote_folder)
+        # Caso já exista
+        except Exception:
+            # Informa ao usuário
+            print_and_log(f"Diretório {local_folder} já existe!")
+
+        # Entra na pasta criada no servidor FTP
+        ftp.cwd(remote_folder)
+
+        # Itera sobre cada item local (arquivos e pastas) do backup realizado
+        for item in os.listdir(local_folder):
+            # Armazena o caminho que está sendo verificado
+            local_path = os.path.join(local_folder, item)
+            # Caso o caminho seja uma pasta
+            if os.path.isdir(local_path):
+                # Chama recursivamente a função para verificar os itens dessa pasta
+                upload_folder(ftp, local_path, item)
+            # Caso não seja uma pasta
+            else:
+                print_and_log(
+                    f"Realizando upload do arquivo {local_path} para o servidor FTP...")
+                try:
+                    # Tenta ler o arquivo em formato binário
+                    with open(local_path, "rb") as file:
+                        # Realiza o upload
+                        ftp.storbinary(f"STOR {item}", file)
+                        print_and_log(
+                            f"Upload do arquivo {local_path} realizado com sucesso...")
+                # Caso ocorra algum erro na leitura ou no upload do arquivo
+                except Exception as error:
+                    # Informa o erro ao usuário
+                    print_and_log(
+                        f"Erro ao realizar upload do arquivo {local_path} para o servidor FTP\nErro: {error}", "critical")
+        # Retorna ao diretório anterior
+        ftp.cwd("..")
+
+    print_and_log(
+        f"Conectando com o servidor FTP...\nHost: {ftp_info['host']}\nPort: {ftp_info['port']}\nUser: {ftp_info['user']}\nPass: {ftp_info['pass']}")
+    try:
+        # Tenta realizar a conexão com o servidor FTP
+        ftp = FTP()
+        ftp.connect(ftp_info["host"], ftp_info["port"])
+        ftp.login(ftp_info["user"], ftp_info["pass"])
+    # Caso ocorra algum erro
+    except Exception as error:
+        # Informa ao usuário
+        print_and_log(
+            f"Erro ao conectar com o servidor FTP!\nErro: {error}", "critical")
+        end_script(1)
+
+    # Armazena os diretórios:
+    # Onde está salvo o backup localmente,
+    # Onde será salvo no servidor FTP
+    local_folder = f"{base_path}/{vm_name}_bkp"
+    remote_folder = f"{base_path}/{vm_name}_bkp"
+
+    # Chama a função responsável por fazer upload do backup
+    upload_folder(ftp, local_folder, remote_folder)
+
+    print_and_log(
+        f"Encerrando conexão com o servidor FTP...")
+    # Fecha a conexão com o servidor FTP
+    ftp.quit()
+# Caso configurado para não fazer upload do backup para o servidor FTP
+else:
+    # Informa ao usuário
+    print_and_log(f"""\n*********************************************************\n
+                Script configurado para não salvar o backup no servidor FTP...""")
+
+#########################################################
+# Limpando o backup local
+# (caso habilitado nas configurações: "settings.cfg")
+#########################################################
+
+# Caso configurado para limpar o backup salvo localmente
+if clean_local_backup_after_upload:
+    print_and_log(f"""\n*********************************************************\n
+                Limpando o backup realizado localmente...""")
+
+    # Função para limpar recursivamente o diretório informado
+
+    def clear_folder(dir):
+        # Caso seja uma pasta
+        if os.path.exists(dir):
+            # Itera sobre cada item da pasta
+            for file in os.listdir(dir):
+                # Armazena o caminho que está sendo verificado
+                file_path = os.path.join(dir, file)
+                try:
+                    # Caso seja um arquivo
+                    if os.path.isfile(file_path):
+                        # Apaga o arquivo
+                        os.unlink(file_path)
+                    # Caso seja uma pasta
+                    else:
+                        # Chama a função novamente para verificar os itens dentro da subpasta
+                        clear_folder(file_path)
+                        # Após verificar e remover qualquer item dentro, remove a pasta
+                        os.rmdir(file_path)
+                # Caso ocorra algum erro na remoção dos itens
+                except Exception as error:
+                    # Informa ao usuário
+                    print_and_log(
+                        f"Erro ao limpar o diretório de backup local!\nErro: {error}", "critical")
+
+    # Chama a função para limpar o backup local
+    clear_folder(base_path)
+# Caso configurado para não limpar o backup salvo localmente
+else:
+    # Informa ao usuário
+    print_and_log(f"""\n*********************************************************\n
+                Script configurado para não limpar o backup salvo localmente...""")
 
 # --------------------------------------------------------
 # Finalizando o programa
 # --------------------------------------------------------
 
+# Finaliza o script
 end_script(0)

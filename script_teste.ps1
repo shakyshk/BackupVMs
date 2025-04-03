@@ -1,5 +1,5 @@
 $vm_to_backup = $args[0]
-Write-Host $vm_to_backup
+#Write-Host $vm_to_backup
 
 # TestDelay:
 Write-Host "Iniciando script de backup..."
@@ -17,7 +17,7 @@ if ($myWindowsPrincipal.IsInRole($adminRole)) {
     Write-Host "Script rodando como Administrador!";
     # We are running "as Administrator" - so change the title and background color to indicate this
     $Host.UI.RawUI.WindowTitle = $myInvocation.MyCommand.Definition + "(Elevated)"
-    $Host.UI.RawUI.BackgroundColor = "DarkBlue"
+    # $Host.UI.RawUI.BackgroundColor = "DarkBlue"
     clear-host
 }
 else {
@@ -39,12 +39,12 @@ else {
 
 
 # Run your code that needs to be elevated here
-$base_path_for_backups = "C:\vm_backups_tmp\"
-$vm_path_for_backup = $vm_to_backup + "_tmp"
+$base_path_for_backups = "C:\vm_backups\"
+$vm_path_for_backup = $vm_to_backup + "_bkp"
 $path_for_backup = Join-Path $base_path_for_backups $vm_path_for_backup
 New-Item -ItemType Directory -Force -Path $path_for_backup
 
-Export-VM -Name $vm_to_backup -Path $path_for_backup
+#Export-VM -Name $vm_to_backup -Path $path_for_backup
 
 # TestDelay:
 #Write-Host "Script rodando..."

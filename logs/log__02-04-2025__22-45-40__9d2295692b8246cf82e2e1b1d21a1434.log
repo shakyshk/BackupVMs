@@ -1,0 +1,60 @@
+2025-04-02 22:45:40,158 - INFO:
+Arquivo de log iniciado com sucesso!
+
+2025-04-02 22:45:40,159 - INFO:
+*********************************************************
+
+Iniciando leitura das configurações...
+
+2025-04-02 22:45:40,160 - INFO:
+Configurações:
+max_logs = 5
+
+2025-04-02 22:45:40,161 - INFO:
+Configurações lidas com sucesso!
+
+2025-04-02 22:45:40,162 - INFO:
+*********************************************************
+
+Iniciando limpeza dos logs antigos...
+
+2025-04-02 22:45:40,162 - INFO:
+Quantidade de logs excedida!
+
+2025-04-02 22:45:40,172 - INFO:
+Log removido: logs\log__02-04-2025__22-43-23__b1bdd592fd70481db9e9308bafa467a5.log
+
+2025-04-02 22:45:40,172 - INFO:
+Limpeza dos logs antigos finalizada com sucesso!
+
+2025-04-02 22:45:40,173 - INFO:
+*********************************************************
+
+Inciando backup da VM: ZABBIX_OLT
+
+2025-04-02 22:45:40,173 - INFO:
+Abrindo o script de backup no powershell...
+
+2025-04-02 22:45:41,531 - INFO:
+Backup concluído com sucesso!
+
+2025-04-02 22:45:41,532 - INFO:
+Retorno da execução do powershell:
+Iniciando script de backup...
+Elevando acesso do script para Administrador...
+
+
+Diretório: C:\vm_backups
+
+
+Mode                 LastWriteTime         Length Name                                                                                                                              
+----                 -------------         ------ ----                                                                                                                              
+d-----        02/04/2025     22:45                ZABBIX_OLT_bkp
+
+2025-04-02 22:45:41,533 - INFO:
+#########################################################
+
+Programa finalizado com sucesso!
+
+#########################################################
+
