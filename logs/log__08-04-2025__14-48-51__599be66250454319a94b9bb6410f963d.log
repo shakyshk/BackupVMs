@@ -1,0 +1,116 @@
+2025-04-08 14:48:51,057 - INFO:
+Arquivo de log iniciado com sucesso!
+
+2025-04-08 14:48:51,057 - INFO:
+*********************************************************
+
+Iniciando leitura das configurações...
+
+2025-04-08 14:48:51,058 - INFO:
+Configurações:
+max_logs = 5
+
+2025-04-08 14:48:51,058 - INFO:
+Configurações lidas com sucesso!
+
+2025-04-08 14:48:51,058 - INFO:
+*********************************************************
+
+Iniciando limpeza dos logs antigos...
+
+2025-04-08 14:48:51,058 - INFO:
+Quantidade de logs excedida!
+
+2025-04-08 14:48:51,068 - INFO:
+Log removido: logs\log__08-04-2025__14-38-31__a225689ebcea4c288920f1033f483d6b.log
+
+2025-04-08 14:48:51,068 - INFO:
+Limpeza dos logs antigos finalizada com sucesso!
+
+2025-04-08 14:48:51,068 - INFO:
+*********************************************************
+
+Inciando backup da VM: ZABBIX OLT
+
+2025-04-08 14:48:51,068 - INFO:
+Abrindo o script de backup no powershell...
+
+2025-04-08 14:48:52,723 - INFO:
+Backup concluído com sucesso!
+
+2025-04-08 14:48:52,724 - INFO:
+Retorno da execução do powershell:
+VM que serÃ¡ realizado backup:  + ZABBIX OLT
+Caminho raiz dos backups:  + C:/vm_backups/
+Pasta para o backup da VM:  + ZABBIX OLT__08-04-2025__14-48-51__599be66250454319a94b9bb6410f963d__tmp
+Iniciando script de backup...
+Elevando acesso do script para Administrador...
+Verificando existÃªncia da pasta raiz dos backups...
+Pasta jÃ¡ existe...
+Verificando existÃªncia da pasta que guardarÃ¡ o backup...
+Pasta nÃ£o existe, criando...
+
+
+Diretório: C:\vm_backups
+
+
+Mode                 LastWriteTime         Length Name                                                                                                                              
+----                 -------------         ------ ----                                                                                                                              
+d-----        08/04/2025     14:48                ZABBIX OLT__08-04-2025__14-48-51__599be66250454319a94b9bb6410f963d__tmp                                                           
+
+
+Script de backup finalizado!
+
+2025-04-08 14:48:52,724 - INFO:
+*********************************************************
+
+Compactando backup para o arquivo: C:/vm_backups/ZABBIX OLT__08-04-2025__14-48-51__599be66250454319a94b9bb6410f963d__backup.zip
+
+2025-04-08 14:48:52,731 - INFO:
+Backup compactado com sucesso!
+
+2025-04-08 14:48:52,731 - INFO:
+*********************************************************
+
+Realizando upload do backup da VM ZABBIX OLT para o servidor SFTP...
+
+2025-04-08 14:48:52,732 - INFO:
+Servidor SFTP configurado: 
+Host: 160.238.226.1
+Port: 2230
+User: backups-ftp
+Pass: Conexaoba123
+Backups folder path: /home/backups-ftp/backups/
+
+2025-04-08 14:48:52,732 - INFO:
+Rodando upload no script WinSCP...
+
+2025-04-08 14:48:53,864 - CRITICAL:
+Erro ao executar upload no script WinSCP!
+
+2025-04-08 14:48:53,864 - CRITICAL:
+Retorno da execução do upload no script WinSCP:
+host_address: "'sftp://backups-ftp:Conexaoba123@160.238.226.1:2230/'"
+file_to_upload: "'C:\vm_backups\ZABBIX"
+backup_folder_path: "OLT__08-04-2025__14-48-51__599be66250454319a94b9bb6410f963d__backup.zip'"
+Verificando exist├¬ncia da pasta "OLT__08-04-2025__14-48-51__599be66250454319a94b9bb6410f963d__backup.zip'" no host "'sftp://backups-ftp:Conexaoba123@160.238.226.1:2230/'"
+Searching for host...
+Host "'sftp" does not exist.
+Pasta "OLT__08-04-2025__14-48-51__599be66250454319a94b9bb6410f963d__backup.zip'" n├úo existe, criando...
+Searching for host...
+Host "'sftp" does not exist.
+Enviando arquivo "'C:\vm_backups\ZABBIX" para "OLT__08-04-2025__14-48-51__599be66250454319a94b9bb6410f963d__backup.zip'"...
+Searching for host...
+Host "'sftp" does not exist.
+Script finalizado com erro!
+
+2025-04-08 14:48:53,864 - CRITICAL:
+Erro:
+
+2025-04-08 14:48:53,865 - CRITICAL:
+#########################################################
+
+Programa finalizado com erro!
+
+#########################################################
+

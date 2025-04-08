@@ -1,48 +1,48 @@
-2025-04-07 23:11:51,293 - INFO:
+2025-04-08 14:51:29,706 - INFO:
 Arquivo de log iniciado com sucesso!
 
-2025-04-07 23:11:51,293 - INFO:
+2025-04-08 14:51:29,707 - INFO:
 *********************************************************
 
 Iniciando leitura das configurações...
 
-2025-04-07 23:11:51,294 - INFO:
+2025-04-08 14:51:29,707 - INFO:
 Configurações:
 max_logs = 5
 
-2025-04-07 23:11:51,294 - INFO:
+2025-04-08 14:51:29,707 - INFO:
 Configurações lidas com sucesso!
 
-2025-04-07 23:11:51,294 - INFO:
+2025-04-08 14:51:29,707 - INFO:
 *********************************************************
 
 Iniciando limpeza dos logs antigos...
 
-2025-04-07 23:11:51,295 - INFO:
+2025-04-08 14:51:29,708 - INFO:
 Quantidade de logs excedida!
 
-2025-04-07 23:11:51,295 - INFO:
-Log removido: logs\log__07-04-2025__22-54-37__de94c7bfe73042439e50b9cfe5cf4082.log
+2025-04-08 14:51:29,709 - INFO:
+Log removido: logs\log__08-04-2025__14-42-08__9f73e890854e4194b6ac34aba8413f16.log
 
-2025-04-07 23:11:51,296 - INFO:
+2025-04-08 14:51:29,709 - INFO:
 Limpeza dos logs antigos finalizada com sucesso!
 
-2025-04-07 23:11:51,296 - INFO:
+2025-04-08 14:51:29,709 - INFO:
 *********************************************************
 
-Inciando backup da VM: ZABBIX_OLT
+Inciando backup da VM: ZABBIX OLT
 
-2025-04-07 23:11:51,296 - INFO:
+2025-04-08 14:51:29,709 - INFO:
 Abrindo o script de backup no powershell...
 
-2025-04-07 23:11:52,841 - INFO:
+2025-04-08 14:51:31,434 - INFO:
 Backup concluído com sucesso!
 
-2025-04-07 23:11:52,841 - INFO:
+2025-04-08 14:51:31,434 - INFO:
 Retorno da execução do powershell:
-VM que serÃ¡ realizado backup:  + ZABBIX_OLT
+VM que serÃ¡ realizado backup:  + ZABBIX OLT
 Caminho raiz dos backups:  + C:/vm_backups/
-Pasta para o backup da VM:  + ZABBIX_OLT__07-04-2025__23-11-51__e30a2ec484d44ad5aa5d3158e9978b76__tmp
+Pasta para o backup da VM:  + ZABBIX OLT__08-04-2025__14-51-29__ed50a8f7d61240dba85b6ce2141e527c__tmp
 Iniciando script de backup...
 Elevando acesso do script para Administrador...
 Verificando existÃªncia da pasta raiz dos backups...
@@ -56,25 +56,25 @@ Diretório: C:\vm_backups
 
 Mode                 LastWriteTime         Length Name                                                                                                                              
 ----                 -------------         ------ ----                                                                                                                              
-d-----        07/04/2025     23:11                ZABBIX_OLT__07-04-2025__23-11-51__e30a2ec484d44ad5aa5d3158e9978b76__tmp                                                           
+d-----        08/04/2025     14:51                ZABBIX OLT__08-04-2025__14-51-29__ed50a8f7d61240dba85b6ce2141e527c__tmp                                                           
 
 
 Script de backup finalizado!
 
-2025-04-07 23:11:52,842 - INFO:
+2025-04-08 14:51:31,434 - INFO:
 *********************************************************
 
-Compactando backup para o arquivo: C:/vm_backups/ZABBIX_OLT__07-04-2025__23-11-51__e30a2ec484d44ad5aa5d3158e9978b76__backup.zip
+Compactando backup para o arquivo: C:/vm_backups/ZABBIX OLT__08-04-2025__14-51-29__ed50a8f7d61240dba85b6ce2141e527c__backup.zip
 
-2025-04-07 23:11:52,851 - INFO:
+2025-04-08 14:51:31,441 - INFO:
 Backup compactado com sucesso!
 
-2025-04-07 23:11:52,851 - INFO:
+2025-04-08 14:51:31,441 - INFO:
 *********************************************************
 
-Realizando upload do backup da VM ZABBIX_OLT para o servidor SFTP...
+Realizando upload do backup da VM ZABBIX OLT para o servidor SFTP...
 
-2025-04-07 23:11:52,852 - INFO:
+2025-04-08 14:51:31,441 - INFO:
 Servidor SFTP configurado: 
 Host: 160.238.226.1
 Port: 2230
@@ -82,15 +82,18 @@ User: backups-ftp
 Pass: Conexaoba123
 Backups folder path: /home/backups-ftp/backups/
 
-2025-04-07 23:11:52,852 - INFO:
+2025-04-08 14:51:31,441 - INFO:
 Rodando upload no script WinSCP...
 
-2025-04-07 23:11:54,144 - INFO:
+2025-04-08 14:51:33,376 - INFO:
 Upload no script WinSCP concluído com sucesso!
 
-2025-04-07 23:11:54,144 - INFO:
+2025-04-08 14:51:33,377 - INFO:
 Retorno da execução do upload no script WinSCP:
-Verificando exist├¬ncia da pasta /home/backups-ftp/backups/ZABBIX_OLT/ no host sftp://backups-ftp:Conexaoba123@160.238.226.1:2230/
+host_address: sftp://backups-ftp:Conexaoba123@160.238.226.1:2230/
+file_to_upload: C:\vm_backups\ZABBIX OLT__08-04-2025__14-51-29__ed50a8f7d61240dba85b6ce2141e527c__backup.zip
+backup_folder_path: /home/backups-ftp/backups/ZABBIX OLT/
+Verificando exist├¬ncia da pasta /home/backups-ftp/backups/ZABBIX OLT/ no host sftp://backups-ftp:Conexaoba123@160.238.226.1:2230/
 Searching for host...
 Connecting to host...
 Authenticating...
@@ -101,9 +104,11 @@ Authenticated.
 Starting the session...
 Session started.
 Active session: [1] backups-ftp@160.238.226.1
-Drwxr-xr-x   0                        4096 Apr  7 23:11:04 2025 ZABBIX_OLT
-Pasta /home/backups-ftp/backups/ZABBIX_OLT/ j├í existe...
-Enviando arquivo C:\vm_backups\ZABBIX_OLT__07-04-2025__23-11-51__e30a2ec484d44ad5aa5d3158e9978b76__backup.zip para /home/backups-ftp/backups/ZABBIX_OLT/...
+Can't get attributes of file '/home/backups-ftp/backups/ZABBIX OLT'.
+No such file or directory.
+Error code: 2
+Error message from server: No such file
+Pasta /home/backups-ftp/backups/ZABBIX OLT/ n├úo existe, criando...
 Searching for host...
 Connecting to host...
 Authenticating...
@@ -114,30 +119,41 @@ Authenticated.
 Starting the session...
 Session started.
 Active session: [1] backups-ftp@160.238.226.1
-C:\vm_backups\ZABBIX_OLT__07-04-2025__23-11-51__e30a2ec484d44ad5aa5d3158e9978b76__backup.zip |           22 B |    0,0 KB/s | binary | 100%
+Enviando arquivo C:\vm_backups\ZABBIX OLT__08-04-2025__14-51-29__ed50a8f7d61240dba85b6ce2141e527c__backup.zip para /home/backups-ftp/backups/ZABBIX OLT/...
+Searching for host...
+Connecting to host...
+Authenticating...
+WARNING! Giving up security and accepting any host key as configured!
+Using username "backups-ftp".
+Authenticating with pre-entered password.
+Authenticated.
+Starting the session...
+Session started.
+Active session: [1] backups-ftp@160.238.226.1
+C:\vm_backups\ZABBIX OLT__08-04-2025__14-51-29__ed50a8f7d61240dba85b6ce2141e527c__backup.zip |           22 B |    0,0 KB/s | binary | 100%
 Script finalizado com sucesso!
 
-2025-04-07 23:11:54,144 - INFO:
+2025-04-08 14:51:33,377 - INFO:
 *********************************************************
 
 Limpando o backup realizado localmente...
 
-2025-04-07 23:11:54,144 - INFO:
+2025-04-08 14:51:33,377 - INFO:
 Esvaziando a pasta do backup...
 
-2025-04-07 23:11:54,145 - INFO:
+2025-04-08 14:51:33,378 - INFO:
 Removendo a pasta do backup...
 
-2025-04-07 23:11:54,145 - INFO:
+2025-04-08 14:51:33,378 - INFO:
 Pasta do backup removida com sucesso!
 
-2025-04-07 23:11:54,145 - INFO:
+2025-04-08 14:51:33,378 - INFO:
 Removendo o arquivo zip do backup...
 
-2025-04-07 23:11:54,145 - INFO:
+2025-04-08 14:51:33,378 - INFO:
 Arquivo zip do backup removido com sucesso!
 
-2025-04-07 23:11:54,145 - INFO:
+2025-04-08 14:51:33,378 - INFO:
 #########################################################
 
 Programa finalizado com sucesso!
