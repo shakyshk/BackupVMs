@@ -1,10 +1,20 @@
 [
     {
-        "label": "FTP",
-        "importPath": "ftplib",
-        "description": "ftplib",
+        "label": "time",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "ftplib",
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "shutil",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shutil",
+        "description": "shutil",
+        "detail": "shutil",
         "documentation": {}
     },
     {
@@ -110,7 +120,16 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "log_dir = \"logs\"\n# Criando o diretório caso não exista\nos.makedirs(log_dir, exist_ok=True)\n# Criando um nome para o log (formato: log__data__horário__id.log)\nlog_filename = os.path.join(\n    log_dir,\n    f\"log__{datetime.now().strftime('%d-%m-%Y__%H-%M-%S')}__{uuid.uuid4().hex}.log\")\n# Configurando o logging\nlogging.basicConfig(\n    filename=log_filename,",
+        "peekOfCode": "log_dir = \"logs\"\n# Criando o diretório caso não exista\nos.makedirs(log_dir, exist_ok=True)\n# Criando uma string com horário e id unico para essa execução do script\nunique_time_id = f\"{datetime.now().strftime('%d-%m-%Y__%H-%M-%S')}__{uuid.uuid4().hex}\"\n# Criando um nome para o log (formato: log__data__horário__id.log)\nlog_filename = os.path.join(\n    log_dir,\n    f\"log__{unique_time_id}.log\")\n# Configurando o logging",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "unique_time_id",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "unique_time_id = f\"{datetime.now().strftime('%d-%m-%Y__%H-%M-%S')}__{uuid.uuid4().hex}\"\n# Criando um nome para o log (formato: log__data__horário__id.log)\nlog_filename = os.path.join(\n    log_dir,\n    f\"log__{unique_time_id}.log\")\n# Configurando o logging\nlogging.basicConfig(\n    filename=log_filename,\n    level=logging.INFO,\n    encoding=\"utf-8\",",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -119,7 +138,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "log_filename = os.path.join(\n    log_dir,\n    f\"log__{datetime.now().strftime('%d-%m-%Y__%H-%M-%S')}__{uuid.uuid4().hex}.log\")\n# Configurando o logging\nlogging.basicConfig(\n    filename=log_filename,\n    level=logging.INFO,\n    encoding=\"utf-8\",\n    format=\"%(asctime)s - %(levelname)s:\\n%(message)s\\n\"\n)",
+        "peekOfCode": "log_filename = os.path.join(\n    log_dir,\n    f\"log__{unique_time_id}.log\")\n# Configurando o logging\nlogging.basicConfig(\n    filename=log_filename,\n    level=logging.INFO,\n    encoding=\"utf-8\",\n    format=\"%(asctime)s - %(levelname)s:\\n%(message)s\\n\"\n)",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -227,7 +246,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "ftp_info = {}\nupload_backup_to_ftp = None\nclean_local_backup_after_upload = None\nmax_logs = None\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nbase_path = \"C:/vm_backups\"\nvm_name = \"ZABBIX_OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')",
+        "peekOfCode": "ftp_info = {}\nupload_backup_to_ftp = None\nclean_local_backup_after_upload = None\nmax_logs = None\nlocal_backups_base_folder_path = \"\"\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nvm_to_backup = \"ZABBIX_OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -236,7 +255,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "upload_backup_to_ftp = None\nclean_local_backup_after_upload = None\nmax_logs = None\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nbase_path = \"C:/vm_backups\"\nvm_name = \"ZABBIX_OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:",
+        "peekOfCode": "upload_backup_to_ftp = None\nclean_local_backup_after_upload = None\nmax_logs = None\nlocal_backups_base_folder_path = \"\"\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nvm_to_backup = \"ZABBIX_OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -245,7 +264,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "clean_local_backup_after_upload = None\nmax_logs = None\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nbase_path = \"C:/vm_backups\"\nvm_name = \"ZABBIX_OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(",
+        "peekOfCode": "clean_local_backup_after_upload = None\nmax_logs = None\nlocal_backups_base_folder_path = \"\"\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nvm_to_backup = \"ZABBIX_OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -254,25 +273,25 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "max_logs = None\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nbase_path = \"C:/vm_backups\"\nvm_name = \"ZABBIX_OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")",
+        "peekOfCode": "max_logs = None\nlocal_backups_base_folder_path = \"\"\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nvm_to_backup = \"ZABBIX_OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")",
         "detail": "backup_vm",
         "documentation": {}
     },
     {
-        "label": "base_path",
+        "label": "local_backups_base_folder_path",
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "base_path = \"C:/vm_backups\"\nvm_name = \"ZABBIX_OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1)\n# Lendo e validando o parâmetro script_settings -> upload_backup_to_ftp",
+        "peekOfCode": "local_backups_base_folder_path = \"\"\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nvm_to_backup = \"ZABBIX_OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1)",
         "detail": "backup_vm",
         "documentation": {}
     },
     {
-        "label": "vm_name",
+        "label": "vm_to_backup",
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "vm_name = \"ZABBIX_OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1)\n# Lendo e validando o parâmetro script_settings -> upload_backup_to_ftp\ntry:",
+        "peekOfCode": "vm_to_backup = \"ZABBIX_OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1)\n# Lendo e validando o parâmetro script_settings -> upload_backup_to_ftp\ntry:",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -290,7 +309,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "path = os.getcwd()\nencoding = os.device_encoding(1)\nbackup_script_name = \"script_teste\"\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vm_name}\"],\n    capture_output=True, text=True, encoding=encoding",
+        "peekOfCode": "path = os.getcwd()\n# Arazendando o modo de encoding do sistema em que o script está rodando\n# (normalmente UTF-8, porém o UTF-8 dá erro no powershell,\n# se o script rodar no windows vai retornar encoding: CodePage850,\n# vai rodar com sucesso porém os acentos no log vão ficar bugados.)\nencoding = os.device_encoding(1)\n# Nome da pasta raiz onde será armazenado todos os backups\nbackup_script_name = \"script_teste\"\n# Nome da pasta que será armazenado este backup da VM\nbackup_folder_name = f\"{vm_to_backup}__{unique_time_id}__tmp\"",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -299,7 +318,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "encoding = os.device_encoding(1)\nbackup_script_name = \"script_teste\"\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vm_name}\"],\n    capture_output=True, text=True, encoding=encoding\n)",
+        "peekOfCode": "encoding = os.device_encoding(1)\n# Nome da pasta raiz onde será armazenado todos os backups\nbackup_script_name = \"script_teste\"\n# Nome da pasta que será armazenado este backup da VM\nbackup_folder_name = f\"{vm_to_backup}__{unique_time_id}__tmp\"\n# Armazenando o caminho completo do backup para usar depois\nbackup_folder_full_path = f\"{local_backups_base_folder_path}{backup_folder_name}\"\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")\np = subprocess.run(\n    [\"powershell.exe\",",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -308,7 +327,25 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "backup_script_name = \"script_teste\"\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vm_name}\"],\n    capture_output=True, text=True, encoding=encoding\n)\nif p.stderr:",
+        "peekOfCode": "backup_script_name = \"script_teste\"\n# Nome da pasta que será armazenado este backup da VM\nbackup_folder_name = f\"{vm_to_backup}__{unique_time_id}__tmp\"\n# Armazenando o caminho completo do backup para usar depois\nbackup_folder_full_path = f\"{local_backups_base_folder_path}{backup_folder_name}\"\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "backup_folder_name",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "backup_folder_name = f\"{vm_to_backup}__{unique_time_id}__tmp\"\n# Armazenando o caminho completo do backup para usar depois\nbackup_folder_full_path = f\"{local_backups_base_folder_path}{backup_folder_name}\"\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vm_to_backup}\", f\"{local_backups_base_folder_path}\", f\"{backup_folder_name}\"],\n    capture_output=True, text=True, encoding=encoding",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "backup_folder_full_path",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "backup_folder_full_path = f\"{local_backups_base_folder_path}{backup_folder_name}\"\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vm_to_backup}\", f\"{local_backups_base_folder_path}\", f\"{backup_folder_name}\"],\n    capture_output=True, text=True, encoding=encoding\n)\nif p.stderr:",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -317,7 +354,25 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "p = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vm_name}\"],\n    capture_output=True, text=True, encoding=encoding\n)\nif p.stderr:\n    print_and_log(\"Erro ao executar backup!\", \"critical\")\n    print_and_log(",
+        "peekOfCode": "p = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vm_to_backup}\", f\"{local_backups_base_folder_path}\", f\"{backup_folder_name}\"],\n    capture_output=True, text=True, encoding=encoding\n)\nif p.stderr:\n    print_and_log(\"Erro ao executar backup!\", \"critical\")\n    print_and_log(",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "backup_zip_name",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "backup_zip_name = f\"{vm_to_backup}__{unique_time_id}__backup\"\nbackup_zip_file_with_full_path = f\"{local_backups_base_folder_path}{backup_zip_name}\"\nprint_and_log(f\"\"\"\\n*********************************************************\\n\n              Compactando backup para o arquivo: {backup_zip_file_with_full_path}.zip\"\"\")\ntry:\n    shutil.make_archive(root_dir=backup_folder_full_path,\n                        format='zip', base_name=backup_zip_file_with_full_path)\nexcept Exception as error:\n    # Informa ao usuário\n    print_and_log(",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "backup_zip_file_with_full_path",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "backup_zip_file_with_full_path = f\"{local_backups_base_folder_path}{backup_zip_name}\"\nprint_and_log(f\"\"\"\\n*********************************************************\\n\n              Compactando backup para o arquivo: {backup_zip_file_with_full_path}.zip\"\"\")\ntry:\n    shutil.make_archive(root_dir=backup_folder_full_path,\n                        format='zip', base_name=backup_zip_file_with_full_path)\nexcept Exception as error:\n    # Informa ao usuário\n    print_and_log(\n        f\"Erro ao compactar backup para o arquivo {backup_zip_name}.zip!\\nErro: {error}\", \"critical\")",
         "detail": "backup_vm",
         "documentation": {}
     }

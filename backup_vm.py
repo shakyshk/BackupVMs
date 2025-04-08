@@ -21,10 +21,13 @@
 # Importando as bibliotecas utilizadas:
 #########################################################
 
-# Biblioteca para interagir com o servidor FTP
-from ftplib import FTP
+# test
+import time
 
-# Biblioteca para gerenciar subprocessos (Janela do Powershell) e capturar o retorno
+# Biblioteca para criar o arquivo zip do backup
+import shutil
+
+# Biblioteca para gerenciar subprocessos (Janela do Powershell e do WinSCP) e capturar o retorno
 import subprocess
 
 # Biblioteca para interagir com o interpretador do Python
@@ -115,11 +118,13 @@ print(f"""\n*********************************************************\n\nInician
 log_dir = "logs"
 # Criando o diretório caso não exista
 os.makedirs(log_dir, exist_ok=True)
+# Criando uma string com horário e id unico para essa execução do script
+unique_time_id = f"{datetime.now().strftime('%d-%m-%Y__%H-%M-%S')}__{uuid.uuid4().hex}"
 
 # Criando um nome para o log (formato: log__data__horário__id.log)
 log_filename = os.path.join(
     log_dir,
-    f"log__{datetime.now().strftime('%d-%m-%Y__%H-%M-%S')}__{uuid.uuid4().hex}.log")
+    f"log__{unique_time_id}.log")
 
 # Configurando o logging
 logging.basicConfig(
@@ -196,10 +201,10 @@ ftp_info = {}
 upload_backup_to_ftp = None
 clean_local_backup_after_upload = None
 max_logs = None
+local_backups_base_folder_path = ""
 
 # Inicializando variáveis fixas (que não podem ser alteradas via "settings.cfg")
-base_path = "C:/vm_backups"
-vm_name = "ZABBIX_OLT"
+vm_to_backup = "ZABBIX_OLT"
 
 # Lendo e validando o parâmetro log_settings -> max_logs
 try:
@@ -225,6 +230,19 @@ try:
 except ValueError:
     print_and_log(
         "\nErro: Parâmetro 'script_settings -> clean_local_backup_after_upload' precisa ser um booleano.", "critical")
+    end_script(1)
+
+# Lendo e validando o parâmetro script_settings -> local_backups_base_folder_path
+try:
+    local_backups_base_folder_path = config.get(
+        'script_settings', 'local_backups_base_folder_path')
+    if local_backups_base_folder_path.strip() == "":
+        print_and_log(
+            "\nErro: Parâmetro 'script_settings -> local_backups_base_folder_path' não pode estar vazio.", "critical")
+        end_script(1)
+except ValueError:
+    print_and_log(
+        "\nErro: Parâmetro 'script_settings -> local_backups_base_folder_path' precisa ser uma string.", "critical")
     end_script(1)
 
 # Caso configurado para fazer upload do backup pro servidor FTP
@@ -273,12 +291,25 @@ if upload_backup_to_ftp is True:
             "\nErro: Parâmetro 'ftp_info -> pass' precisa ser uma string.", "critical")
         end_script(1)
 
+    # Lendo e validando o parâmetro ftp_info -> backups_base_folder_path
+    try:
+        ftp_info["backups_base_folder_path"] = config.get(
+            'ftp_info', 'backups_base_folder_path')
+        if ftp_info["backups_base_folder_path"].strip() == "":
+            print_and_log(
+                "\nErro: Parâmetro 'ftp_info -> backups_base_folder_path' não pode estar vazio.", "critical")
+            end_script(1)
+    except ValueError:
+        print_and_log(
+            "\nErro: Parâmetro 'ftp_info -> backups_base_folder_path' precisa ser uma string.", "critical")
+        end_script(1)
+
 '''
 # Lendo e validando o parâmetro vms_to_backup -> vms_list
 try:
     vms_to_backup = json.loads(config.get("vms_to_backup", "vms_list"))
-    for vm_name in vms_to_backup:
-        if vm_name.strip() == "":
+    for vm_to_backup in vms_to_backup:
+        if vm_to_backup.strip() == "":
             print_and_log(
                 "\nErro: Parâmetro 'vms_to_backup -> vms_list' não pode conter uma nome vazio.", "critical")
             end_script(1)
@@ -434,11 +465,21 @@ print_and_log(f"""Limpeza dos logs antigos finalizada com sucesso!""")
 #########################################################
 
 print_and_log(f"""\n*********************************************************\n
-              Inciando backup da VM: {vm_name}""")
+              Inciando backup da VM: {vm_to_backup}""")
 
+# Armazenando o caminho em que o script está rodando
 path = os.getcwd()
+# Arazendando o modo de encoding do sistema em que o script está rodando
+# (normalmente UTF-8, porém o UTF-8 dá erro no powershell,
+# se o script rodar no windows vai retornar encoding: CodePage850,
+# vai rodar com sucesso porém os acentos no log vão ficar bugados.)
 encoding = os.device_encoding(1)
+# Nome da pasta raiz onde será armazenado todos os backups
 backup_script_name = "script_teste"
+# Nome da pasta que será armazenado este backup da VM
+backup_folder_name = f"{vm_to_backup}__{unique_time_id}__tmp"
+# Armazenando o caminho completo do backup para usar depois
+backup_folder_full_path = f"{local_backups_base_folder_path}{backup_folder_name}"
 
 print_and_log(f"""Abrindo o script de backup no powershell...""")
 
@@ -446,7 +487,7 @@ p = subprocess.run(
     ["powershell.exe",
      "-NoProfile",
      "-ExecutionPolicy", "Bypass",
-     "-File", f"{path}\\{backup_script_name}.ps1", f"{vm_name}"],
+     "-File", f"{path}\\{backup_script_name}.ps1", f"{vm_to_backup}", f"{local_backups_base_folder_path}", f"{backup_folder_name}"],
     capture_output=True, text=True, encoding=encoding
 )
 
@@ -461,95 +502,78 @@ else:
     print_and_log(
         f"Retorno da execução do powershell:\n{p.stdout}")
 
+
+#########################################################
+# Criar um arquivo zip do backup realizado
+#########################################################
+
+backup_zip_name = f"{vm_to_backup}__{unique_time_id}__backup"
+backup_zip_file_with_full_path = f"{local_backups_base_folder_path}{backup_zip_name}"
+print_and_log(f"""\n*********************************************************\n
+              Compactando backup para o arquivo: {backup_zip_file_with_full_path}.zip""")
+try:
+    shutil.make_archive(root_dir=backup_folder_full_path,
+                        format='zip', base_name=backup_zip_file_with_full_path)
+except Exception as error:
+    # Informa ao usuário
+    print_and_log(
+        f"Erro ao compactar backup para o arquivo {backup_zip_name}.zip!\nErro: {error}", "critical")
+else:
+    print_and_log("Backup compactado com sucesso!")
+
 #########################################################
 # Conectar com o servidor FTP e fazer upload do backup realizado
 # (caso habilitado nas configurações: "settings.cfg")
 #########################################################
 
-# Caso configurado para fazer upload do backup para o servidor FTP
+# Caso configurado para fazer upload do backup para o servidor SFTP
 if upload_backup_to_ftp:
     print_and_log(f"""\n*********************************************************\n
-                Realizando upload do backup da VM {vm_name} para o servidor FTP...""")
-
-    # A função abaixo verifica cada pasta e arquivo do backup recursivamente
-    # e os envia para o servidor FTP
-
-    def upload_folder(ftp, local_folder, remote_folder):
-
-        print_and_log(
-            f"Criando diretório {local_folder} no FTP...")
-
-        try:
-            # Tenta criar, no servidor FTP, a pasta informada ao chamar a função
-            # (Recursivamente irá criar a pasta raiz e todas as subpastas)
-            ftp.mkd(remote_folder)
-        # Caso já exista
-        except Exception:
-            # Informa ao usuário
-            print_and_log(f"Diretório {local_folder} já existe!")
-
-        # Entra na pasta criada no servidor FTP
-        ftp.cwd(remote_folder)
-
-        # Itera sobre cada item local (arquivos e pastas) do backup realizado
-        for item in os.listdir(local_folder):
-            # Armazena o caminho que está sendo verificado
-            local_path = os.path.join(local_folder, item)
-            # Caso o caminho seja uma pasta
-            if os.path.isdir(local_path):
-                # Chama recursivamente a função para verificar os itens dessa pasta
-                upload_folder(ftp, local_path, item)
-            # Caso não seja uma pasta
-            else:
-                print_and_log(
-                    f"Realizando upload do arquivo {local_path} para o servidor FTP...")
-                try:
-                    # Tenta ler o arquivo em formato binário
-                    with open(local_path, "rb") as file:
-                        # Realiza o upload
-                        ftp.storbinary(f"STOR {item}", file)
-                        print_and_log(
-                            f"Upload do arquivo {local_path} realizado com sucesso...")
-                # Caso ocorra algum erro na leitura ou no upload do arquivo
-                except Exception as error:
-                    # Informa o erro ao usuário
-                    print_and_log(
-                        f"Erro ao realizar upload do arquivo {local_path} para o servidor FTP\nErro: {error}", "critical")
-        # Retorna ao diretório anterior
-        ftp.cwd("..")
-
+                Realizando upload do backup da VM {vm_to_backup} para o servidor SFTP...""")
     print_and_log(
-        f"Conectando com o servidor FTP...\nHost: {ftp_info['host']}\nPort: {ftp_info['port']}\nUser: {ftp_info['user']}\nPass: {ftp_info['pass']}")
-    try:
-        # Tenta realizar a conexão com o servidor FTP
-        ftp = FTP()
-        ftp.connect(ftp_info["host"], ftp_info["port"])
-        ftp.login(ftp_info["user"], ftp_info["pass"])
-    # Caso ocorra algum erro
-    except Exception as error:
-        # Informa ao usuário
+        f"\nServidor SFTP configurado: \nHost: {ftp_info['host']}\nPort: {ftp_info['port']}\nUser: {ftp_info['user']}\nPass: {ftp_info['pass']}\nBackups folder path: {ftp_info['backups_base_folder_path']}\n")
+
+    # Arazendando o modo de encoding do sistema em que o script está rodando
+    # (normalmente UTF-8, porém o UTF-8 dá erro no powershell,
+    # se o script rodar no windows vai retornar encoding: CodePage850,
+    # vai rodar com sucesso porém os acentos no log vão ficar bugados.)
+    encoding = os.device_encoding(1)
+    # Criando URL para conexão com o servidor SFTP
+    host_address = f"sftp://{ftp_info['user']}:{ftp_info['pass']}@{ftp_info['host']}:{ftp_info['port']}/"
+    # Criando caminho do arquivo zip usando barra invertida pq o Windows é assim...
+    file_to_upload = f"{backup_zip_file_with_full_path}.zip".replace("/", "\\")
+    # Criando o caminho onde o backup será armazenado no servidor SFTP
+    backup_folder_path = f"{ftp_info["backups_base_folder_path"]}{vm_to_backup}/"
+
+    print_and_log(f"""Rodando upload no script WinSCP...""")
+
+    # Rodando o script BAT que irá enviar o backup para o servidor SFTP utilizando o WinSCP
+    p = subprocess.Popen(f"{path}\\winscp_upload.bat {host_address} {file_to_upload} {backup_folder_path}",
+                         stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding=encoding)
+    # Capturando o retorno do script
+    output, err = p.communicate()
+    # Capturando o código de retorno do script
+    exit_code = p.returncode
+
+    # Caso o script BAT retorne com erro
+    if exit_code != 0:
+        # Informar ao usuário e finalizar o script
+        print_and_log("Erro ao executar upload no script WinSCP!", "critical")
         print_and_log(
-            f"Erro ao conectar com o servidor FTP!\nErro: {error}", "critical")
+            f"Retorno da execução do upload no script WinSCP:\n{output}", "critical")
+        print_and_log(f"Erro:\n{err}", "critical")
         end_script(1)
-
-    # Armazena os diretórios:
-    # Onde está salvo o backup localmente,
-    # Onde será salvo no servidor FTP
-    local_folder = f"{base_path}/{vm_name}_bkp"
-    remote_folder = f"{base_path}/{vm_name}_bkp"
-
-    # Chama a função responsável por fazer upload do backup
-    upload_folder(ftp, local_folder, remote_folder)
-
-    print_and_log(
-        f"Encerrando conexão com o servidor FTP...")
-    # Fecha a conexão com o servidor FTP
-    ftp.quit()
-# Caso configurado para não fazer upload do backup para o servidor FTP
+    # Caso retorne com sucesso
+    else:
+        # Informar ao usuário
+        print_and_log("Upload no script WinSCP concluído com sucesso!")
+        print_and_log(
+            f"Retorno da execução do upload no script WinSCP:\n{output}")
+# Caso configurado para não fazer upload para o servidor SFTP
 else:
     # Informa ao usuário
     print_and_log(f"""\n*********************************************************\n
-                Script configurado para não salvar o backup no servidor FTP...""")
+                Script configurado para não fazer upload para o servidor SFTP...""")
 
 #########################################################
 # Limpando o backup local
@@ -562,7 +586,6 @@ if clean_local_backup_after_upload:
                 Limpando o backup realizado localmente...""")
 
     # Função para limpar recursivamente o diretório informado
-
     def clear_folder(dir):
         # Caso seja uma pasta
         if os.path.exists(dir):
@@ -585,10 +608,33 @@ if clean_local_backup_after_upload:
                 except Exception as error:
                     # Informa ao usuário
                     print_and_log(
-                        f"Erro ao limpar o diretório de backup local!\nErro: {error}", "critical")
+                        f"Erro ao esvaziar a pasta do backup!\nErro: {error}", "critical")
+                else:
+                    print_and_log("Pasta do backup foi esvaziada com sucesso!")
 
-    # Chama a função para limpar o backup local
-    clear_folder(base_path)
+    # Chama a função para limpar a pasta do backup local
+    print_and_log("Esvaziando a pasta do backup...")
+    clear_folder(backup_folder_full_path)
+
+    # Após esvaziar qualquer item dentro, remove a pasta
+    print_and_log("Removendo a pasta do backup...")
+    try:
+        os.rmdir(backup_folder_full_path)
+    except Exception as error:
+        print_and_log(
+            f"Erro ao remover a pasta do backup!\nErro: {error}", "critical")
+    else:
+        print_and_log("Pasta do backup removida com sucesso!")
+
+    # Remove o arquivo zip do backup
+    print_and_log("Removendo o arquivo zip do backup...")
+    try:
+        os.unlink(f"{backup_zip_file_with_full_path}.zip")
+    except Exception as error:
+        print_and_log(
+            f"Erro ao remover o arquivo zip do backup!\nErro: {error}", "critical")
+    else:
+        print_and_log("Arquivo zip do backup removido com sucesso!")
 # Caso configurado para não limpar o backup salvo localmente
 else:
     # Informa ao usuário
