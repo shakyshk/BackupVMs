@@ -70,7 +70,7 @@ else {
 }
 
 # Realizando o backup da VM
-#Export-VM -Name $vm_to_backup -Path $path_for_backup
+Export-VM -Name $vm_to_backup -Path $path_for_backup
 
 Write-Host "`n`nScript de backup finalizado!"
 
