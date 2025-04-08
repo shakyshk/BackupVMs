@@ -541,7 +541,7 @@ if upload_backup_to_ftp:
     # Criando URL para conexão com o servidor SFTP
     host_address = f"sftp://{ftp_info['user']}:{ftp_info['pass']}@{ftp_info['host']}:{ftp_info['port']}/"
     # Criando caminho do arquivo zip usando barra invertida pq o Windows é assim...
-    folder_to_upload = f"{backup_folder_full_path}/*".replace("/", "\\")
+    folder_to_upload = f"{backup_folder_full_path}".replace("/", "\\")
     # folder_to_upload = f"C:/vm_backups/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp".replace(
     #    "/", "\\")
     # print(f"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -> {folder_to_upload}")
