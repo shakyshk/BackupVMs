@@ -309,7 +309,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "path = os.getcwd()\n# Arazendando o modo de encoding do sistema em que o script está rodando\n# (normalmente UTF-8, porém o UTF-8 dá erro no powershell,\n# se o script rodar no windows vai retornar encoding: CodePage850,\n# vai rodar com sucesso porém os acentos no log vão ficar bugados.)\nencoding = os.device_encoding(1)\n# Nome da pasta raiz onde será armazenado todos os backups\nbackup_script_name = \"script_teste\"\n# Nome da pasta que será armazenado este backup da VM\nbackup_folder_name = f\"{vm_to_backup}__{unique_time_id}__tmp\"",
+        "peekOfCode": "path = os.getcwd()\n# Arazendando o modo de encoding do sistema em que o script está rodando\n# (normalmente UTF-8, porém o UTF-8 dá erro no powershell,\n# se o script rodar no windows vai retornar encoding: CodePage850,\n# vai rodar com sucesso porém os acentos no log vão ficar bugados.)\nencoding = os.device_encoding(1)\n# Nome da pasta raiz onde será armazenado todos os backups\nbackup_script_name = \"script_teste\"\n# Nome da pasta que será armazenado este backup da VM\nbackup_folder_name = f\"{vm_to_backup}__{unique_time_id}\"",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -318,7 +318,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "encoding = os.device_encoding(1)\n# Nome da pasta raiz onde será armazenado todos os backups\nbackup_script_name = \"script_teste\"\n# Nome da pasta que será armazenado este backup da VM\nbackup_folder_name = f\"{vm_to_backup}__{unique_time_id}__tmp\"\n# Armazenando o caminho completo do backup para usar depois\nbackup_folder_full_path = f\"{local_backups_base_folder_path}{backup_folder_name}\"\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")\np = subprocess.run(\n    [\"powershell.exe\",",
+        "peekOfCode": "encoding = os.device_encoding(1)\n# Nome da pasta raiz onde será armazenado todos os backups\nbackup_script_name = \"script_teste\"\n# Nome da pasta que será armazenado este backup da VM\nbackup_folder_name = f\"{vm_to_backup}__{unique_time_id}\"\n# Armazenando o caminho completo do backup para usar depois\nbackup_folder_full_path = f\"{local_backups_base_folder_path}{backup_folder_name}\"\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")\np = subprocess.run(\n    [\"powershell.exe\",",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -327,7 +327,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "backup_script_name = \"script_teste\"\n# Nome da pasta que será armazenado este backup da VM\nbackup_folder_name = f\"{vm_to_backup}__{unique_time_id}__tmp\"\n# Armazenando o caminho completo do backup para usar depois\nbackup_folder_full_path = f\"{local_backups_base_folder_path}{backup_folder_name}\"\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",",
+        "peekOfCode": "backup_script_name = \"script_teste\"\n# Nome da pasta que será armazenado este backup da VM\nbackup_folder_name = f\"{vm_to_backup}__{unique_time_id}\"\n# Armazenando o caminho completo do backup para usar depois\nbackup_folder_full_path = f\"{local_backups_base_folder_path}{backup_folder_name}\"\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -336,7 +336,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "backup_folder_name = f\"{vm_to_backup}__{unique_time_id}__tmp\"\n# Armazenando o caminho completo do backup para usar depois\nbackup_folder_full_path = f\"{local_backups_base_folder_path}{backup_folder_name}\"\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vm_to_backup}\", f\"{local_backups_base_folder_path}\", f\"{backup_folder_name}\"],\n    capture_output=True, text=True, encoding=encoding",
+        "peekOfCode": "backup_folder_name = f\"{vm_to_backup}__{unique_time_id}\"\n# Armazenando o caminho completo do backup para usar depois\nbackup_folder_full_path = f\"{local_backups_base_folder_path}{backup_folder_name}\"\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vm_to_backup}\", f\"{local_backups_base_folder_path}\", f\"{backup_folder_name}\"],\n    capture_output=True, text=True, encoding=encoding",
         "detail": "backup_vm",
         "documentation": {}
     },

@@ -24211,3 +24211,609 @@
 . 2025-04-08 14:51:33.332 Session sent command exit status 0
 . 2025-04-08 14:51:33.332 Main session channel closed
 . 2025-04-08 14:51:33.332 All channels closed
+. 2025-04-08 16:15:51.067 --------------------------------------------------------------------------
+. 2025-04-08 16:15:51.069 WinSCP Version 6.5 (Build 16288 2025-03-31) (OS 10.0.22631 – Windows 11 Pro)
+. 2025-04-08 16:15:51.069 Configuration: nul
+. 2025-04-08 16:15:51.069 Log level: Normal
+. 2025-04-08 16:15:51.069 Local account: CONEXÃO\conec
+. 2025-04-08 16:15:51.069 Working directory: C:\Users\conec\Development\BackupVMs
+. 2025-04-08 16:15:51.069 Process ID: 3136
+. 2025-04-08 16:15:51.083 Ancestor processes: WinSCP, cmd, python, powershell, Code, Code, explorer, ...
+. 2025-04-08 16:15:51.083 Command-line: "C:\Users\conec\Development\BackupVMs\winscp\WinSCP.exe" /console=6.5.0 /consoleinstance=_12536_60 "/ini=nul" "/log=log_winscp.log" "/command" "open sftp://backups-ftp:***@160.238.226.1:2230/ -certificate=*""" "stat ""/home/backups-ftp/backups/ZABBIX OLT/""" "exit"
+. 2025-04-08 16:15:51.083 Time zone: Current: GMT-3 (Hora oficial do Brasil), No DST
+. 2025-04-08 16:15:51.083 Login time: terça-feira, 8 de abril de 2025 16:15:51
+. 2025-04-08 16:15:51.083 --------------------------------------------------------------------------
+. 2025-04-08 16:15:51.083 Script: Retrospectively logging previous script records:
+> 2025-04-08 16:15:51.083 Script: open sftp://backups-ftp:***@160.238.226.1:2230/ -certificate=*"
+. 2025-04-08 16:15:51.083 --------------------------------------------------------------------------
+. 2025-04-08 16:15:51.083 Session name: backups-ftp@160.238.226.1 (Ad-Hoc site)
+. 2025-04-08 16:15:51.083 Host name: 160.238.226.1 (Port: 2230)
+. 2025-04-08 16:15:51.084 User name: backups-ftp (Password: Yes, Key file: No, Passphrase: No)
+. 2025-04-08 16:15:51.084 Tunnel: No
+. 2025-04-08 16:15:51.084 Transfer Protocol: SFTP
+. 2025-04-08 16:15:51.084 Ping type: Off, Ping interval: 30 sec; Timeout: 15 sec
+. 2025-04-08 16:15:51.084 Disable Nagle: No
+. 2025-04-08 16:15:51.084 Proxy: None
+. 2025-04-08 16:15:51.084 Send buffer: 262144
+. 2025-04-08 16:15:51.084 Compression: No
+. 2025-04-08 16:15:51.084 Bypass authentication: No
+. 2025-04-08 16:15:51.084 Try agent: Yes; Agent forwarding: No; KI: Yes; GSSAPI: Yes
+. 2025-04-08 16:15:51.084 GSSAPI: KEX: No; Forwarding: No; Libs: gssapi32,sspi,custom; Custom: 
+. 2025-04-08 16:15:51.084 Ciphers: aes,chacha20,aesgcm,3des,WARN,des,blowfish,arcfour; Ssh2DES: No
+. 2025-04-08 16:15:51.084 KEX: ntru-curve25519,mlkem-curve25519,mlkem-nist,ecdh,dh-gex-sha1,dh-group18-sha512,dh-group17-sha512,dh-group16-sha512,dh-group15-sha512,dh-group14-sha1,rsa,WARN,dh-group1-sha1
+. 2025-04-08 16:15:51.084 SSH Bugs: Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto
+. 2025-04-08 16:15:51.084 Simple channel: Yes
+. 2025-04-08 16:15:51.084 Return code variable: Autodetect; Lookup user groups: Auto
+. 2025-04-08 16:15:51.084 Shell: default
+. 2025-04-08 16:15:51.084 EOL: LF, UTF: Auto
+. 2025-04-08 16:15:51.084 Clear aliases: Yes, Unset nat.vars: Yes, Resolve symlinks: Yes; Follow directory symlinks: No
+. 2025-04-08 16:15:51.084 LS: ls -la, Ign LS warn: Yes, Scp1 Comp: No; Exit code 1 is error: No
+. 2025-04-08 16:15:51.084 SFTP Bugs: Auto,Auto
+. 2025-04-08 16:15:51.084 SFTP Server: default
+. 2025-04-08 16:15:51.084 Local directory: default, Remote directory: home, Update: Yes, Cache: Yes
+. 2025-04-08 16:15:51.084 Cache directory changes: Yes, Permanent: Yes
+. 2025-04-08 16:15:51.084 Recycle bin: Delete to: No, Overwritten to: No, Bin path: 
+. 2025-04-08 16:15:51.084 DST mode: Unix
+. 2025-04-08 16:15:51.084 --------------------------------------------------------------------------
+< 2025-04-08 16:15:51.084 Script: Searching for host...
+. 2025-04-08 16:15:51.084 Looking up host "160.238.226.1" for SSH connection
+. 2025-04-08 16:15:51.085 Connecting to 160.238.226.1 port 2230
+. 2025-04-08 16:15:51.088 Connected to 160.238.226.1 (from 192.168.19.68:32495)
+< 2025-04-08 16:15:51.088 Script: Connecting to host...
+. 2025-04-08 16:15:51.088 We claim version: SSH-2.0-WinSCP_release_6.5
+. 2025-04-08 16:15:51.088 Connected to 160.238.226.1 (from 192.168.19.68:32495)
+. 2025-04-08 16:15:51.131 Remote version: SSH-2.0-OpenSSH_9.2p1 Debian-2+deb12u5
+. 2025-04-08 16:15:51.131 Using SSH protocol version 2
+. 2025-04-08 16:15:51.136 Enabling strict key exchange semantics
+. 2025-04-08 16:15:51.136 Doing NTRU Prime / Curve25519 hybrid key exchange, using hash SHA-512 (unaccelerated)
+. 2025-04-08 16:15:51.286 Server also has ecdsa-sha2-nistp256/rsa-sha2-512/rsa-sha2-256 host keys, but we don't know any of them
+. 2025-04-08 16:15:51.286 Host key fingerprint is:
+. 2025-04-08 16:15:51.286 ssh-ed25519 255 SHA256:BOHHoRA7dn2uPEPLnPUR3v7C7SE+NZkNdJYcUuPFcUs
+< 2025-04-08 16:15:51.287 Script: Authenticating...
+< 2025-04-08 16:15:51.287 Script: WARNING! Giving up security and accepting any host key as configured!
+* 2025-04-08 16:15:51.287 WARNING! Giving up security and accepting any host key as configured!
+. 2025-04-08 16:15:51.287 Initialised AES-256 SDCTR (AES-NI accelerated) [aes256-ctr] outbound encryption
+. 2025-04-08 16:15:51.287 Initialised HMAC-SHA-256 outbound MAC algorithm
+. 2025-04-08 16:15:51.287 Initialised AES-256 SDCTR (AES-NI accelerated) [aes256-ctr] inbound encryption
+. 2025-04-08 16:15:51.287 Initialised HMAC-SHA-256 inbound MAC algorithm
+! 2025-04-08 16:15:51.291 Using username "backups-ftp".
+< 2025-04-08 16:15:51.291 Script: Using username "backups-ftp".
+. 2025-04-08 16:15:51.303 Server offered these authentication methods: publickey,password
+. 2025-04-08 16:15:51.303 Prompt (password, "SSH password", <no instructions>, "&Password: ")
+. 2025-04-08 16:15:51.303 Using stored password.
+< 2025-04-08 16:15:51.303 Script: Authenticating with pre-entered password.
+. 2025-04-08 16:15:51.303 Sent password
+. 2025-04-08 16:15:51.424 Access granted
+. 2025-04-08 16:15:51.425 Opening main session channel
+. 2025-04-08 16:15:51.557 Opened main channel
+. 2025-04-08 16:15:51.561 Started a shell/command
+< 2025-04-08 16:15:51.562 Script: Authenticated.
+. 2025-04-08 16:15:51.562 --------------------------------------------------------------------------
+. 2025-04-08 16:15:51.562 Using SFTP protocol.
+. 2025-04-08 16:15:51.562 Doing startup conversation with host.
+< 2025-04-08 16:15:51.562 Script: Starting the session...
+. 2025-04-08 16:15:51.562 Well known server, allowing SFTP version 6.
+> 2025-04-08 16:15:51.562 Type: SSH_FXP_INIT, Size: 5, Number: -1
+< 2025-04-08 16:15:51.577 Type: SSH_FXP_VERSION, Size: 318, Number: -1
+. 2025-04-08 16:15:51.577 SFTP version 3 negotiated.
+. 2025-04-08 16:15:51.577 Supports extension posix-rename@openssh.com="1"
+. 2025-04-08 16:15:51.577 Supports statvfs@openssh.com extension version 2
+. 2025-04-08 16:15:51.577 Unknown server extension fstatvfs@openssh.com="2"
+. 2025-04-08 16:15:51.577 Supports hardlink@openssh.com extension version 1
+. 2025-04-08 16:15:51.577 Unknown server extension fsync@openssh.com="1"
+. 2025-04-08 16:15:51.577 Unknown server extension lsetstat@openssh.com="1"
+. 2025-04-08 16:15:51.577 Supports limits@openssh.com extension version 1
+. 2025-04-08 16:15:51.577 Unknown server extension expand-path@openssh.com="1"
+. 2025-04-08 16:15:51.577 Supports extension copy-data="1"
+. 2025-04-08 16:15:51.577 Unknown server extension home-directory="1"
+. 2025-04-08 16:15:51.577 Unknown server extension users-groups-by-id@openssh.com="1"
+. 2025-04-08 16:15:51.577 We believe the server has signed timestamps bug
+. 2025-04-08 16:15:51.577 We will use UTF-8 strings until server sends an invalid UTF-8 string as with SFTP version 3 and older UTF-8 strings are not mandatory
+> 2025-04-08 16:15:51.577 Type: SSH_FXP_EXTENDED, Size: 27, Number: 200
+< 2025-04-08 16:15:51.580 Type: SSH_FXP_EXTENDED_REPLY, Size: 37, Number: 200
+. 2025-04-08 16:15:51.580 Limiting packet size to server's limit of 262144 + 4 bytes
+. 2025-04-08 16:15:51.580 Getting current directory name.
+. 2025-04-08 16:15:51.580 Getting real path for '.'
+> 2025-04-08 16:15:51.580 Type: SSH_FXP_REALPATH, Size: 10, Number: 272
+< 2025-04-08 16:15:51.583 Type: SSH_FXP_NAME, Size: 55, Number: 272
+. 2025-04-08 16:15:51.583 Real path is '/home/backups-ftp'
+. 2025-04-08 16:15:51.583 Startup conversation with host finished.
+< 2025-04-08 16:15:51.583 Script: Session started.
+< 2025-04-08 16:15:51.583 Script: Active session: [1] backups-ftp@160.238.226.1
+> 2025-04-08 16:15:51.584 Script: stat "/home/backups-ftp/backups/ZABBIX OLT/"
+. 2025-04-08 16:15:51.584 Listing file "/home/backups-ftp/backups/ZABBIX OLT".
+> 2025-04-08 16:15:51.584 Type: SSH_FXP_LSTAT, Size: 45, Number: 519
+< 2025-04-08 16:15:51.587 Type: SSH_FXP_ATTRS, Size: 37, Number: 519
+. 2025-04-08 16:15:51.587 ZABBIX OLT;D;0;2025-04-08T18:31:36.000Z;4;"" [1000];"" [1000];rwxr-xr-x;0
+< 2025-04-08 16:15:51.587 Script: Drwxr-xr-x   0                        4096 Apr  8 15:31:36 2025 ZABBIX OLT
+> 2025-04-08 16:15:51.587 Script: exit
+. 2025-04-08 16:15:51.587 Script: Exit code: 0
+. 2025-04-08 16:15:51.587 Closing connection.
+. 2025-04-08 16:15:51.587 Sending special code: 1
+. 2025-04-08 16:15:51.591 Session sent command exit status 0
+. 2025-04-08 16:15:51.591 Main session channel closed
+. 2025-04-08 16:15:51.591 All channels closed
+. 2025-04-08 16:15:51.711 --------------------------------------------------------------------------
+. 2025-04-08 16:15:51.712 WinSCP Version 6.5 (Build 16288 2025-03-31) (OS 10.0.22631 – Windows 11 Pro)
+. 2025-04-08 16:15:51.712 Configuration: nul
+. 2025-04-08 16:15:51.712 Log level: Normal
+. 2025-04-08 16:15:51.712 Local account: CONEXÃO\conec
+. 2025-04-08 16:15:51.712 Working directory: C:\Users\conec\Development\BackupVMs
+. 2025-04-08 16:15:51.712 Process ID: 18736
+. 2025-04-08 16:15:51.727 Ancestor processes: WinSCP, cmd, python, powershell, Code, Code, explorer, ...
+. 2025-04-08 16:15:51.727 Command-line: "C:\Users\conec\Development\BackupVMs\winscp\WinSCP.exe" /console=6.5.0 /consoleinstance=_31260_987 "/ini=nul" "/log=log_winscp.log" "/command" "open sftp://backups-ftp:***@160.238.226.1:2230/ -certificate=*""" "put ""C:\vm_backups\ZABBIX OLT__08-04-2025__16-15-49__ba7e5ffc77d7493d9cb0099cdea7df53\*"" ""/home/backups-ftp/backups/ZABBIX OLT/""" "exit"
+. 2025-04-08 16:15:51.727 Time zone: Current: GMT-3 (Hora oficial do Brasil), No DST
+. 2025-04-08 16:15:51.727 Login time: terça-feira, 8 de abril de 2025 16:15:51
+. 2025-04-08 16:15:51.727 --------------------------------------------------------------------------
+. 2025-04-08 16:15:51.727 Script: Retrospectively logging previous script records:
+> 2025-04-08 16:15:51.727 Script: open sftp://backups-ftp:***@160.238.226.1:2230/ -certificate=*"
+. 2025-04-08 16:15:51.727 --------------------------------------------------------------------------
+. 2025-04-08 16:15:51.727 Session name: backups-ftp@160.238.226.1 (Ad-Hoc site)
+. 2025-04-08 16:15:51.727 Host name: 160.238.226.1 (Port: 2230)
+. 2025-04-08 16:15:51.727 User name: backups-ftp (Password: Yes, Key file: No, Passphrase: No)
+. 2025-04-08 16:15:51.727 Tunnel: No
+. 2025-04-08 16:15:51.727 Transfer Protocol: SFTP
+. 2025-04-08 16:15:51.727 Ping type: Off, Ping interval: 30 sec; Timeout: 15 sec
+. 2025-04-08 16:15:51.727 Disable Nagle: No
+. 2025-04-08 16:15:51.727 Proxy: None
+. 2025-04-08 16:15:51.727 Send buffer: 262144
+. 2025-04-08 16:15:51.727 Compression: No
+. 2025-04-08 16:15:51.727 Bypass authentication: No
+. 2025-04-08 16:15:51.727 Try agent: Yes; Agent forwarding: No; KI: Yes; GSSAPI: Yes
+. 2025-04-08 16:15:51.727 GSSAPI: KEX: No; Forwarding: No; Libs: gssapi32,sspi,custom; Custom: 
+. 2025-04-08 16:15:51.727 Ciphers: aes,chacha20,aesgcm,3des,WARN,des,blowfish,arcfour; Ssh2DES: No
+. 2025-04-08 16:15:51.727 KEX: ntru-curve25519,mlkem-curve25519,mlkem-nist,ecdh,dh-gex-sha1,dh-group18-sha512,dh-group17-sha512,dh-group16-sha512,dh-group15-sha512,dh-group14-sha1,rsa,WARN,dh-group1-sha1
+. 2025-04-08 16:15:51.727 SSH Bugs: Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto
+. 2025-04-08 16:15:51.727 Simple channel: Yes
+. 2025-04-08 16:15:51.727 Return code variable: Autodetect; Lookup user groups: Auto
+. 2025-04-08 16:15:51.727 Shell: default
+. 2025-04-08 16:15:51.727 EOL: LF, UTF: Auto
+. 2025-04-08 16:15:51.727 Clear aliases: Yes, Unset nat.vars: Yes, Resolve symlinks: Yes; Follow directory symlinks: No
+. 2025-04-08 16:15:51.727 LS: ls -la, Ign LS warn: Yes, Scp1 Comp: No; Exit code 1 is error: No
+. 2025-04-08 16:15:51.727 SFTP Bugs: Auto,Auto
+. 2025-04-08 16:15:51.727 SFTP Server: default
+. 2025-04-08 16:15:51.727 Local directory: default, Remote directory: home, Update: Yes, Cache: Yes
+. 2025-04-08 16:15:51.727 Cache directory changes: Yes, Permanent: Yes
+. 2025-04-08 16:15:51.727 Recycle bin: Delete to: No, Overwritten to: No, Bin path: 
+. 2025-04-08 16:15:51.727 DST mode: Unix
+. 2025-04-08 16:15:51.727 --------------------------------------------------------------------------
+< 2025-04-08 16:15:51.727 Script: Searching for host...
+. 2025-04-08 16:15:51.728 Looking up host "160.238.226.1" for SSH connection
+. 2025-04-08 16:15:51.728 Connecting to 160.238.226.1 port 2230
+. 2025-04-08 16:15:51.732 Connected to 160.238.226.1 (from 192.168.19.68:32496)
+< 2025-04-08 16:15:51.732 Script: Connecting to host...
+. 2025-04-08 16:15:51.732 We claim version: SSH-2.0-WinSCP_release_6.5
+. 2025-04-08 16:15:51.732 Connected to 160.238.226.1 (from 192.168.19.68:32496)
+. 2025-04-08 16:15:51.762 Remote version: SSH-2.0-OpenSSH_9.2p1 Debian-2+deb12u5
+. 2025-04-08 16:15:51.762 Using SSH protocol version 2
+. 2025-04-08 16:15:51.768 Enabling strict key exchange semantics
+. 2025-04-08 16:15:51.768 Doing NTRU Prime / Curve25519 hybrid key exchange, using hash SHA-512 (unaccelerated)
+. 2025-04-08 16:15:51.917 Server also has ecdsa-sha2-nistp256/rsa-sha2-512/rsa-sha2-256 host keys, but we don't know any of them
+. 2025-04-08 16:15:51.917 Host key fingerprint is:
+. 2025-04-08 16:15:51.917 ssh-ed25519 255 SHA256:BOHHoRA7dn2uPEPLnPUR3v7C7SE+NZkNdJYcUuPFcUs
+< 2025-04-08 16:15:51.918 Script: Authenticating...
+< 2025-04-08 16:15:51.918 Script: WARNING! Giving up security and accepting any host key as configured!
+* 2025-04-08 16:15:51.918 WARNING! Giving up security and accepting any host key as configured!
+. 2025-04-08 16:15:51.919 Initialised AES-256 SDCTR (AES-NI accelerated) [aes256-ctr] outbound encryption
+. 2025-04-08 16:15:51.919 Initialised HMAC-SHA-256 outbound MAC algorithm
+. 2025-04-08 16:15:51.919 Initialised AES-256 SDCTR (AES-NI accelerated) [aes256-ctr] inbound encryption
+. 2025-04-08 16:15:51.919 Initialised HMAC-SHA-256 inbound MAC algorithm
+! 2025-04-08 16:15:51.923 Using username "backups-ftp".
+< 2025-04-08 16:15:51.923 Script: Using username "backups-ftp".
+. 2025-04-08 16:15:51.933 Server offered these authentication methods: publickey,password
+. 2025-04-08 16:15:51.933 Prompt (password, "SSH password", <no instructions>, "&Password: ")
+. 2025-04-08 16:15:51.933 Using stored password.
+< 2025-04-08 16:15:51.933 Script: Authenticating with pre-entered password.
+. 2025-04-08 16:15:51.934 Sent password
+. 2025-04-08 16:15:52.055 Access granted
+. 2025-04-08 16:15:52.056 Opening main session channel
+. 2025-04-08 16:15:52.196 Opened main channel
+. 2025-04-08 16:15:52.201 Started a shell/command
+< 2025-04-08 16:15:52.201 Script: Authenticated.
+. 2025-04-08 16:15:52.201 --------------------------------------------------------------------------
+. 2025-04-08 16:15:52.201 Using SFTP protocol.
+. 2025-04-08 16:15:52.201 Doing startup conversation with host.
+< 2025-04-08 16:15:52.201 Script: Starting the session...
+. 2025-04-08 16:15:52.201 Well known server, allowing SFTP version 6.
+> 2025-04-08 16:15:52.201 Type: SSH_FXP_INIT, Size: 5, Number: -1
+< 2025-04-08 16:15:52.207 Type: SSH_FXP_VERSION, Size: 318, Number: -1
+. 2025-04-08 16:15:52.207 SFTP version 3 negotiated.
+. 2025-04-08 16:15:52.207 Supports extension posix-rename@openssh.com="1"
+. 2025-04-08 16:15:52.207 Supports statvfs@openssh.com extension version 2
+. 2025-04-08 16:15:52.207 Unknown server extension fstatvfs@openssh.com="2"
+. 2025-04-08 16:15:52.207 Supports hardlink@openssh.com extension version 1
+. 2025-04-08 16:15:52.207 Unknown server extension fsync@openssh.com="1"
+. 2025-04-08 16:15:52.207 Unknown server extension lsetstat@openssh.com="1"
+. 2025-04-08 16:15:52.207 Supports limits@openssh.com extension version 1
+. 2025-04-08 16:15:52.207 Unknown server extension expand-path@openssh.com="1"
+. 2025-04-08 16:15:52.207 Supports extension copy-data="1"
+. 2025-04-08 16:15:52.207 Unknown server extension home-directory="1"
+. 2025-04-08 16:15:52.207 Unknown server extension users-groups-by-id@openssh.com="1"
+. 2025-04-08 16:15:52.207 We believe the server has signed timestamps bug
+. 2025-04-08 16:15:52.207 We will use UTF-8 strings until server sends an invalid UTF-8 string as with SFTP version 3 and older UTF-8 strings are not mandatory
+> 2025-04-08 16:15:52.207 Type: SSH_FXP_EXTENDED, Size: 27, Number: 200
+< 2025-04-08 16:15:52.211 Type: SSH_FXP_EXTENDED_REPLY, Size: 37, Number: 200
+. 2025-04-08 16:15:52.211 Limiting packet size to server's limit of 262144 + 4 bytes
+. 2025-04-08 16:15:52.211 Getting current directory name.
+. 2025-04-08 16:15:52.211 Getting real path for '.'
+> 2025-04-08 16:15:52.211 Type: SSH_FXP_REALPATH, Size: 10, Number: 272
+< 2025-04-08 16:15:52.215 Type: SSH_FXP_NAME, Size: 55, Number: 272
+. 2025-04-08 16:15:52.215 Real path is '/home/backups-ftp'
+. 2025-04-08 16:15:52.215 Startup conversation with host finished.
+< 2025-04-08 16:15:52.215 Script: Session started.
+< 2025-04-08 16:15:52.215 Script: Active session: [1] backups-ftp@160.238.226.1
+> 2025-04-08 16:15:52.215 Script: put "C:\vm_backups\ZABBIX OLT__08-04-2025__16-15-49__ba7e5ffc77d7493d9cb0099cdea7df53\*" "/home/backups-ftp/backups/ZABBIX OLT/"
+< 2025-04-08 16:15:52.216 Script: No file matching '*' found.
+. 2025-04-08 16:15:52.216 Copying 0 files/directories to remote directory "/home/backups-ftp/backups/ZABBIX OLT/" - total size: 0
+. 2025-04-08 16:15:52.216   PrTime: Yes; PrRO: No; Rght: rw-r--r--; PrR: No (No); FnCs: N; RIC: 0001; Resume: S (102400); CalcS: No; Mask: 
+. 2025-04-08 16:15:52.216   TM: B; ClAr: No; RemEOF: No; RemBOM: No; CPS: 0; NewerOnly: No; EncryptNewFiles: Yes; ExcludeHiddenFiles: No; ExcludeEmptyDirectories: No; InclM: ; ResumeL: 0
+. 2025-04-08 16:15:52.216   AscM: *.*html; *.htm; *.txt; *.php; *.php3; *.cgi; *.c; *.cpp; *.h; *.pas; *.bas; *.tex; *.pl; *.js; .htaccess; *.xtml; *.css; *.cfg; *.ini; *.sh; *.xml
+. 2025-04-08 16:15:52.216 Copying finished: Transferred: 0, Elapsed: 0:00:00, CPS: 0/s
+> 2025-04-08 16:15:52.217 Script: exit
+. 2025-04-08 16:15:52.217 Script: Exit code: 0
+. 2025-04-08 16:15:52.217 Closing connection.
+. 2025-04-08 16:15:52.217 Sending special code: 1
+. 2025-04-08 16:15:52.221 Session sent command exit status 0
+. 2025-04-08 16:15:52.221 Main session channel closed
+. 2025-04-08 16:15:52.221 All channels closed
+. 2025-04-08 16:18:50.070 --------------------------------------------------------------------------
+. 2025-04-08 16:18:50.071 WinSCP Version 6.5 (Build 16288 2025-03-31) (OS 10.0.22631 – Windows 11 Pro)
+. 2025-04-08 16:18:50.071 Configuration: nul
+. 2025-04-08 16:18:50.071 Log level: Normal
+. 2025-04-08 16:18:50.072 Local account: CONEXÃO\conec
+. 2025-04-08 16:18:50.072 Working directory: C:\Users\conec\Development\BackupVMs
+. 2025-04-08 16:18:50.072 Process ID: 31664
+. 2025-04-08 16:18:50.086 Ancestor processes: WinSCP, cmd, python, powershell, Code, Code, explorer, ...
+. 2025-04-08 16:18:50.087 Command-line: "C:\Users\conec\Development\BackupVMs\winscp\WinSCP.exe" /console=6.5.0 /consoleinstance=_20532_605 "/ini=nul" "/log=log_winscp.log" "/command" "open sftp://backups-ftp:***@160.238.226.1:2230/ -certificate=*""" "stat ""/home/backups-ftp/backups/ZABBIX OLT/""" "exit"
+. 2025-04-08 16:18:50.087 Time zone: Current: GMT-3 (Hora oficial do Brasil), No DST
+. 2025-04-08 16:18:50.087 Login time: terça-feira, 8 de abril de 2025 16:18:50
+. 2025-04-08 16:18:50.087 --------------------------------------------------------------------------
+. 2025-04-08 16:18:50.087 Script: Retrospectively logging previous script records:
+> 2025-04-08 16:18:50.087 Script: open sftp://backups-ftp:***@160.238.226.1:2230/ -certificate=*"
+. 2025-04-08 16:18:50.087 --------------------------------------------------------------------------
+. 2025-04-08 16:18:50.087 Session name: backups-ftp@160.238.226.1 (Ad-Hoc site)
+. 2025-04-08 16:18:50.087 Host name: 160.238.226.1 (Port: 2230)
+. 2025-04-08 16:18:50.087 User name: backups-ftp (Password: Yes, Key file: No, Passphrase: No)
+. 2025-04-08 16:18:50.087 Tunnel: No
+. 2025-04-08 16:18:50.087 Transfer Protocol: SFTP
+. 2025-04-08 16:18:50.087 Ping type: Off, Ping interval: 30 sec; Timeout: 15 sec
+. 2025-04-08 16:18:50.087 Disable Nagle: No
+. 2025-04-08 16:18:50.087 Proxy: None
+. 2025-04-08 16:18:50.087 Send buffer: 262144
+. 2025-04-08 16:18:50.087 Compression: No
+. 2025-04-08 16:18:50.087 Bypass authentication: No
+. 2025-04-08 16:18:50.087 Try agent: Yes; Agent forwarding: No; KI: Yes; GSSAPI: Yes
+. 2025-04-08 16:18:50.087 GSSAPI: KEX: No; Forwarding: No; Libs: gssapi32,sspi,custom; Custom: 
+. 2025-04-08 16:18:50.087 Ciphers: aes,chacha20,aesgcm,3des,WARN,des,blowfish,arcfour; Ssh2DES: No
+. 2025-04-08 16:18:50.087 KEX: ntru-curve25519,mlkem-curve25519,mlkem-nist,ecdh,dh-gex-sha1,dh-group18-sha512,dh-group17-sha512,dh-group16-sha512,dh-group15-sha512,dh-group14-sha1,rsa,WARN,dh-group1-sha1
+. 2025-04-08 16:18:50.087 SSH Bugs: Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto
+. 2025-04-08 16:18:50.087 Simple channel: Yes
+. 2025-04-08 16:18:50.087 Return code variable: Autodetect; Lookup user groups: Auto
+. 2025-04-08 16:18:50.087 Shell: default
+. 2025-04-08 16:18:50.087 EOL: LF, UTF: Auto
+. 2025-04-08 16:18:50.087 Clear aliases: Yes, Unset nat.vars: Yes, Resolve symlinks: Yes; Follow directory symlinks: No
+. 2025-04-08 16:18:50.087 LS: ls -la, Ign LS warn: Yes, Scp1 Comp: No; Exit code 1 is error: No
+. 2025-04-08 16:18:50.087 SFTP Bugs: Auto,Auto
+. 2025-04-08 16:18:50.087 SFTP Server: default
+. 2025-04-08 16:18:50.087 Local directory: default, Remote directory: home, Update: Yes, Cache: Yes
+. 2025-04-08 16:18:50.087 Cache directory changes: Yes, Permanent: Yes
+. 2025-04-08 16:18:50.087 Recycle bin: Delete to: No, Overwritten to: No, Bin path: 
+. 2025-04-08 16:18:50.087 DST mode: Unix
+. 2025-04-08 16:18:50.087 --------------------------------------------------------------------------
+< 2025-04-08 16:18:50.087 Script: Searching for host...
+. 2025-04-08 16:18:50.087 Looking up host "160.238.226.1" for SSH connection
+. 2025-04-08 16:18:50.088 Connecting to 160.238.226.1 port 2230
+. 2025-04-08 16:18:50.093 Connected to 160.238.226.1 (from 192.168.19.68:32513)
+< 2025-04-08 16:18:50.093 Script: Connecting to host...
+. 2025-04-08 16:18:50.093 We claim version: SSH-2.0-WinSCP_release_6.5
+. 2025-04-08 16:18:50.093 Connected to 160.238.226.1 (from 192.168.19.68:32513)
+. 2025-04-08 16:18:50.124 Remote version: SSH-2.0-OpenSSH_9.2p1 Debian-2+deb12u5
+. 2025-04-08 16:18:50.124 Using SSH protocol version 2
+. 2025-04-08 16:18:50.127 Enabling strict key exchange semantics
+. 2025-04-08 16:18:50.127 Doing NTRU Prime / Curve25519 hybrid key exchange, using hash SHA-512 (unaccelerated)
+. 2025-04-08 16:18:50.261 Server also has ecdsa-sha2-nistp256/rsa-sha2-512/rsa-sha2-256 host keys, but we don't know any of them
+. 2025-04-08 16:18:50.261 Host key fingerprint is:
+. 2025-04-08 16:18:50.261 ssh-ed25519 255 SHA256:BOHHoRA7dn2uPEPLnPUR3v7C7SE+NZkNdJYcUuPFcUs
+< 2025-04-08 16:18:50.261 Script: Authenticating...
+< 2025-04-08 16:18:50.262 Script: WARNING! Giving up security and accepting any host key as configured!
+* 2025-04-08 16:18:50.262 WARNING! Giving up security and accepting any host key as configured!
+. 2025-04-08 16:18:50.262 Initialised AES-256 SDCTR (AES-NI accelerated) [aes256-ctr] outbound encryption
+. 2025-04-08 16:18:50.262 Initialised HMAC-SHA-256 outbound MAC algorithm
+. 2025-04-08 16:18:50.262 Initialised AES-256 SDCTR (AES-NI accelerated) [aes256-ctr] inbound encryption
+. 2025-04-08 16:18:50.262 Initialised HMAC-SHA-256 inbound MAC algorithm
+! 2025-04-08 16:18:50.266 Using username "backups-ftp".
+< 2025-04-08 16:18:50.266 Script: Using username "backups-ftp".
+. 2025-04-08 16:18:50.278 Server offered these authentication methods: publickey,password
+. 2025-04-08 16:18:50.278 Prompt (password, "SSH password", <no instructions>, "&Password: ")
+. 2025-04-08 16:18:50.278 Using stored password.
+< 2025-04-08 16:18:50.278 Script: Authenticating with pre-entered password.
+. 2025-04-08 16:18:50.278 Sent password
+. 2025-04-08 16:18:50.399 Access granted
+. 2025-04-08 16:18:50.400 Opening main session channel
+. 2025-04-08 16:18:50.545 Opened main channel
+. 2025-04-08 16:18:50.549 Started a shell/command
+< 2025-04-08 16:18:50.549 Script: Authenticated.
+. 2025-04-08 16:18:50.550 --------------------------------------------------------------------------
+. 2025-04-08 16:18:50.550 Using SFTP protocol.
+. 2025-04-08 16:18:50.550 Doing startup conversation with host.
+< 2025-04-08 16:18:50.550 Script: Starting the session...
+. 2025-04-08 16:18:50.551 Well known server, allowing SFTP version 6.
+> 2025-04-08 16:18:50.551 Type: SSH_FXP_INIT, Size: 5, Number: -1
+< 2025-04-08 16:18:50.555 Type: SSH_FXP_VERSION, Size: 318, Number: -1
+. 2025-04-08 16:18:50.555 SFTP version 3 negotiated.
+. 2025-04-08 16:18:50.555 Supports extension posix-rename@openssh.com="1"
+. 2025-04-08 16:18:50.555 Supports statvfs@openssh.com extension version 2
+. 2025-04-08 16:18:50.555 Unknown server extension fstatvfs@openssh.com="2"
+. 2025-04-08 16:18:50.555 Supports hardlink@openssh.com extension version 1
+. 2025-04-08 16:18:50.555 Unknown server extension fsync@openssh.com="1"
+. 2025-04-08 16:18:50.555 Unknown server extension lsetstat@openssh.com="1"
+. 2025-04-08 16:18:50.555 Supports limits@openssh.com extension version 1
+. 2025-04-08 16:18:50.555 Unknown server extension expand-path@openssh.com="1"
+. 2025-04-08 16:18:50.555 Supports extension copy-data="1"
+. 2025-04-08 16:18:50.555 Unknown server extension home-directory="1"
+. 2025-04-08 16:18:50.555 Unknown server extension users-groups-by-id@openssh.com="1"
+. 2025-04-08 16:18:50.555 We believe the server has signed timestamps bug
+. 2025-04-08 16:18:50.556 We will use UTF-8 strings until server sends an invalid UTF-8 string as with SFTP version 3 and older UTF-8 strings are not mandatory
+> 2025-04-08 16:18:50.556 Type: SSH_FXP_EXTENDED, Size: 27, Number: 200
+< 2025-04-08 16:18:50.560 Type: SSH_FXP_EXTENDED_REPLY, Size: 37, Number: 200
+. 2025-04-08 16:18:50.560 Limiting packet size to server's limit of 262144 + 4 bytes
+. 2025-04-08 16:18:50.560 Getting current directory name.
+. 2025-04-08 16:18:50.560 Getting real path for '.'
+> 2025-04-08 16:18:50.560 Type: SSH_FXP_REALPATH, Size: 10, Number: 272
+< 2025-04-08 16:18:50.564 Type: SSH_FXP_NAME, Size: 55, Number: 272
+. 2025-04-08 16:18:50.564 Real path is '/home/backups-ftp'
+. 2025-04-08 16:18:50.564 Startup conversation with host finished.
+< 2025-04-08 16:18:50.564 Script: Session started.
+< 2025-04-08 16:18:50.564 Script: Active session: [1] backups-ftp@160.238.226.1
+> 2025-04-08 16:18:50.565 Script: stat "/home/backups-ftp/backups/ZABBIX OLT/"
+. 2025-04-08 16:18:50.565 Listing file "/home/backups-ftp/backups/ZABBIX OLT".
+> 2025-04-08 16:18:50.565 Type: SSH_FXP_LSTAT, Size: 45, Number: 519
+< 2025-04-08 16:18:50.569 Type: SSH_FXP_ATTRS, Size: 37, Number: 519
+. 2025-04-08 16:18:50.569 ZABBIX OLT;D;0;2025-04-08T18:31:36.000Z;4;"" [1000];"" [1000];rwxr-xr-x;0
+< 2025-04-08 16:18:50.569 Script: Drwxr-xr-x   0                        4096 Apr  8 15:31:36 2025 ZABBIX OLT
+> 2025-04-08 16:18:50.571 Script: exit
+. 2025-04-08 16:18:50.571 Script: Exit code: 0
+. 2025-04-08 16:18:50.571 Closing connection.
+. 2025-04-08 16:18:50.571 Sending special code: 1
+. 2025-04-08 16:18:50.575 Session sent command exit status 0
+. 2025-04-08 16:18:50.575 Main session channel closed
+. 2025-04-08 16:18:50.576 All channels closed
+. 2025-04-08 16:18:50.718 --------------------------------------------------------------------------
+. 2025-04-08 16:18:50.720 WinSCP Version 6.5 (Build 16288 2025-03-31) (OS 10.0.22631 – Windows 11 Pro)
+. 2025-04-08 16:18:50.720 Configuration: nul
+. 2025-04-08 16:18:50.720 Log level: Normal
+. 2025-04-08 16:18:50.720 Local account: CONEXÃO\conec
+. 2025-04-08 16:18:50.720 Working directory: C:\Users\conec\Development\BackupVMs
+. 2025-04-08 16:18:50.720 Process ID: 16712
+. 2025-04-08 16:18:50.734 Ancestor processes: WinSCP, cmd, python, powershell, Code, Code, explorer, ...
+. 2025-04-08 16:18:50.734 Command-line: "C:\Users\conec\Development\BackupVMs\winscp\WinSCP.exe" /console=6.5.0 /consoleinstance=_20016_532 "/ini=nul" "/log=log_winscp.log" "/command" "open sftp://backups-ftp:***@160.238.226.1:2230/ -certificate=*""" "put ""C:\vm_backups\ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp"" ""/home/backups-ftp/backups/ZABBIX OLT/""" "exit"
+. 2025-04-08 16:18:50.734 Time zone: Current: GMT-3 (Hora oficial do Brasil), No DST
+. 2025-04-08 16:18:50.734 Login time: terça-feira, 8 de abril de 2025 16:18:50
+. 2025-04-08 16:18:50.734 --------------------------------------------------------------------------
+. 2025-04-08 16:18:50.734 Script: Retrospectively logging previous script records:
+> 2025-04-08 16:18:50.734 Script: open sftp://backups-ftp:***@160.238.226.1:2230/ -certificate=*"
+. 2025-04-08 16:18:50.735 --------------------------------------------------------------------------
+. 2025-04-08 16:18:50.735 Session name: backups-ftp@160.238.226.1 (Ad-Hoc site)
+. 2025-04-08 16:18:50.735 Host name: 160.238.226.1 (Port: 2230)
+. 2025-04-08 16:18:50.735 User name: backups-ftp (Password: Yes, Key file: No, Passphrase: No)
+. 2025-04-08 16:18:50.735 Tunnel: No
+. 2025-04-08 16:18:50.735 Transfer Protocol: SFTP
+. 2025-04-08 16:18:50.735 Ping type: Off, Ping interval: 30 sec; Timeout: 15 sec
+. 2025-04-08 16:18:50.735 Disable Nagle: No
+. 2025-04-08 16:18:50.735 Proxy: None
+. 2025-04-08 16:18:50.735 Send buffer: 262144
+. 2025-04-08 16:18:50.735 Compression: No
+. 2025-04-08 16:18:50.735 Bypass authentication: No
+. 2025-04-08 16:18:50.735 Try agent: Yes; Agent forwarding: No; KI: Yes; GSSAPI: Yes
+. 2025-04-08 16:18:50.735 GSSAPI: KEX: No; Forwarding: No; Libs: gssapi32,sspi,custom; Custom: 
+. 2025-04-08 16:18:50.735 Ciphers: aes,chacha20,aesgcm,3des,WARN,des,blowfish,arcfour; Ssh2DES: No
+. 2025-04-08 16:18:50.735 KEX: ntru-curve25519,mlkem-curve25519,mlkem-nist,ecdh,dh-gex-sha1,dh-group18-sha512,dh-group17-sha512,dh-group16-sha512,dh-group15-sha512,dh-group14-sha1,rsa,WARN,dh-group1-sha1
+. 2025-04-08 16:18:50.735 SSH Bugs: Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto
+. 2025-04-08 16:18:50.735 Simple channel: Yes
+. 2025-04-08 16:18:50.735 Return code variable: Autodetect; Lookup user groups: Auto
+. 2025-04-08 16:18:50.735 Shell: default
+. 2025-04-08 16:18:50.735 EOL: LF, UTF: Auto
+. 2025-04-08 16:18:50.735 Clear aliases: Yes, Unset nat.vars: Yes, Resolve symlinks: Yes; Follow directory symlinks: No
+. 2025-04-08 16:18:50.735 LS: ls -la, Ign LS warn: Yes, Scp1 Comp: No; Exit code 1 is error: No
+. 2025-04-08 16:18:50.735 SFTP Bugs: Auto,Auto
+. 2025-04-08 16:18:50.735 SFTP Server: default
+. 2025-04-08 16:18:50.735 Local directory: default, Remote directory: home, Update: Yes, Cache: Yes
+. 2025-04-08 16:18:50.735 Cache directory changes: Yes, Permanent: Yes
+. 2025-04-08 16:18:50.735 Recycle bin: Delete to: No, Overwritten to: No, Bin path: 
+. 2025-04-08 16:18:50.735 DST mode: Unix
+. 2025-04-08 16:18:50.735 --------------------------------------------------------------------------
+< 2025-04-08 16:18:50.735 Script: Searching for host...
+. 2025-04-08 16:18:50.735 Looking up host "160.238.226.1" for SSH connection
+. 2025-04-08 16:18:50.737 Connecting to 160.238.226.1 port 2230
+. 2025-04-08 16:18:50.740 Connected to 160.238.226.1 (from 192.168.19.68:32515)
+< 2025-04-08 16:18:50.740 Script: Connecting to host...
+. 2025-04-08 16:18:50.740 We claim version: SSH-2.0-WinSCP_release_6.5
+. 2025-04-08 16:18:50.740 Connected to 160.238.226.1 (from 192.168.19.68:32515)
+. 2025-04-08 16:18:50.770 Remote version: SSH-2.0-OpenSSH_9.2p1 Debian-2+deb12u5
+. 2025-04-08 16:18:50.770 Using SSH protocol version 2
+. 2025-04-08 16:18:50.775 Enabling strict key exchange semantics
+. 2025-04-08 16:18:50.775 Doing NTRU Prime / Curve25519 hybrid key exchange, using hash SHA-512 (unaccelerated)
+. 2025-04-08 16:18:50.920 Server also has ecdsa-sha2-nistp256/rsa-sha2-512/rsa-sha2-256 host keys, but we don't know any of them
+. 2025-04-08 16:18:50.920 Host key fingerprint is:
+. 2025-04-08 16:18:50.920 ssh-ed25519 255 SHA256:BOHHoRA7dn2uPEPLnPUR3v7C7SE+NZkNdJYcUuPFcUs
+< 2025-04-08 16:18:50.920 Script: Authenticating...
+< 2025-04-08 16:18:50.920 Script: WARNING! Giving up security and accepting any host key as configured!
+* 2025-04-08 16:18:50.921 WARNING! Giving up security and accepting any host key as configured!
+. 2025-04-08 16:18:50.921 Initialised AES-256 SDCTR (AES-NI accelerated) [aes256-ctr] outbound encryption
+. 2025-04-08 16:18:50.921 Initialised HMAC-SHA-256 outbound MAC algorithm
+. 2025-04-08 16:18:50.921 Initialised AES-256 SDCTR (AES-NI accelerated) [aes256-ctr] inbound encryption
+. 2025-04-08 16:18:50.921 Initialised HMAC-SHA-256 inbound MAC algorithm
+! 2025-04-08 16:18:50.926 Using username "backups-ftp".
+< 2025-04-08 16:18:50.926 Script: Using username "backups-ftp".
+. 2025-04-08 16:18:50.937 Server offered these authentication methods: publickey,password
+. 2025-04-08 16:18:50.937 Prompt (password, "SSH password", <no instructions>, "&Password: ")
+. 2025-04-08 16:18:50.937 Using stored password.
+< 2025-04-08 16:18:50.937 Script: Authenticating with pre-entered password.
+. 2025-04-08 16:18:50.937 Sent password
+. 2025-04-08 16:18:51.058 Access granted
+. 2025-04-08 16:18:51.059 Opening main session channel
+. 2025-04-08 16:18:51.179 Opened main channel
+. 2025-04-08 16:18:51.185 Started a shell/command
+< 2025-04-08 16:18:51.185 Script: Authenticated.
+. 2025-04-08 16:18:51.185 --------------------------------------------------------------------------
+. 2025-04-08 16:18:51.185 Using SFTP protocol.
+. 2025-04-08 16:18:51.185 Doing startup conversation with host.
+< 2025-04-08 16:18:51.185 Script: Starting the session...
+. 2025-04-08 16:18:51.185 Well known server, allowing SFTP version 6.
+> 2025-04-08 16:18:51.186 Type: SSH_FXP_INIT, Size: 5, Number: -1
+< 2025-04-08 16:18:51.191 Type: SSH_FXP_VERSION, Size: 318, Number: -1
+. 2025-04-08 16:18:51.191 SFTP version 3 negotiated.
+. 2025-04-08 16:18:51.192 Supports extension posix-rename@openssh.com="1"
+. 2025-04-08 16:18:51.192 Supports statvfs@openssh.com extension version 2
+. 2025-04-08 16:18:51.192 Unknown server extension fstatvfs@openssh.com="2"
+. 2025-04-08 16:18:51.192 Supports hardlink@openssh.com extension version 1
+. 2025-04-08 16:18:51.192 Unknown server extension fsync@openssh.com="1"
+. 2025-04-08 16:18:51.192 Unknown server extension lsetstat@openssh.com="1"
+. 2025-04-08 16:18:51.192 Supports limits@openssh.com extension version 1
+. 2025-04-08 16:18:51.192 Unknown server extension expand-path@openssh.com="1"
+. 2025-04-08 16:18:51.192 Supports extension copy-data="1"
+. 2025-04-08 16:18:51.192 Unknown server extension home-directory="1"
+. 2025-04-08 16:18:51.192 Unknown server extension users-groups-by-id@openssh.com="1"
+. 2025-04-08 16:18:51.192 We believe the server has signed timestamps bug
+. 2025-04-08 16:18:51.192 We will use UTF-8 strings until server sends an invalid UTF-8 string as with SFTP version 3 and older UTF-8 strings are not mandatory
+> 2025-04-08 16:18:51.192 Type: SSH_FXP_EXTENDED, Size: 27, Number: 200
+< 2025-04-08 16:18:51.196 Type: SSH_FXP_EXTENDED_REPLY, Size: 37, Number: 200
+. 2025-04-08 16:18:51.196 Limiting packet size to server's limit of 262144 + 4 bytes
+. 2025-04-08 16:18:51.196 Getting current directory name.
+. 2025-04-08 16:18:51.196 Getting real path for '.'
+> 2025-04-08 16:18:51.196 Type: SSH_FXP_REALPATH, Size: 10, Number: 272
+< 2025-04-08 16:18:51.200 Type: SSH_FXP_NAME, Size: 55, Number: 272
+. 2025-04-08 16:18:51.201 Real path is '/home/backups-ftp'
+. 2025-04-08 16:18:51.201 Startup conversation with host finished.
+< 2025-04-08 16:18:51.201 Script: Session started.
+< 2025-04-08 16:18:51.201 Script: Active session: [1] backups-ftp@160.238.226.1
+> 2025-04-08 16:18:51.202 Script: put "C:\vm_backups\ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp" "/home/backups-ftp/backups/ZABBIX OLT/"
+. 2025-04-08 16:18:51.203 Copying 1 files/directories to remote directory "/home/backups-ftp/backups/ZABBIX OLT/"
+. 2025-04-08 16:18:51.203   PrTime: Yes; PrRO: No; Rght: rw-r--r--; PrR: No (No); FnCs: N; RIC: 0001; Resume: S (102400); CalcS: No; Mask: 
+. 2025-04-08 16:18:51.203   TM: B; ClAr: No; RemEOF: No; RemBOM: No; CPS: 0; NewerOnly: No; EncryptNewFiles: Yes; ExcludeHiddenFiles: No; ExcludeEmptyDirectories: No; InclM: ; ResumeL: 0
+. 2025-04-08 16:18:51.203   AscM: *.*html; *.htm; *.txt; *.php; *.php3; *.cgi; *.c; *.cpp; *.h; *.pas; *.bas; *.tex; *.pl; *.js; .htaccess; *.xtml; *.css; *.cfg; *.ini; *.sh; *.xml
+. 2025-04-08 16:18:51.203 File: 'C:\vm_backups\ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp' [2025-04-08T19:17:56.248Z] [0]
+. 2025-04-08 16:18:51.204 Listing file "/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp".
+> 2025-04-08 16:18:51.204 Type: SSH_FXP_LSTAT, Size: 117, Number: 519
+< 2025-04-08 16:18:51.208 Type: SSH_FXP_STATUS, Size: 29, Number: 519
+< 2025-04-08 16:18:51.208 Status code: 2, Message: 519, Server: No such file, Language:  
+. 2025-04-08 16:18:51.213 Creating directory "/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp".
+. 2025-04-08 16:18:51.213 Canonifying: "/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp"
+. 2025-04-08 16:18:51.213 Getting real path for '/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp'
+> 2025-04-08 16:18:51.213 Type: SSH_FXP_REALPATH, Size: 117, Number: 1040
+< 2025-04-08 16:18:51.263 Type: SSH_FXP_NAME, Size: 237, Number: 1040
+. 2025-04-08 16:18:51.263 Real path is '/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp'
+. 2025-04-08 16:18:51.263 Canonified: "/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp"
+> 2025-04-08 16:18:51.263 Type: SSH_FXP_MKDIR, Size: 121, Number: 782
+< 2025-04-08 16:18:51.267 Type: SSH_FXP_STATUS, Size: 24, Number: 782
+< 2025-04-08 16:18:51.267 Status code: 0
+. 2025-04-08 16:18:51.268 File: 'C:\vm_backups\ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp\dasffaffasfasfas--__---.txt' [2025-04-08T19:17:52.033Z] [0]
+. 2025-04-08 16:18:51.268 Copying "C:\vm_backups\ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp\dasffaffasfasfas--__---.txt" to remote directory started.
+. 2025-04-08 16:18:51.268 Binary transfer mode selected.
+. 2025-04-08 16:18:51.269 Opening remote file.
+> 2025-04-08 16:18:51.269 Type: SSH_FXP_OPEN, Size: 161, Number: 1283
+< 2025-04-08 16:18:51.273 Type: SSH_FXP_HANDLE, Size: 13, Number: 1283
+> 2025-04-08 16:18:51.273 Type: SSH_FXP_CLOSE, Size: 13, Number: 1796
+> 2025-04-08 16:18:51.273 Type: SSH_FXP_SETSTAT, Size: 157, Number: 1545
+< 2025-04-08 16:18:51.277 Type: SSH_FXP_STATUS, Size: 24, Number: 1796
+< 2025-04-08 16:18:51.277 Status code: 0
+. 2025-04-08 16:18:51.277 Preserving timestamp [2025-04-08T19:17:52.000Z]
+< 2025-04-08 16:18:51.277 Type: SSH_FXP_STATUS, Size: 24, Number: 1545
+< 2025-04-08 16:18:51.277 Status code: 0
+. 2025-04-08 16:18:51.277 Transfer done: 'C:\vm_backups\ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp\dasffaffasfasfas--__---.txt' => '/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/dasffaffasfasfas--__---.txt' [0]
+. 2025-04-08 16:18:51.277 File: 'C:\vm_backups\ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp\lalala' [2025-04-08T19:17:46.262Z] [0]
+. 2025-04-08 16:18:51.278 Listing file "/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/lalala".
+> 2025-04-08 16:18:51.278 Type: SSH_FXP_LSTAT, Size: 124, Number: 2055
+< 2025-04-08 16:18:51.282 Type: SSH_FXP_STATUS, Size: 29, Number: 2055
+< 2025-04-08 16:18:51.282 Status code: 2, Message: 2055, Server: No such file, Language:  
+. 2025-04-08 16:18:51.288 Creating directory "/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/lalala".
+. 2025-04-08 16:18:51.288 Canonifying: "/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/lalala"
+. 2025-04-08 16:18:51.288 Getting real path for '/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/lalala'
+> 2025-04-08 16:18:51.288 Type: SSH_FXP_REALPATH, Size: 124, Number: 2576
+< 2025-04-08 16:18:51.292 Type: SSH_FXP_NAME, Size: 251, Number: 2576
+. 2025-04-08 16:18:51.292 Real path is '/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/lalala'
+. 2025-04-08 16:18:51.292 Canonified: "/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/lalala"
+> 2025-04-08 16:18:51.292 Type: SSH_FXP_MKDIR, Size: 128, Number: 2318
+< 2025-04-08 16:18:51.297 Type: SSH_FXP_STATUS, Size: 24, Number: 2318
+< 2025-04-08 16:18:51.297 Status code: 0
+. 2025-04-08 16:18:51.297 File: 'C:\vm_backups\ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp\lalala\ads sadsad.txt' [2025-04-08T19:17:41.932Z] [0]
+. 2025-04-08 16:18:51.298 Copying "C:\vm_backups\ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp\lalala\ads sadsad.txt" to remote directory started.
+. 2025-04-08 16:18:51.298 Binary transfer mode selected.
+. 2025-04-08 16:18:51.298 Opening remote file.
+> 2025-04-08 16:18:51.298 Type: SSH_FXP_OPEN, Size: 155, Number: 2819
+< 2025-04-08 16:18:51.301 Type: SSH_FXP_HANDLE, Size: 13, Number: 2819
+> 2025-04-08 16:18:51.301 Type: SSH_FXP_CLOSE, Size: 13, Number: 3332
+> 2025-04-08 16:18:51.301 Type: SSH_FXP_SETSTAT, Size: 151, Number: 3081
+< 2025-04-08 16:18:51.305 Type: SSH_FXP_STATUS, Size: 24, Number: 3332
+< 2025-04-08 16:18:51.305 Status code: 0
+. 2025-04-08 16:18:51.305 Preserving timestamp [2025-04-08T19:17:41.000Z]
+< 2025-04-08 16:18:51.305 Type: SSH_FXP_STATUS, Size: 24, Number: 3081
+< 2025-04-08 16:18:51.305 Status code: 0
+. 2025-04-08 16:18:51.305 Transfer done: 'C:\vm_backups\ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp\lalala\ads sadsad.txt' => '/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/lalala/ads sadsad.txt' [0]
+. 2025-04-08 16:18:51.305 File: 'C:\vm_backups\ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp\lalala\bbbb' [2025-04-08T19:17:36.592Z] [0]
+. 2025-04-08 16:18:51.306 Listing file "/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/lalala/bbbb".
+> 2025-04-08 16:18:51.306 Type: SSH_FXP_LSTAT, Size: 129, Number: 3591
+< 2025-04-08 16:18:51.309 Type: SSH_FXP_STATUS, Size: 29, Number: 3591
+< 2025-04-08 16:18:51.309 Status code: 2, Message: 3591, Server: No such file, Language:  
+. 2025-04-08 16:18:51.314 Creating directory "/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/lalala/bbbb".
+. 2025-04-08 16:18:51.314 Canonifying: "/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/lalala/bbbb"
+. 2025-04-08 16:18:51.314 Getting real path for '/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/lalala/bbbb'
+> 2025-04-08 16:18:51.314 Type: SSH_FXP_REALPATH, Size: 129, Number: 4112
+< 2025-04-08 16:18:51.319 Type: SSH_FXP_NAME, Size: 261, Number: 4112
+. 2025-04-08 16:18:51.319 Real path is '/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/lalala/bbbb'
+. 2025-04-08 16:18:51.319 Canonified: "/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/lalala/bbbb"
+> 2025-04-08 16:18:51.319 Type: SSH_FXP_MKDIR, Size: 133, Number: 3854
+< 2025-04-08 16:18:51.323 Type: SSH_FXP_STATUS, Size: 24, Number: 3854
+< 2025-04-08 16:18:51.323 Status code: 0
+. 2025-04-08 16:18:51.323 File: 'C:\vm_backups\ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp\lalala\bbbb\aaaaa.txt' [2025-04-08T19:17:35.763Z] [0]
+. 2025-04-08 16:18:51.324 Copying "C:\vm_backups\ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp\lalala\bbbb\aaaaa.txt" to remote directory started.
+. 2025-04-08 16:18:51.324 Binary transfer mode selected.
+. 2025-04-08 16:18:51.324 Opening remote file.
+> 2025-04-08 16:18:51.324 Type: SSH_FXP_OPEN, Size: 155, Number: 4355
+< 2025-04-08 16:18:51.327 Type: SSH_FXP_HANDLE, Size: 13, Number: 4355
+> 2025-04-08 16:18:51.327 Type: SSH_FXP_CLOSE, Size: 13, Number: 4868
+> 2025-04-08 16:18:51.327 Type: SSH_FXP_SETSTAT, Size: 151, Number: 4617
+< 2025-04-08 16:18:51.331 Type: SSH_FXP_STATUS, Size: 24, Number: 4868
+< 2025-04-08 16:18:51.331 Status code: 0
+. 2025-04-08 16:18:51.331 Preserving timestamp [2025-04-08T19:17:35.000Z]
+< 2025-04-08 16:18:51.331 Type: SSH_FXP_STATUS, Size: 24, Number: 4617
+< 2025-04-08 16:18:51.331 Status code: 0
+. 2025-04-08 16:18:51.331 Transfer done: 'C:\vm_backups\ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp\lalala\bbbb\aaaaa.txt' => '/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/lalala/bbbb/aaaaa.txt' [0]
+. 2025-04-08 16:18:51.331 File: 'C:\vm_backups\ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp\temp' [2025-04-08T19:17:24.036Z] [0]
+. 2025-04-08 16:18:51.332 Listing file "/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/temp".
+> 2025-04-08 16:18:51.332 Type: SSH_FXP_LSTAT, Size: 122, Number: 5127
+< 2025-04-08 16:18:51.335 Type: SSH_FXP_STATUS, Size: 29, Number: 5127
+< 2025-04-08 16:18:51.335 Status code: 2, Message: 5127, Server: No such file, Language:  
+. 2025-04-08 16:18:51.339 Creating directory "/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/temp".
+. 2025-04-08 16:18:51.339 Canonifying: "/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/temp"
+. 2025-04-08 16:18:51.339 Getting real path for '/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/temp'
+> 2025-04-08 16:18:51.339 Type: SSH_FXP_REALPATH, Size: 122, Number: 5648
+< 2025-04-08 16:18:51.343 Type: SSH_FXP_NAME, Size: 247, Number: 5648
+. 2025-04-08 16:18:51.343 Real path is '/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/temp'
+. 2025-04-08 16:18:51.343 Canonified: "/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/temp"
+> 2025-04-08 16:18:51.343 Type: SSH_FXP_MKDIR, Size: 126, Number: 5390
+< 2025-04-08 16:18:51.346 Type: SSH_FXP_STATUS, Size: 24, Number: 5390
+< 2025-04-08 16:18:51.346 Status code: 0
+. 2025-04-08 16:18:51.346 File: 'C:\vm_backups\ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp\test' [2025-04-08T19:17:25.889Z] [0]
+. 2025-04-08 16:18:51.346 Listing file "/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/test".
+> 2025-04-08 16:18:51.346 Type: SSH_FXP_LSTAT, Size: 122, Number: 5895
+< 2025-04-08 16:18:51.350 Type: SSH_FXP_STATUS, Size: 29, Number: 5895
+< 2025-04-08 16:18:51.350 Status code: 2, Message: 5895, Server: No such file, Language:  
+. 2025-04-08 16:18:51.354 Creating directory "/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/test".
+. 2025-04-08 16:18:51.354 Canonifying: "/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/test"
+. 2025-04-08 16:18:51.354 Getting real path for '/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/test'
+> 2025-04-08 16:18:51.354 Type: SSH_FXP_REALPATH, Size: 122, Number: 6416
+< 2025-04-08 16:18:51.358 Type: SSH_FXP_NAME, Size: 247, Number: 6416
+. 2025-04-08 16:18:51.358 Real path is '/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/test'
+. 2025-04-08 16:18:51.358 Canonified: "/home/backups-ftp/backups/ZABBIX OLT/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp/test"
+> 2025-04-08 16:18:51.358 Type: SSH_FXP_MKDIR, Size: 126, Number: 6158
+< 2025-04-08 16:18:51.363 Type: SSH_FXP_STATUS, Size: 24, Number: 6158
+< 2025-04-08 16:18:51.363 Status code: 0
+. 2025-04-08 16:18:51.363 Copying finished: Transferred: 0, Elapsed: 0:00:00, CPS: 0/s
+> 2025-04-08 16:18:51.364 Script: exit
+. 2025-04-08 16:18:51.364 Script: Exit code: 0
+. 2025-04-08 16:18:51.364 Closing connection.
+. 2025-04-08 16:18:51.364 Sending special code: 1
+. 2025-04-08 16:18:51.367 Session sent command exit status 0
+. 2025-04-08 16:18:51.367 Main session channel closed
+. 2025-04-08 16:18:51.368 All channels closed

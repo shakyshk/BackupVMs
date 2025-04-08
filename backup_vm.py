@@ -477,7 +477,7 @@ encoding = os.device_encoding(1)
 # Nome da pasta raiz onde será armazenado todos os backups
 backup_script_name = "script_teste"
 # Nome da pasta que será armazenado este backup da VM
-backup_folder_name = f"{vm_to_backup}__{unique_time_id}__tmp"
+backup_folder_name = f"{vm_to_backup}__{unique_time_id}"
 # Armazenando o caminho completo do backup para usar depois
 backup_folder_full_path = f"{local_backups_base_folder_path}{backup_folder_name}"
 
@@ -506,7 +506,7 @@ else:
 #########################################################
 # Criar um arquivo zip do backup realizado
 #########################################################
-
+'''
 backup_zip_name = f"{vm_to_backup}__{unique_time_id}__backup"
 backup_zip_file_with_full_path = f"{local_backups_base_folder_path}{backup_zip_name}"
 print_and_log(f"""\n*********************************************************\n
@@ -520,7 +520,7 @@ except Exception as error:
         f"Erro ao compactar backup para o arquivo {backup_zip_name}.zip!\nErro: {error}", "critical")
 else:
     print_and_log("Backup compactado com sucesso!")
-
+'''
 #########################################################
 # Conectar com o servidor FTP e fazer upload do backup realizado
 # (caso habilitado nas configurações: "settings.cfg")
@@ -541,15 +541,19 @@ if upload_backup_to_ftp:
     # Criando URL para conexão com o servidor SFTP
     host_address = f"sftp://{ftp_info['user']}:{ftp_info['pass']}@{ftp_info['host']}:{ftp_info['port']}/"
     # Criando caminho do arquivo zip usando barra invertida pq o Windows é assim...
-    file_to_upload = f"{backup_zip_file_with_full_path}.zip".replace("/", "\\")
+    folder_to_upload = f"{backup_folder_full_path}/*".replace("/", "\\")
+    # folder_to_upload = f"C:/vm_backups/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp".replace(
+    #    "/", "\\")
+    # print(f"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -> {folder_to_upload}")
+    # sys.exit(0)
     # Criando o caminho onde o backup será armazenado no servidor SFTP
     backup_folder_path = f"{ftp_info["backups_base_folder_path"]}{vm_to_backup}/"
 
     print_and_log(f"""Rodando upload no script WinSCP...""")
     print(
-        f"aaaaaaaaaaaaaaaaaaaaa\nhost_address: {host_address}\nfile_to_upload: {file_to_upload}\nbackup_folder_path: {backup_folder_path}\naaaaaaaaaaaaaaaaaaaaa")
+        f"aaaaaaaaaaaaaaaaaaaaa\nhost_address: {host_address}\nfile_to_upload: {folder_to_upload}\nbackup_folder_path: {backup_folder_path}\naaaaaaaaaaaaaaaaaaaaa")
     # Rodando o script BAT que irá enviar o backup para o servidor SFTP utilizando o WinSCP
-    p = subprocess.Popen(f'''{path}\\winscp_upload.bat "{host_address}" "{file_to_upload}" "{backup_folder_path}"''',
+    p = subprocess.Popen(f'''{path}\\winscp_upload.bat "{host_address}" "{folder_to_upload}" "{backup_folder_path}"''',
                          stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding=encoding)
     # Capturando o retorno do script
     output, err = p.communicate()
@@ -626,7 +630,7 @@ if clean_local_backup_after_upload:
             f"Erro ao remover a pasta do backup!\nErro: {error}", "critical")
     else:
         print_and_log("Pasta do backup removida com sucesso!")
-
+    '''
     # Remove o arquivo zip do backup
     print_and_log("Removendo o arquivo zip do backup...")
     try:
@@ -636,6 +640,7 @@ if clean_local_backup_after_upload:
             f"Erro ao remover o arquivo zip do backup!\nErro: {error}", "critical")
     else:
         print_and_log("Arquivo zip do backup removido com sucesso!")
+    '''
 # Caso configurado para não limpar o backup salvo localmente
 else:
     # Informa ao usuário
