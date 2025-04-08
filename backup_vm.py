@@ -204,7 +204,7 @@ max_logs = None
 local_backups_base_folder_path = ""
 
 # Inicializando variáveis fixas (que não podem ser alteradas via "settings.cfg")
-vm_to_backup = "ZABBIX_OLT"
+vm_to_backup = "ZABBIX OLT"
 
 # Lendo e validando o parâmetro log_settings -> max_logs
 try:

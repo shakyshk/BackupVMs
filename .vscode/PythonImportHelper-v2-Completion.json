@@ -246,7 +246,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "ftp_info = {}\nupload_backup_to_ftp = None\nclean_local_backup_after_upload = None\nmax_logs = None\nlocal_backups_base_folder_path = \"\"\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nvm_to_backup = \"ZABBIX_OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')",
+        "peekOfCode": "ftp_info = {}\nupload_backup_to_ftp = None\nclean_local_backup_after_upload = None\nmax_logs = None\nlocal_backups_base_folder_path = \"\"\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nvm_to_backup = \"ZABBIX OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -255,7 +255,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "upload_backup_to_ftp = None\nclean_local_backup_after_upload = None\nmax_logs = None\nlocal_backups_base_folder_path = \"\"\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nvm_to_backup = \"ZABBIX_OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:",
+        "peekOfCode": "upload_backup_to_ftp = None\nclean_local_backup_after_upload = None\nmax_logs = None\nlocal_backups_base_folder_path = \"\"\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nvm_to_backup = \"ZABBIX OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -264,7 +264,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "clean_local_backup_after_upload = None\nmax_logs = None\nlocal_backups_base_folder_path = \"\"\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nvm_to_backup = \"ZABBIX_OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(",
+        "peekOfCode": "clean_local_backup_after_upload = None\nmax_logs = None\nlocal_backups_base_folder_path = \"\"\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nvm_to_backup = \"ZABBIX OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -273,7 +273,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "max_logs = None\nlocal_backups_base_folder_path = \"\"\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nvm_to_backup = \"ZABBIX_OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")",
+        "peekOfCode": "max_logs = None\nlocal_backups_base_folder_path = \"\"\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nvm_to_backup = \"ZABBIX OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -282,7 +282,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "local_backups_base_folder_path = \"\"\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nvm_to_backup = \"ZABBIX_OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1)",
+        "peekOfCode": "local_backups_base_folder_path = \"\"\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nvm_to_backup = \"ZABBIX OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1)",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -291,7 +291,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "vm_to_backup = \"ZABBIX_OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1)\n# Lendo e validando o parâmetro script_settings -> upload_backup_to_ftp\ntry:",
+        "peekOfCode": "vm_to_backup = \"ZABBIX OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1)\n# Lendo e validando o parâmetro script_settings -> upload_backup_to_ftp\ntry:",
         "detail": "backup_vm",
         "documentation": {}
     },
