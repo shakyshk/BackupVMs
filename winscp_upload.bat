@@ -21,7 +21,7 @@ echo --------------------------------------------------------------
 echo Verificando a existência da pasta %backups_base_folder_path% no host %host_address%
 echo --------------------------------------------------------------
 echo Comunicando com o servidor SFTP:
-rem Verificando a existência da pasta informada no servidor SFTP
+rem Verificando a existência da pasta raiz informado no servidor SFTP
 "winscp\WinSCP.com" /ini=nul /log=log_winscp.log /command "open %host_address% -certificate="*"" "stat ""%backups_base_folder_path%""" "exit"
 echo Comunicação finalizada!
 echo --------------------------------------------------------------
@@ -34,7 +34,7 @@ rem Caso a pasta não exista
   echo Pasta %backups_base_folder_path% não existe, criando...
   echo --------------------------------------------------------------
   echo Comunicando com o servidor SFTP:
-  rem Cria a pasta que irá guardar o item no servidor SFTP
+  rem Cria a pasta que irá guardar todos os backups no servidor SFTP
   "winscp\WinSCP.com" /ini=nul /log=log_winscp.log /command "open %host_address% -certificate="*"" "mkdir ""%backups_base_folder_path%""" "exit"
   echo Comunicação finalizada!
   echo --------------------------------------------------------------

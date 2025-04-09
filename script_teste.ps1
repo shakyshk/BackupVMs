@@ -74,7 +74,7 @@ Write-Host "--------------------------------------------------------------"
 Write-Host "Iniciando backup..."
 
 # Realizando o backup da VM
-#Export-VM -Name $vm_to_backup -Path $path_for_backup
+Export-VM -Name $vm_to_backup -Path $path_for_backup
 
 Write-Host "Backup finalizado!"
 Write-Host "##############################################################"
