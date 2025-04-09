@@ -1,12 +1,19 @@
-2025-04-08 21:45:34,338 - INFO:
+2025-04-08 23:44:02,633 - INFO:
 Arquivo de log iniciado com sucesso!
 
-2025-04-08 21:45:34,338 - INFO:
+2025-04-08 23:44:02,633 - INFO:
+*********************************************************
+
+---> Argumentos passados para o script:
+Nome da VM para realizar backup -> ZABBIX OLT
+Deve comprimir o backup em zip? -> False
+
+2025-04-08 23:44:02,633 - INFO:
 *********************************************************
 
 Iniciando leitura das configurações...
 
-2025-04-08 21:45:34,339 - INFO:
+2025-04-08 23:44:02,634 - INFO:
 Configurações:
 ---> Configurações de logs:
 Número máximo de logs -> 40
@@ -15,43 +22,48 @@ Deve enviar backup para o SFTP? -> True
 Deve limpar backup local? -> True
 Caminho local para o backup -> C:/VM_BACKUPS/
 ---> Configurações do servidor SFTP:
-
 Endereço -> 160.238.226.1
 Porta -> 2230
 Usuário -> backups-ftp
 Senha -> Conexaoba123
 Caminho para salvar backup no SFTP -> /home/backups-ftp/BACKUPS/
 
-2025-04-08 21:45:34,339 - INFO:
+2025-04-08 23:44:02,634 - INFO:
 Configurações lidas com sucesso!
 
-2025-04-08 21:45:34,339 - INFO:
+2025-04-08 23:44:02,634 - INFO:
 *********************************************************
 
 Iniciando limpeza dos logs antigos...
 
-2025-04-08 21:45:34,340 - INFO:
+2025-04-08 23:44:02,636 - INFO:
+Quantidade de logs excedida!
+
+2025-04-08 23:44:02,636 - INFO:
+Log removido: logs\log__08-04-2025__22-28-09__3135b219031e4450a466ccdb999ecf14.log
+
+2025-04-08 23:44:02,636 - INFO:
 Limpeza dos logs antigos finalizada com sucesso!
 
-2025-04-08 21:45:34,340 - INFO:
+2025-04-08 23:44:02,636 - INFO:
 *********************************************************
 
 Inciando backup da VM: ZABBIX OLT
 
-2025-04-08 21:45:34,340 - INFO:
+2025-04-08 23:44:02,637 - INFO:
 Abrindo o script de backup no powershell...
 
-2025-04-08 21:45:36,158 - INFO:
+2025-04-08 23:44:03,948 - INFO:
 Backup concluído com sucesso!
 
-2025-04-08 21:45:36,158 - INFO:
+2025-04-08 23:44:03,949 - INFO:
 Retorno da execução do powershell:
 
 ##############################################################
 InformaÃ§Ãµes capturadas:
 VM que serÃ¡ realizado backup:  + ZABBIX OLT
 Caminho raiz dos backups:  + C:/VM_BACKUPS/
-Pasta para o backup da VM:  + ZABBIX OLT__08-04-2025__21-45-34__3b3008551f364628bdf3695c71bf15a5
+Pasta para o backup da VM:  + ZABBIX OLT__08-04-2025__23-44-02__e856717a7cc74b94bf84c31343b0f274
 --------------------------------------------------------------
 Iniciando script de backup...
 --------------------------------------------------------------
@@ -64,17 +76,15 @@ Verificando existÃªncia da pasta que guardarÃ¡ o backup...
 Pasta nÃ£o existe, criando...
 --------------------------------------------------------------
 Iniciando backup...
-
-
 Backup finalizado!
 ##############################################################
 
-2025-04-08 21:45:36,159 - INFO:
+2025-04-08 23:44:03,949 - INFO:
 *********************************************************
 
 Realizando upload do backup da VM ZABBIX OLT para o servidor SFTP...
 
-2025-04-08 21:45:36,159 - INFO:
+2025-04-08 23:44:03,949 - INFO:
 Servidor SFTP configurado: 
 Host: 160.238.226.1
 Port: 2230
@@ -82,20 +92,39 @@ User: backups-ftp
 Pass: Conexaoba123
 Backups folder path: /home/backups-ftp/BACKUPS/
 
-2025-04-08 21:45:36,159 - INFO:
+2025-04-08 23:44:03,949 - INFO:
 Realizando upload do backup no script WinSCP...
 
-2025-04-08 21:45:37,475 - INFO:
+2025-04-08 23:44:05,947 - INFO:
 Upload no script WinSCP concluído com sucesso!
 
-2025-04-08 21:45:37,475 - INFO:
+2025-04-08 23:44:05,948 - INFO:
 Retorno da execução do upload no script WinSCP:
 
 ##############################################################
 Informa├º├Áes capturadas:
 Endere├ºo do servidor SFTP: sftp://backups-ftp:Conexaoba123@160.238.226.1:2230/
-Item que ser├í feito upload: C:\VM_BACKUPS\ZABBIX OLT__08-04-2025__21-45-34__3b3008551f364628bdf3695c71bf15a5
+Item que ser├í feito upload: C:\VM_BACKUPS\ZABBIX OLT__08-04-2025__23-44-02__e856717a7cc74b94bf84c31343b0f274
 Caminho do arquivo no servidor SFTP: /home/backups-ftp/BACKUPS/ZABBIX OLT/
+Caminho base dos backups no servidor SFTP: /home/backups-ftp/BACKUPS/
+--------------------------------------------------------------
+Verificando a exist├¬ncia da pasta /home/backups-ftp/BACKUPS/ no host sftp://backups-ftp:Conexaoba123@160.238.226.1:2230/
+--------------------------------------------------------------
+Comunicando com o servidor SFTP:
+Searching for host...
+Connecting to host...
+Authenticating...
+WARNING! Giving up security and accepting any host key as configured!
+Using username "backups-ftp".
+Authenticating with pre-entered password.
+Authenticated.
+Starting the session...
+Session started.
+Active session: [1] backups-ftp@160.238.226.1
+Drwxr-xr-x   0                        4096 Apr  8 23:12:20 2025 BACKUPS
+Comunica├º├úo finalizada!
+--------------------------------------------------------------
+Pasta /home/backups-ftp/BACKUPS/ j├í existe...
 --------------------------------------------------------------
 Verificando a exist├¬ncia da pasta /home/backups-ftp/BACKUPS/ZABBIX OLT/ no host sftp://backups-ftp:Conexaoba123@160.238.226.1:2230/
 --------------------------------------------------------------
@@ -110,11 +139,11 @@ Authenticated.
 Starting the session...
 Session started.
 Active session: [1] backups-ftp@160.238.226.1
-Drwxr-xr-x   0                        4096 Apr  8 21:43:16 2025 ZABBIX OLT
+Drwxr-xr-x   0                        4096 Apr  8 23:41:38 2025 ZABBIX OLT
 Comunica├º├úo finalizada!
 --------------------------------------------------------------
 Pasta /home/backups-ftp/BACKUPS/ZABBIX OLT/ j├í existe...
-Enviando arquivo C:\VM_BACKUPS\ZABBIX OLT__08-04-2025__21-45-34__3b3008551f364628bdf3695c71bf15a5 para /home/backups-ftp/BACKUPS/ZABBIX OLT/...
+Enviando arquivo C:\VM_BACKUPS\ZABBIX OLT__08-04-2025__23-44-02__e856717a7cc74b94bf84c31343b0f274 para /home/backups-ftp/BACKUPS/ZABBIX OLT/...
 --------------------------------------------------------------
 Comunicando com o servidor SFTP:
 Searching for host...
@@ -127,33 +156,26 @@ Authenticated.
 Starting the session...
 Session started.
 Active session: [1] backups-ftp@160.238.226.1
-C:\VM_BACKUPS\ZABBIX OLT__08-04-2025__21-45-34__3b3008551f364628bdf3695c71bf15a5 |            0 B |    0,0 KB/s | binary |   0%
+C:\VM_BACKUPS\ZABBIX OLT__08-04-2025__23-44-02__e856717a7cc74b94bf84c31343b0f274 |            0 B |    0,0 KB/s | binary |   0%
 Comunica├º├úo finalizada!
 --------------------------------------------------------------
 Upload finalizado com sucesso!
 ##############################################################
 
-2025-04-08 21:45:37,475 - INFO:
+2025-04-08 23:44:05,949 - INFO:
 *********************************************************
 
 Limpando o backup realizado localmente...
 
-2025-04-08 21:45:37,476 - INFO:
+2025-04-08 23:44:05,949 - INFO:
 Esvaziando a pasta do backup...
 
-2025-04-08 21:45:37,476 - INFO:
+2025-04-08 23:44:05,949 - INFO:
 Pasta do backup esvaziada com sucesso!
 
-2025-04-08 21:45:37,476 - INFO:
+2025-04-08 23:44:05,949 - INFO:
 Removendo a pasta do backup...
 
-2025-04-08 21:45:37,476 - INFO:
+2025-04-08 23:44:05,949 - INFO:
 Pasta do backup removida com sucesso!
-
-2025-04-08 21:45:37,476 - INFO:
-#########################################################
-
-Programa finalizado com sucesso!
-
-#########################################################
 

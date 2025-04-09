@@ -52,6 +52,9 @@ import uuid
 # (Um regex pra arquivos)
 import glob
 
+# Biblioteca para enviar requisições (Utilizando para comunicação com bot do telegram)
+import requests
+
 #########################################################
 # Declarando função para imprimir mensagem na tela e salvar nos logs.
 # (Para evitar redundância)
@@ -543,6 +546,24 @@ else:
     # Informa ao usuário
     print_and_log(f"""\n*********************************************************\n
                 Script configurado para não limpar o backup salvo localmente...""")
+
+#########################################################
+# Limpando o backup local
+# (caso habilitado nas configurações: "settings.cfg")
+#########################################################
+
+telegram_bot_token = "7264342339:AAHkYJaFgkQNQmYcIVY2KX6zYN4FzNgLW5s"
+telegram_group_chat_id = 6674522493
+message = f"(TESTE)\n✅ SUCESSO: Backup da VM {vm_to_backup} realizado com sucesso!\n(*￣▽￣*)ブ"
+url = f"https://api.telegram.org/bot{telegram_bot_token}/sendMessage"
+
+response = requests.post(
+    url=url, data={'chat_id': telegram_group_chat_id, 'text': message})
+
+# Throw an exception if Telegram API fails
+response.raise_for_status()
+
+print(response.json())
 
 # --------------------------------------------------------
 # Finalizando o programa
