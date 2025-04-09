@@ -1,0 +1,94 @@
+2025-04-08 21:41:50,501 - INFO:
+Arquivo de log iniciado com sucesso!
+
+2025-04-08 21:41:50,502 - INFO:
+*********************************************************
+
+Iniciando leitura das configurações...
+
+2025-04-08 21:41:50,503 - INFO:
+Configurações:
+---> Configurações de logs:
+Número máximo de logs -> 40
+---> Configurações do script:
+Deve enviar backup para o SFTP? -> False
+Deve limpar backup local? -> True
+Caminho local para o backup -> C:/VM_BACKUPS/
+---> Configurações do servidor SFTP:
+(Upload para o servidor desabilitado)
+
+2025-04-08 21:41:50,503 - INFO:
+Configurações lidas com sucesso!
+
+2025-04-08 21:41:50,503 - INFO:
+*********************************************************
+
+Iniciando limpeza dos logs antigos...
+
+2025-04-08 21:41:50,504 - INFO:
+Limpeza dos logs antigos finalizada com sucesso!
+
+2025-04-08 21:41:50,505 - INFO:
+*********************************************************
+
+Inciando backup da VM: ZABBIX OLT
+
+2025-04-08 21:41:50,505 - INFO:
+Abrindo o script de backup no powershell...
+
+2025-04-08 21:41:52,051 - INFO:
+Backup concluído com sucesso!
+
+2025-04-08 21:41:52,051 - INFO:
+Retorno da execução do powershell:
+--------------------------------------------------------------
+InformaÃ§Ãµes capturadas:
+VM que serÃ¡ realizado backup:  + ZABBIX OLT
+Caminho raiz dos backups:  + C:/VM_BACKUPS/
+Pasta para o backup da VM:  + ZABBIX OLT__08-04-2025__21-41-50__8f4865ffc2f44e99a51ed2cf044a2596
+--------------------------------------------------------------
+Iniciando script de backup...
+--------------------------------------------------------------
+Elevando acesso do script para Administrador...
+--------------------------------------------------------------
+Verificando existÃªncia da pasta raiz dos backups...
+Pasta jÃ¡ existe...
+--------------------------------------------------------------
+Verificando existÃªncia da pasta que guardarÃ¡ o backup...
+Pasta nÃ£o existe, criando...
+--------------------------------------------------------------
+Iniciando backup...
+
+
+Backup finalizado!
+--------------------------------------------------------------
+
+2025-04-08 21:41:52,052 - INFO:
+*********************************************************
+
+Script configurado para não fazer upload para o servidor SFTP...
+
+2025-04-08 21:41:52,052 - INFO:
+*********************************************************
+
+Limpando o backup realizado localmente...
+
+2025-04-08 21:41:52,052 - INFO:
+Esvaziando a pasta do backup...
+
+2025-04-08 21:41:52,052 - INFO:
+Pasta do backup esvaziada com sucesso!
+
+2025-04-08 21:41:52,052 - INFO:
+Removendo a pasta do backup...
+
+2025-04-08 21:41:52,052 - INFO:
+Pasta do backup removida com sucesso!
+
+2025-04-08 21:41:52,053 - INFO:
+#########################################################
+
+Programa finalizado com sucesso!
+
+#########################################################
+

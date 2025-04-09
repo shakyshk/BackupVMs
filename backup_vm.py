@@ -21,20 +21,17 @@
 # Importando as bibliotecas utilizadas:
 #########################################################
 
-# test
-import time
-
 # Biblioteca para criar o arquivo zip do backup
 import shutil
+
+# Biblioteca para gerenciar argumentos na chamada do script
+import argparse
 
 # Biblioteca para gerenciar subprocessos (Janela do Powershell e do WinSCP) e capturar o retorno
 import subprocess
 
 # Biblioteca para interagir com o interpretador do Python
 import sys
-
-# Biblioteca para manipular JSON
-import json
 
 # Biblioteca para manipular data / horário
 from datetime import datetime
@@ -97,22 +94,52 @@ def print_and_log(message, level="info"):
 def end_script(finish_code: 0):
     match finish_code:
         case 0:
-            print_and_log(f"""\n#########################################################\n
+            print_and_log(f"""\n*********************************************************\n
                         Programa finalizado com sucesso!
-                        \n#########################################################\n""")
+                        \n/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/\n""")
             sys.exit(0)
         case 1:
-            print_and_log(f"""\n#########################################################\n
+            print_and_log(f"""\n*********************************************************\n
                         Programa finalizado com erro!
-                        \n#########################################################\n""", "critical")
+                        \n/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/\n""", "critical")
             sys.exit(1)
+
+
+#########################################################
+# Capturando argumentos passados na execução do script
+#########################################################
+
+# Configurando funcionamento da biblioteca
+parser = argparse.ArgumentParser(
+    formatter_class=argparse.RawTextHelpFormatter,
+    allow_abbrev=False,
+    add_help=False,
+    prog='Backup VMs',
+    usage='python backup_vm.py --vm "NOME DA VM" [--zip]',
+    description="O script realiza backup da VM informada e envia para o servidor SFTP que foi configurado no arquivo settings.cfg.",
+    epilog=':)')
+
+# Configurando argumentos que podem ser passados
+parser.add_argument('--vm', required=True, metavar='"NOME DA VM"',
+                    help='(Obrigatório) Nome da VM que deseja fazer backup.')
+parser.add_argument('--zip', help='(Opcional) Caso queira compactar o backup em zip antes de enviar ao servidor SFTP.',
+                    action='store_true')
+parser.add_argument('-h', '--help', action='help', default=argparse.SUPPRESS,
+                    help='Mostra essa mensagem e finaliza o script.')
+
+# Capturando argumentos passados
+args = parser.parse_args()
+
+vm_to_backup = args.vm
+make_zip_from_backup = args.zip
+# Iremos informar os argumentos passados ao usuário apenas após criar o arquivo de log (próximo bloco do script)
+# Pois assim poderemos gravar no log as informações passadas
 
 #########################################################
 # Configurando os logs do script
 #########################################################
 
-
-print(f"""\n*********************************************************\n\nIniciando arquivo de log...""")
+print(f"""\n/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/\n\nIniciando arquivo de log...""")
 
 # Diretório onde os logs serão armazenados
 log_dir = "logs"
@@ -136,45 +163,15 @@ logging.basicConfig(
 
 print_and_log(f"""Arquivo de log iniciado com sucesso!""")
 
+# Informando os argumentos passados na chamada do script para o usuário
+print_and_log(f"""\n*********************************************************\n
+---> Argumentos passados para o script:
+Nome da VM para realizar backup -> {args.vm}
+Deve comprimir o backup em zip? -> {args.zip}""")
+
 #########################################################
 # Lendo e salvando os dados do arquivo settings.cgf:
 # (O arquivo deve estar na mesma pasta do script.)
-# Modelo:
-"""
-#--------------------------------------------------------
-# Settings #
-#--------------------------------------------------------
-# Configurações de funcionamento do script
-[script_settings]
-# Salvar os dados obtidos no banco de dados? (true / false)
-save_on_db = false
-# O programa deve verificar uma data personalizada? (true / false)
-# (Caso falso, o programa verificará os dados de ontem)
-custom_verify = false
-# Caso verdadeiro, qual data deve ser verificada? (Dia/Mês/Ano - xx/xx/xxxx)
-verify_date = 18/03/2025
-#--------------------------------------------------------
-# Configurações do funcionamento dos logs
-[log_settings]
-# Máximo de logs a serem guardados no sistema (integer)
-max_logs = 5
-#--------------------------------------------------------
-# Dados para conexão com o banco PostgreSQL:
-[db_info]
-# Endereço do servidor: (string)
-host = 127.0.0.1
-# Usuário com acesso de leitura/escrita (string)
-user = Shakya
-# Senha do usuário (string)
-password = shk
-# Nome do banco a ser utilizado (string)
-dbname = UNIFI
-# Porta de acesso do servidor (integer)
-port = 5432
-# Nome da tabela que ficará salvo os dados (string)
-table = diagnostics
-#--------------------------------------------------------
-"""
 #########################################################
 
 print_and_log(f"""\n*********************************************************\n
@@ -202,9 +199,6 @@ upload_backup_to_ftp = None
 clean_local_backup_after_upload = None
 max_logs = None
 local_backups_base_folder_path = ""
-
-# Inicializando variáveis fixas (que não podem ser alteradas via "settings.cfg")
-vm_to_backup = "ZABBIX OLT"
 
 # Lendo e validando o parâmetro log_settings -> max_logs
 try:
@@ -304,133 +298,23 @@ if upload_backup_to_ftp is True:
             "\nErro: Parâmetro 'ftp_info -> backups_base_folder_path' precisa ser uma string.", "critical")
         end_script(1)
 
-'''
-# Lendo e validando o parâmetro vms_to_backup -> vms_list
-try:
-    vms_to_backup = json.loads(config.get("vms_to_backup", "vms_list"))
-    for vm_to_backup in vms_to_backup:
-        if vm_to_backup.strip() == "":
-            print_and_log(
-                "\nErro: Parâmetro 'vms_to_backup -> vms_list' não pode conter uma nome vazio.", "critical")
-            end_script(1)
-except ValueError:
-    print_and_log(
-        "\nErro: Parâmetro 'vms_to_backup -> vms_list' precisa ser uma lista de strings.", "critical")
-    end_script(1)
+print_and_log(f"""
+Configurações:
+---> Configurações de logs:
+Número máximo de logs -> {max_logs}
+---> Configurações do script:
+Deve enviar backup para o SFTP? -> {upload_backup_to_ftp}
+Deve limpar backup local? -> {clean_local_backup_after_upload}
+Caminho local para o backup -> {local_backups_base_folder_path}
+---> Configurações do servidor SFTP:
+{"(Upload para o servidor desabilitado)" if not upload_backup_to_ftp else
+ f"""Endereço -> {ftp_info['host']}
+Porta -> {ftp_info['port']}
+Usuário -> {ftp_info['user']}
+Senha -> {ftp_info['pass']}
+Caminho para salvar backup no SFTP -> {ftp_info['backups_base_folder_path']}"""}
+""")
 
-print(vms_to_backup)
-'''
-'''
-# Lendo e validando o parâmetro script_settings -> save_on_db
-try:
-    save_on_db = config.getboolean('script_settings', 'save_on_db')
-except ValueError:
-    print_and_log(
-        "\nErro: Parâmetro 'script_settings -> save_on_db' precisa ser um booleano.", "critical")
-    end_script(1)
-
-# Lendo e validando o parâmetro script_settings -> custom_verify
-try:
-    custom_verify = config.getboolean('script_settings', 'custom_verify')
-except ValueError:
-    print_and_log(
-        "\nErro: Parâmetro 'script_settings -> custom_verify' precisa ser um booleano.", "critical")
-    end_script(1)
-
-# Caso configurado para verificar uma data customizada
-if custom_verify is True:
-    # Lendo e validando o parâmetro script_settings -> verify_date
-    try:
-        verify_date = config.get('script_settings', 'verify_date')
-        if verify_date.strip() == "":
-            print_and_log(
-                "\nErro: Parâmetro 'script_settings -> verify_date' não pode estar vazio.", "critical")
-            end_script(1)
-    except ValueError:
-        print_and_log(
-            "\nErro: Parâmetro 'script_settings -> verify_date' precisa ser uma string.", "critical")
-        end_script(1)
-
-# Caso configurado para salvar no banco de dados
-if save_on_db is True:
-    # Lendo e validando o parâmetro dbinfo -> host
-    try:
-        db_info["host"] = config.get('db_info', 'host')
-        if db_info["host"].strip() == "":
-            print_and_log(
-                "\nErro: Parâmetro 'dbinfo -> host' não pode estar vazio.", "critical")
-            end_script(1)
-    except ValueError:
-        print_and_log(
-            "\nErro: Parâmetro 'dbinfo -> host' precisa ser uma string.", "critical")
-        end_script(1)
-
-    # Lendo e validando o parâmetro dbinfo -> user
-    try:
-        db_info["user"] = config.get('db_info', 'user')
-        if db_info["user"].strip() == "":
-            print_and_log(
-                "\nErro: Parâmetro 'dbinfo -> user' não pode estar vazio.", "critical")
-            end_script(1)
-    except ValueError:
-        print_and_log(
-            "\nErro: Parâmetro 'dbinfo -> user' precisa ser uma string.", "critical")
-        end_script(1)
-
-    # Lendo e validando o parâmetro dbinfo -> password
-    try:
-        db_info["password"] = config.get('db_info', 'password')
-        if db_info["password"].strip() == "":
-            print_and_log(
-                "\nErro: Parâmetro 'dbinfo -> password' não pode estar vazio.", "critical")
-            end_script(1)
-    except ValueError:
-        print_and_log(
-            "\nErro: Parâmetro 'dbinfo -> password' precisa ser uma string.", "critical")
-        end_script(1)
-
-    # Lendo e validando o parâmetro dbinfo -> dbname
-    try:
-        db_info["dbname"] = config.get('db_info', 'dbname')
-        if db_info["dbname"].strip() == "":
-            print_and_log(
-                "\nErro: Parâmetro 'dbinfo -> dbname' não pode estar vazio.", "critical")
-            end_script(1)
-    except ValueError:
-        print_and_log(
-            "\nErro: Parâmetro 'dbinfo -> dbname' precisa ser uma string.", "critical")
-        end_script(1)
-
-    # Lendo e validando o parâmetro dbinfo -> port
-    try:
-        db_info["port"] = config.getint('db_info', 'port')
-    except ValueError:
-        print_and_log(
-            "\nErro: Parâmetro 'dbinfo -> port' precisa ser um número inteiro.", "critical")
-        end_script(1)
-
-    # Lendo e validando o parâmetro dbinfo -> table
-    try:
-        db_info["table"] = config.get('db_info', 'table')
-        if db_info["table"].strip() == "":
-            print_and_log(
-                "\nErro: Parâmetro 'dbinfo -> table' não pode estar vazio.", "critical")
-            end_script(1)
-    except ValueError:
-        print_and_log(
-            "\nErro: Parâmetro 'dbinfo -> table' precisa ser uma string.", "critical")
-        end_script(1)
-
-print_and_log(f"""\nConfigurações:
-              db_info = {db_info}
-              save_on_db = {save_on_db}
-              custom_verify = {custom_verify}
-              verify_date = {verify_date}
-              max_logs = {max_logs}\n""")
-'''
-
-print_and_log(f"""\nConfigurações:
-              max_logs = {max_logs}\n""")
 
 print_and_log(f"""Configurações lidas com sucesso!""")
 
@@ -492,35 +376,37 @@ p = subprocess.run(
 )
 
 if p.stderr:
-    print_and_log("Erro ao executar backup!", "critical")
+    print_and_log("\nErro ao executar backup!", "critical")
     print_and_log(
-        f"Retorno da execução do powershell:\n{p.stdout}", "critical")
-    print_and_log(f"Erro:\n{p.stderr}", "critical")
+        f"\nRetorno da execução do powershell:\n\n{p.stdout}", "critical")
+    print_and_log(f"\nErro:\n{p.stderr}", "critical")
     end_script(1)
 else:
-    print_and_log("Backup concluído com sucesso!")
+    print_and_log("\nBackup concluído com sucesso!")
     print_and_log(
-        f"Retorno da execução do powershell:\n{p.stdout}")
+        f"\nRetorno da execução do powershell:\n\n{p.stdout}")
 
 
 #########################################################
 # Criar um arquivo zip do backup realizado
+# (se informado nos argumentos ao chamar o script)
 #########################################################
-'''
-backup_zip_name = f"{vm_to_backup}__{unique_time_id}__backup"
-backup_zip_file_with_full_path = f"{local_backups_base_folder_path}{backup_zip_name}"
-print_and_log(f"""\n*********************************************************\n
-              Compactando backup para o arquivo: {backup_zip_file_with_full_path}.zip""")
-try:
-    shutil.make_archive(root_dir=backup_folder_full_path,
-                        format='zip', base_name=backup_zip_file_with_full_path)
-except Exception as error:
-    # Informa ao usuário
-    print_and_log(
-        f"Erro ao compactar backup para o arquivo {backup_zip_name}.zip!\nErro: {error}", "critical")
-else:
-    print_and_log("Backup compactado com sucesso!")
-'''
+
+if make_zip_from_backup:
+    backup_zip_name = f"{vm_to_backup}__{unique_time_id}"
+    backup_zip_file_with_full_path = f"{local_backups_base_folder_path}{backup_zip_name}"
+    print_and_log(f"""\n*********************************************************\n
+                Compactando backup para o arquivo: {backup_zip_file_with_full_path}.zip""")
+    try:
+        shutil.make_archive(root_dir=backup_folder_full_path,
+                            format='zip', base_name=backup_zip_file_with_full_path)
+    except Exception as error:
+        # Informa ao usuário
+        print_and_log(
+            f"Erro ao compactar backup para o arquivo {backup_zip_name}.zip!\nErro: {error}", "critical")
+    else:
+        print_and_log("Backup compactado com sucesso!")
+
 #########################################################
 # Conectar com o servidor FTP e fazer upload do backup realizado
 # (caso habilitado nas configurações: "settings.cfg")
@@ -540,20 +426,20 @@ if upload_backup_to_ftp:
     encoding = os.device_encoding(1)
     # Criando URL para conexão com o servidor SFTP
     host_address = f"sftp://{ftp_info['user']}:{ftp_info['pass']}@{ftp_info['host']}:{ftp_info['port']}/"
-    # Criando caminho do arquivo zip usando barra invertida pq o Windows é assim...
-    folder_to_upload = f"{backup_folder_full_path}".replace("/", "\\")
-    # folder_to_upload = f"C:/vm_backups/ZABBIX OLT__08-04-2025__14-32-01__cad1b50505674077b3d18eccfa943b70__tmp".replace(
-    #    "/", "\\")
-    # print(f"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -> {folder_to_upload}")
-    # sys.exit(0)
+    # Caso informado para não compactar a pasta
+    if not make_zip_from_backup:
+        # Criando caminho da pasta usando barra invertida pq o Windows é assim...
+        item_to_upload = f"{backup_folder_full_path}".replace("/", "\\")
+    # Caso informado para compactar a pasta
+    else:
+        item_to_upload = f"{backup_zip_file_with_full_path}.zip".replace(
+            "/", "\\")
     # Criando o caminho onde o backup será armazenado no servidor SFTP
     backup_folder_path = f"{ftp_info["backups_base_folder_path"]}{vm_to_backup}/"
 
-    print_and_log(f"""Rodando upload no script WinSCP...""")
-    print(
-        f"aaaaaaaaaaaaaaaaaaaaa\nhost_address: {host_address}\nfile_to_upload: {folder_to_upload}\nbackup_folder_path: {backup_folder_path}\naaaaaaaaaaaaaaaaaaaaa")
+    print_and_log(f"""Realizando upload do backup no script WinSCP...""")
     # Rodando o script BAT que irá enviar o backup para o servidor SFTP utilizando o WinSCP
-    p = subprocess.Popen(f'''{path}\\winscp_upload.bat "{host_address}" "{folder_to_upload}" "{backup_folder_path}"''',
+    p = subprocess.Popen(f'''{path}\\winscp_upload.bat "{host_address}" "{item_to_upload}" "{backup_folder_path}" "{ftp_info["backups_base_folder_path"]}"''',
                          stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding=encoding)
     # Capturando o retorno do script
     output, err = p.communicate()
@@ -563,17 +449,18 @@ if upload_backup_to_ftp:
     # Caso o script BAT retorne com erro
     if exit_code != 0:
         # Informar ao usuário e finalizar o script
-        print_and_log("Erro ao executar upload no script WinSCP!", "critical")
         print_and_log(
-            f"Retorno da execução do upload no script WinSCP:\n{output}", "critical")
-        print_and_log(f"Erro:\n{err}", "critical")
+            "\nErro ao executar upload no script WinSCP!", "critical")
+        print_and_log(
+            f"\nRetorno da execução do upload no script WinSCP:\n\n{output}", "critical")
+        print_and_log(f"\nErro:\n{err}", "critical")
         end_script(1)
     # Caso retorne com sucesso
     else:
         # Informar ao usuário
-        print_and_log("Upload no script WinSCP concluído com sucesso!")
+        print_and_log("\nUpload no script WinSCP concluído com sucesso!")
         print_and_log(
-            f"Retorno da execução do upload no script WinSCP:\n{output}")
+            f"\nRetorno da execução do upload no script WinSCP:\n\n{output}")
 # Caso configurado para não fazer upload para o servidor SFTP
 else:
     # Informa ao usuário
@@ -602,24 +489,33 @@ if clean_local_backup_after_upload:
                     # Caso seja um arquivo
                     if os.path.isfile(file_path):
                         # Apaga o arquivo
+                        print_and_log(f"Removendo arquivo: {file_path}")
                         os.unlink(file_path)
                     # Caso seja uma pasta
                     else:
                         # Chama a função novamente para verificar os itens dentro da subpasta
                         clear_folder(file_path)
                         # Após verificar e remover qualquer item dentro, remove a pasta
+                        print_and_log(f"Removendo pasta: {file_path}")
                         os.rmdir(file_path)
                 # Caso ocorra algum erro na remoção dos itens
                 except Exception as error:
                     # Informa ao usuário
                     print_and_log(
-                        f"Erro ao esvaziar a pasta do backup!\nErro: {error}", "critical")
+                        f"Erro na remoção do item!\nErro: {error}", "critical")
                 else:
-                    print_and_log("Pasta do backup foi esvaziada com sucesso!")
+                    print_and_log("Remoção concluída com sucesso!")
 
     # Chama a função para limpar a pasta do backup local
     print_and_log("Esvaziando a pasta do backup...")
-    clear_folder(backup_folder_full_path)
+    try:
+        clear_folder(backup_folder_full_path)
+    except Exception as error:
+        # Informa ao usuário
+        print_and_log(
+            f"Erro ao esvaziar a pasta do backup!\nErro: {error}", "critical")
+    else:
+        print_and_log("Pasta do backup esvaziada com sucesso!")
 
     # Após esvaziar qualquer item dentro, remove a pasta
     print_and_log("Removendo a pasta do backup...")
@@ -630,17 +526,18 @@ if clean_local_backup_after_upload:
             f"Erro ao remover a pasta do backup!\nErro: {error}", "critical")
     else:
         print_and_log("Pasta do backup removida com sucesso!")
-    '''
-    # Remove o arquivo zip do backup
-    print_and_log("Removendo o arquivo zip do backup...")
-    try:
-        os.unlink(f"{backup_zip_file_with_full_path}.zip")
-    except Exception as error:
-        print_and_log(
-            f"Erro ao remover o arquivo zip do backup!\nErro: {error}", "critical")
-    else:
-        print_and_log("Arquivo zip do backup removido com sucesso!")
-    '''
+
+    # Caso tenha sido criado um arquivo zip do backup
+    if make_zip_from_backup:
+        # Remove o arquivo zip do backup
+        print_and_log("Removendo o arquivo zip do backup...")
+        try:
+            os.unlink(f"{backup_zip_file_with_full_path}.zip")
+        except Exception as error:
+            print_and_log(
+                f"Erro ao remover o arquivo zip do backup!\nErro: {error}", "critical")
+        else:
+            print_and_log("Arquivo zip do backup removido com sucesso!")
 # Caso configurado para não limpar o backup salvo localmente
 else:
     # Informa ao usuário

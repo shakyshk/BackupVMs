@@ -1,0 +1,191 @@
+2025-04-08 22:38:55,777 - INFO:
+Arquivo de log iniciado com sucesso!
+
+2025-04-08 22:38:55,777 - INFO:
+*********************************************************
+
+---> Argumentos passados para o script:
+Nome da VM para realizar backup -> ZABBIX OLT
+Deve comprimir o backup em zip? -> True
+
+2025-04-08 22:38:55,778 - INFO:
+*********************************************************
+
+Iniciando leitura das configurações...
+
+2025-04-08 22:38:55,779 - INFO:
+Configurações:
+---> Configurações de logs:
+Número máximo de logs -> 40
+---> Configurações do script:
+Deve enviar backup para o SFTP? -> True
+Deve limpar backup local? -> True
+Caminho local para o backup -> C:/VM_BACKUPS/
+---> Configurações do servidor SFTP:
+Endereço -> 160.238.226.1
+Porta -> 2230
+Usuário -> backups-ftp
+Senha -> Conexaoba123
+Caminho para salvar backup no SFTP -> /home/backups-ftp/BACKUPS/
+
+2025-04-08 22:38:55,788 - INFO:
+Configurações lidas com sucesso!
+
+2025-04-08 22:38:55,789 - INFO:
+*********************************************************
+
+Iniciando limpeza dos logs antigos...
+
+2025-04-08 22:38:55,793 - INFO:
+Quantidade de logs excedida!
+
+2025-04-08 22:38:55,795 - INFO:
+Log removido: logs\log__08-04-2025__21-06-31__0b8238efc98945eabe8be7795f8ceea5.log
+
+2025-04-08 22:38:55,795 - INFO:
+Limpeza dos logs antigos finalizada com sucesso!
+
+2025-04-08 22:38:55,796 - INFO:
+*********************************************************
+
+Inciando backup da VM: ZABBIX OLT
+
+2025-04-08 22:38:55,797 - INFO:
+Abrindo o script de backup no powershell...
+
+2025-04-08 22:38:57,446 - INFO:
+Backup concluído com sucesso!
+
+2025-04-08 22:38:57,446 - INFO:
+Retorno da execução do powershell:
+
+##############################################################
+InformaÃ§Ãµes capturadas:
+VM que serÃ¡ realizado backup:  + ZABBIX OLT
+Caminho raiz dos backups:  + C:/VM_BACKUPS/
+Pasta para o backup da VM:  + ZABBIX OLT__08-04-2025__22-38-55__086c94f1619f4bce9ac5167aa1129787
+--------------------------------------------------------------
+Iniciando script de backup...
+--------------------------------------------------------------
+Elevando acesso do script para Administrador...
+--------------------------------------------------------------
+Verificando existÃªncia da pasta raiz dos backups...
+Pasta nÃ£o existe, criando...
+--------------------------------------------------------------
+Verificando existÃªncia da pasta que guardarÃ¡ o backup...
+Pasta nÃ£o existe, criando...
+--------------------------------------------------------------
+Iniciando backup...
+Backup finalizado!
+##############################################################
+
+2025-04-08 22:38:57,446 - INFO:
+*********************************************************
+
+Compactando backup para o arquivo: C:/VM_BACKUPS/ZABBIX OLT__08-04-2025__22-38-55__086c94f1619f4bce9ac5167aa1129787.zip
+
+2025-04-08 22:38:57,453 - INFO:
+Backup compactado com sucesso!
+
+2025-04-08 22:38:57,453 - INFO:
+*********************************************************
+
+Realizando upload do backup da VM ZABBIX OLT para o servidor SFTP...
+
+2025-04-08 22:38:57,453 - INFO:
+Servidor SFTP configurado: 
+Host: 160.238.226.1
+Port: 2230
+User: backups-ftp
+Pass: Conexaoba123
+Backups folder path: /home/backups-ftp/BACKUPS/
+
+2025-04-08 22:38:57,453 - INFO:
+Realizando upload do backup no script WinSCP...
+
+2025-04-08 22:38:59,431 - CRITICAL:
+Erro ao executar upload no script WinSCP!
+
+2025-04-08 22:38:59,432 - CRITICAL:
+Retorno da execução do upload no script WinSCP:
+
+##############################################################
+Informa├º├Áes capturadas:
+Endere├ºo do servidor SFTP: sftp://backups-ftp:Conexaoba123@160.238.226.1:2230/
+Item que ser├í feito upload: C:\VM_BACKUPS\ZABBIX OLT__08-04-2025__22-38-55__086c94f1619f4bce9ac5167aa1129787.zip
+Caminho do arquivo no servidor SFTP: /home/backups-ftp/BACKUPS/ZABBIX OLT/
+--------------------------------------------------------------
+Verificando a exist├¬ncia da pasta /home/backups-ftp/BACKUPS/ZABBIX OLT/ no host sftp://backups-ftp:Conexaoba123@160.238.226.1:2230/
+--------------------------------------------------------------
+Comunicando com o servidor SFTP:
+Searching for host...
+Connecting to host...
+Authenticating...
+WARNING! Giving up security and accepting any host key as configured!
+Using username "backups-ftp".
+Authenticating with pre-entered password.
+Authenticated.
+Starting the session...
+Session started.
+Active session: [1] backups-ftp@160.238.226.1
+Can't get attributes of file '/home/backups-ftp/BACKUPS/ZABBIX OLT'.
+No such file or directory.
+Error code: 2
+Error message from server: No such file
+Comunica├º├úo finalizada!
+--------------------------------------------------------------
+Pasta /home/backups-ftp/BACKUPS/ZABBIX OLT/ n├úo existe, criando...
+--------------------------------------------------------------
+Comunicando com o servidor SFTP:
+Searching for host...
+Connecting to host...
+Authenticating...
+WARNING! Giving up security and accepting any host key as configured!
+Using username "backups-ftp".
+Authenticating with pre-entered password.
+Authenticated.
+Starting the session...
+Session started.
+Active session: [1] backups-ftp@160.238.226.1
+Error creating folder '/home/backups-ftp/BACKUPS/ZABBIX OLT/'.
+No such file or directory.
+Error code: 2
+Error message from server: No such file
+(A)bort, (R)etry, (S)kip: Abort
+Comunica├º├úo finalizada!
+--------------------------------------------------------------
+Erro ao criar a pasta /home/backups-ftp/BACKUPS/ZABBIX OLT/!
+Enviando arquivo C:\VM_BACKUPS\ZABBIX OLT__08-04-2025__22-38-55__086c94f1619f4bce9ac5167aa1129787.zip para /home/backups-ftp/BACKUPS/ZABBIX OLT/...
+--------------------------------------------------------------
+Comunicando com o servidor SFTP:
+Searching for host...
+Connecting to host...
+Authenticating...
+WARNING! Giving up security and accepting any host key as configured!
+Using username "backups-ftp".
+Authenticating with pre-entered password.
+Authenticated.
+Starting the session...
+Session started.
+Active session: [1] backups-ftp@160.238.226.1
+C:\VM_BACKUPS\ZABBIX OLT__08-04-2025__22-38-55__086c94f1619f4bce9ac5167aa1129787.zip |            0 B |    0,0 KB/s | binary |   0%
+Cannot create remote file '/home/backups-ftp/BACKUPS/ZABBIX OLT/ZABBIX OLT__08-04-2025__22-38-55__086c94f1619f4bce9ac5167aa1129787.zip'.
+No such file or directory.
+Error code: 2
+Error message from server: No such file
+(A)bort, (R)etry, (S)kip, Ski(p) all: Abort
+Comunica├º├úo finalizada!
+--------------------------------------------------------------
+Upload finalizado com erro!
+##############################################################
+
+2025-04-08 22:38:59,432 - CRITICAL:
+Erro:
+
+2025-04-08 22:38:59,433 - CRITICAL:
+*********************************************************
+
+Programa finalizado com erro!
+
+/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
+

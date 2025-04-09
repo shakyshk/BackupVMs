@@ -1,20 +1,20 @@
 [
     {
-        "label": "time",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "time",
-        "description": "time",
-        "detail": "time",
-        "documentation": {}
-    },
-    {
         "label": "shutil",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "shutil",
         "description": "shutil",
         "detail": "shutil",
+        "documentation": {}
+    },
+    {
+        "label": "argparse",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "argparse",
+        "description": "argparse",
+        "detail": "argparse",
         "documentation": {}
     },
     {
@@ -33,15 +33,6 @@
         "importPath": "sys",
         "description": "sys",
         "detail": "sys",
-        "documentation": {}
-    },
-    {
-        "label": "json",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
         "documentation": {}
     },
     {
@@ -111,7 +102,43 @@
         "kind": 2,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "def end_script(finish_code: 0):\n    match finish_code:\n        case 0:\n            print_and_log(f\"\"\"\\n#########################################################\\n\n                        Programa finalizado com sucesso!\n                        \\n#########################################################\\n\"\"\")\n            sys.exit(0)\n        case 1:\n            print_and_log(f\"\"\"\\n#########################################################\\n\n                        Programa finalizado com erro!",
+        "peekOfCode": "def end_script(finish_code: 0):\n    match finish_code:\n        case 0:\n            print_and_log(f\"\"\"\\n*********************************************************\\n\n                        Programa finalizado com sucesso!\n                        \\n/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/\\n\"\"\")\n            sys.exit(0)\n        case 1:\n            print_and_log(f\"\"\"\\n*********************************************************\\n\n                        Programa finalizado com erro!",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "parser",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "parser = argparse.ArgumentParser(\n    formatter_class=argparse.RawTextHelpFormatter,\n    allow_abbrev=False,\n    add_help=False,\n    prog='Backup VMs',\n    usage='python backup_vm.py --vm \"NOME DA VM\" [--zip]',\n    description=\"O script realiza backup da VM informada e envia para o servidor SFTP que foi configurado no arquivo settings.cfg.\",\n    epilog=':)')\n# Configurando argumentos que podem ser passados\nparser.add_argument('--vm', required=True, metavar='\"NOME DA VM\"',",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "args",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "args = parser.parse_args()\nvm_to_backup = args.vm\nmake_zip_from_backup = args.zip\n# Iremos informar os argumentos passados ao usuário apenas após criar o arquivo de log (próximo bloco do script)\n# Pois assim poderemos gravar no log as informações passadas\n#########################################################\n# Configurando os logs do script\n#########################################################\nprint(f\"\"\"\\n/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/\\n\\nIniciando arquivo de log...\"\"\")\n# Diretório onde os logs serão armazenados",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "vm_to_backup",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "vm_to_backup = args.vm\nmake_zip_from_backup = args.zip\n# Iremos informar os argumentos passados ao usuário apenas após criar o arquivo de log (próximo bloco do script)\n# Pois assim poderemos gravar no log as informações passadas\n#########################################################\n# Configurando os logs do script\n#########################################################\nprint(f\"\"\"\\n/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/\\n\\nIniciando arquivo de log...\"\"\")\n# Diretório onde os logs serão armazenados\nlog_dir = \"logs\"",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "make_zip_from_backup",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "make_zip_from_backup = args.zip\n# Iremos informar os argumentos passados ao usuário apenas após criar o arquivo de log (próximo bloco do script)\n# Pois assim poderemos gravar no log as informações passadas\n#########################################################\n# Configurando os logs do script\n#########################################################\nprint(f\"\"\"\\n/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/\\n\\nIniciando arquivo de log...\"\"\")\n# Diretório onde os logs serão armazenados\nlog_dir = \"logs\"\n# Criando o diretório caso não exista",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -143,96 +170,6 @@
         "documentation": {}
     },
     {
-        "label": "save_on_db",
-        "kind": 5,
-        "importPath": "backup_vm",
-        "description": "backup_vm",
-        "peekOfCode": "save_on_db = false\n# O programa deve verificar uma data personalizada? (true / false)\n# (Caso falso, o programa verificará os dados de ontem)\ncustom_verify = false\n# Caso verdadeiro, qual data deve ser verificada? (Dia/Mês/Ano - xx/xx/xxxx)\nverify_date = 18/03/2025\n#--------------------------------------------------------\n# Configurações do funcionamento dos logs\n[log_settings]\n# Máximo de logs a serem guardados no sistema (integer)",
-        "detail": "backup_vm",
-        "documentation": {}
-    },
-    {
-        "label": "custom_verify",
-        "kind": 5,
-        "importPath": "backup_vm",
-        "description": "backup_vm",
-        "peekOfCode": "custom_verify = false\n# Caso verdadeiro, qual data deve ser verificada? (Dia/Mês/Ano - xx/xx/xxxx)\nverify_date = 18/03/2025\n#--------------------------------------------------------\n# Configurações do funcionamento dos logs\n[log_settings]\n# Máximo de logs a serem guardados no sistema (integer)\nmax_logs = 5\n#--------------------------------------------------------\n# Dados para conexão com o banco PostgreSQL:",
-        "detail": "backup_vm",
-        "documentation": {}
-    },
-    {
-        "label": "verify_date",
-        "kind": 5,
-        "importPath": "backup_vm",
-        "description": "backup_vm",
-        "peekOfCode": "verify_date = 18/03/2025\n#--------------------------------------------------------\n# Configurações do funcionamento dos logs\n[log_settings]\n# Máximo de logs a serem guardados no sistema (integer)\nmax_logs = 5\n#--------------------------------------------------------\n# Dados para conexão com o banco PostgreSQL:\n[db_info]\n# Endereço do servidor: (string)",
-        "detail": "backup_vm",
-        "documentation": {}
-    },
-    {
-        "label": "max_logs",
-        "kind": 5,
-        "importPath": "backup_vm",
-        "description": "backup_vm",
-        "peekOfCode": "max_logs = 5\n#--------------------------------------------------------\n# Dados para conexão com o banco PostgreSQL:\n[db_info]\n# Endereço do servidor: (string)\nhost = 127.0.0.1\n# Usuário com acesso de leitura/escrita (string)\nuser = Shakya\n# Senha do usuário (string)\npassword = shk",
-        "detail": "backup_vm",
-        "documentation": {}
-    },
-    {
-        "label": "host",
-        "kind": 5,
-        "importPath": "backup_vm",
-        "description": "backup_vm",
-        "peekOfCode": "host = 127.0.0.1\n# Usuário com acesso de leitura/escrita (string)\nuser = Shakya\n# Senha do usuário (string)\npassword = shk\n# Nome do banco a ser utilizado (string)\ndbname = UNIFI\n# Porta de acesso do servidor (integer)\nport = 5432\n# Nome da tabela que ficará salvo os dados (string)",
-        "detail": "backup_vm",
-        "documentation": {}
-    },
-    {
-        "label": "user",
-        "kind": 5,
-        "importPath": "backup_vm",
-        "description": "backup_vm",
-        "peekOfCode": "user = Shakya\n# Senha do usuário (string)\npassword = shk\n# Nome do banco a ser utilizado (string)\ndbname = UNIFI\n# Porta de acesso do servidor (integer)\nport = 5432\n# Nome da tabela que ficará salvo os dados (string)\ntable = diagnostics\n#--------------------------------------------------------",
-        "detail": "backup_vm",
-        "documentation": {}
-    },
-    {
-        "label": "password",
-        "kind": 5,
-        "importPath": "backup_vm",
-        "description": "backup_vm",
-        "peekOfCode": "password = shk\n# Nome do banco a ser utilizado (string)\ndbname = UNIFI\n# Porta de acesso do servidor (integer)\nport = 5432\n# Nome da tabela que ficará salvo os dados (string)\ntable = diagnostics\n#--------------------------------------------------------\n\"\"\"\n#########################################################",
-        "detail": "backup_vm",
-        "documentation": {}
-    },
-    {
-        "label": "dbname",
-        "kind": 5,
-        "importPath": "backup_vm",
-        "description": "backup_vm",
-        "peekOfCode": "dbname = UNIFI\n# Porta de acesso do servidor (integer)\nport = 5432\n# Nome da tabela que ficará salvo os dados (string)\ntable = diagnostics\n#--------------------------------------------------------\n\"\"\"\n#########################################################\nprint_and_log(f\"\"\"\\n*********************************************************\\n\n              Iniciando leitura das configurações...\"\"\")",
-        "detail": "backup_vm",
-        "documentation": {}
-    },
-    {
-        "label": "port",
-        "kind": 5,
-        "importPath": "backup_vm",
-        "description": "backup_vm",
-        "peekOfCode": "port = 5432\n# Nome da tabela que ficará salvo os dados (string)\ntable = diagnostics\n#--------------------------------------------------------\n\"\"\"\n#########################################################\nprint_and_log(f\"\"\"\\n*********************************************************\\n\n              Iniciando leitura das configurações...\"\"\")\n# Inicializando o configparser\nconfig = configparser.ConfigParser()",
-        "detail": "backup_vm",
-        "documentation": {}
-    },
-    {
-        "label": "table",
-        "kind": 5,
-        "importPath": "backup_vm",
-        "description": "backup_vm",
-        "peekOfCode": "table = diagnostics\n#--------------------------------------------------------\n\"\"\"\n#########################################################\nprint_and_log(f\"\"\"\\n*********************************************************\\n\n              Iniciando leitura das configurações...\"\"\")\n# Inicializando o configparser\nconfig = configparser.ConfigParser()\n# Tentando abrir o arquivo settings.cfg\ntry:",
-        "detail": "backup_vm",
-        "documentation": {}
-    },
-    {
         "label": "config",
         "kind": 5,
         "importPath": "backup_vm",
@@ -246,7 +183,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "ftp_info = {}\nupload_backup_to_ftp = None\nclean_local_backup_after_upload = None\nmax_logs = None\nlocal_backups_base_folder_path = \"\"\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nvm_to_backup = \"ZABBIX OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')",
+        "peekOfCode": "ftp_info = {}\nupload_backup_to_ftp = None\nclean_local_backup_after_upload = None\nmax_logs = None\nlocal_backups_base_folder_path = \"\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -255,7 +192,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "upload_backup_to_ftp = None\nclean_local_backup_after_upload = None\nmax_logs = None\nlocal_backups_base_folder_path = \"\"\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nvm_to_backup = \"ZABBIX OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:",
+        "peekOfCode": "upload_backup_to_ftp = None\nclean_local_backup_after_upload = None\nmax_logs = None\nlocal_backups_base_folder_path = \"\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -264,7 +201,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "clean_local_backup_after_upload = None\nmax_logs = None\nlocal_backups_base_folder_path = \"\"\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nvm_to_backup = \"ZABBIX OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(",
+        "peekOfCode": "clean_local_backup_after_upload = None\nmax_logs = None\nlocal_backups_base_folder_path = \"\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1)",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -273,7 +210,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "max_logs = None\nlocal_backups_base_folder_path = \"\"\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nvm_to_backup = \"ZABBIX OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")",
+        "peekOfCode": "max_logs = None\nlocal_backups_base_folder_path = \"\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1)\n# Lendo e validando o parâmetro script_settings -> upload_backup_to_ftp",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -282,16 +219,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "local_backups_base_folder_path = \"\"\n# Inicializando variáveis fixas (que não podem ser alteradas via \"settings.cfg\")\nvm_to_backup = \"ZABBIX OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1)",
-        "detail": "backup_vm",
-        "documentation": {}
-    },
-    {
-        "label": "vm_to_backup",
-        "kind": 5,
-        "importPath": "backup_vm",
-        "description": "backup_vm",
-        "peekOfCode": "vm_to_backup = \"ZABBIX OLT\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1)\n# Lendo e validando o parâmetro script_settings -> upload_backup_to_ftp\ntry:",
+        "peekOfCode": "local_backups_base_folder_path = \"\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1)\n# Lendo e validando o parâmetro script_settings -> upload_backup_to_ftp\ntry:",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -354,26 +282,26 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "p = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vm_to_backup}\", f\"{local_backups_base_folder_path}\", f\"{backup_folder_name}\"],\n    capture_output=True, text=True, encoding=encoding\n)\nif p.stderr:\n    print_and_log(\"Erro ao executar backup!\", \"critical\")\n    print_and_log(",
+        "peekOfCode": "p = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vm_to_backup}\", f\"{local_backups_base_folder_path}\", f\"{backup_folder_name}\"],\n    capture_output=True, text=True, encoding=encoding\n)\nif p.stderr:\n    print_and_log(\"\\nErro ao executar backup!\", \"critical\")\n    print_and_log(",
         "detail": "backup_vm",
         "documentation": {}
     },
     {
-        "label": "backup_zip_name",
+        "label": "parser",
         "kind": 5,
-        "importPath": "backup_vm",
-        "description": "backup_vm",
-        "peekOfCode": "backup_zip_name = f\"{vm_to_backup}__{unique_time_id}__backup\"\nbackup_zip_file_with_full_path = f\"{local_backups_base_folder_path}{backup_zip_name}\"\nprint_and_log(f\"\"\"\\n*********************************************************\\n\n              Compactando backup para o arquivo: {backup_zip_file_with_full_path}.zip\"\"\")\ntry:\n    shutil.make_archive(root_dir=backup_folder_full_path,\n                        format='zip', base_name=backup_zip_file_with_full_path)\nexcept Exception as error:\n    # Informa ao usuário\n    print_and_log(",
-        "detail": "backup_vm",
+        "importPath": "test_args",
+        "description": "test_args",
+        "peekOfCode": "parser = argparse.ArgumentParser(\n    formatter_class=argparse.RawTextHelpFormatter,\n    allow_abbrev=False,\n    add_help=False,\n    prog='Backup VMs',\n    usage='python backup_vm.py --vm \"NOME DA VM\" [--zip]',\n    description=\"O script realiza backup da VM informada e envia para o servidor SFTP que foi configurado no arquivo settings.cfg.\",\n    epilog=':)')\nparser.add_argument('--vm', required=True, metavar='\"NOME DA VM\"',\n                    help='(Obrigatório) Nome da VM que deseja fazer backup.')",
+        "detail": "test_args",
         "documentation": {}
     },
     {
-        "label": "backup_zip_file_with_full_path",
+        "label": "args",
         "kind": 5,
-        "importPath": "backup_vm",
-        "description": "backup_vm",
-        "peekOfCode": "backup_zip_file_with_full_path = f\"{local_backups_base_folder_path}{backup_zip_name}\"\nprint_and_log(f\"\"\"\\n*********************************************************\\n\n              Compactando backup para o arquivo: {backup_zip_file_with_full_path}.zip\"\"\")\ntry:\n    shutil.make_archive(root_dir=backup_folder_full_path,\n                        format='zip', base_name=backup_zip_file_with_full_path)\nexcept Exception as error:\n    # Informa ao usuário\n    print_and_log(\n        f\"Erro ao compactar backup para o arquivo {backup_zip_name}.zip!\\nErro: {error}\", \"critical\")",
-        "detail": "backup_vm",
+        "importPath": "test_args",
+        "description": "test_args",
+        "peekOfCode": "args = parser.parse_args()\nprint(f\"\"\"---> Argumentos passados para o script:\nNome da VM para realizar backup -> {args.vm}\nDeve comprimir o backup em zip? -> {args.zip}\"\"\")",
+        "detail": "test_args",
         "documentation": {}
     }
 ]
