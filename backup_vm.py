@@ -1,22 +1,3 @@
-# -#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#
-
-# (Por padrão:)
-# O script faz pipipipopopo
-
-# Alterando o arquivo settings.cfg (na mesma pasta do executável), é possível:
-# - Alterar os dados de conexão com o servidor FTP.
-# - Definir um número máximo de logs guardados no sistema
-
-# --------------------------------------------------------
-
-# Passo a passo padrão do script:
-
-# 1 - Aaaaaaaaaaaaaaaa
-# 2 - Bbbbbbbbbbbb
-# 3 - Cccccccccccccc
-
-# -#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#
-
 #########################################################
 # Importando as bibliotecas utilizadas:
 #########################################################
@@ -55,6 +36,43 @@ import glob
 # Biblioteca para enviar requisições (Utilizando para comunicação com bot do telegram)
 import requests
 
+# Biblioteca para capturar informações sobre o dispositivo em que
+# o script está rodando (para enviar na mensagem do telegram)
+import platform
+
+# Biblioteca para capturar informações de rede sobre o dispositivo
+# em que o script está rodando (para enviar na mensagem do telegram)
+import socket
+
+# Biblioteca para calcular o tempo de execução do script
+import time
+
+#########################################################
+# Inicio do script
+#########################################################
+
+# Iniciando objeto que guardará informações
+# a serem passadas na mensagem do telegram
+message_data = {
+    "nome_da_vm": "",
+    "nome_do_servidor": "",
+    "os_do_servidor": "",
+    "data_e_hora_atual": "",
+    "nome_do_log": "",
+    "nome_do_backup": "",
+    "ip_do_servidor": "",
+    "duração": "",
+    "hora_inicio": "",
+    "hora_final": "",
+    "token_do_bot": "",
+    "id_do_chat": "",
+    "enviar_mensagem_telegram": None
+}
+
+# Gravando o horário em que o backup iniciou
+# (para calcular a duração da execução)
+message_data["hora_inicio"] = time.time()
+
 #########################################################
 # Declarando função para imprimir mensagem na tela e salvar nos logs.
 # (Para evitar redundância)
@@ -86,7 +104,7 @@ def print_and_log(message, level="info"):
         case _:
             print(f"\nO level de log {level} não existe!")
             logging.critical(f"O level de log {level} não existe!")
-            end_script(1)
+            end_script(1, message_data)
 
 #########################################################
 # Declarando uma função simples para finalizar
@@ -94,14 +112,24 @@ def print_and_log(message, level="info"):
 #########################################################
 
 
-def end_script(finish_code: 0):
+def end_script(finish_code: 0, message_data: None):
+    # Gravando o horário em que o backup foi finalizado
+    # (para calcular a duração da execução)
+    message_data["hora_final"] = time.time()
+    # Calculando e gravando o tempo total da execução do script de backup
+    message_data["duração"] = round(
+        (message_data["hora_final"] - message_data["hora_inicio"])/60, 2)
     match finish_code:
         case 0:
+            if message_data["enviar_mensagem_telegram"]:
+                send_telegram_message(True, message_data)
             print_and_log(f"""\n*********************************************************\n
                         Programa finalizado com sucesso!
                         \n/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/\n""")
             sys.exit(0)
         case 1:
+            if message_data["enviar_mensagem_telegram"]:
+                send_telegram_message(False, message_data)
             print_and_log(f"""\n*********************************************************\n
                         Programa finalizado com erro!
                         \n/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/\n""", "critical")
@@ -109,9 +137,119 @@ def end_script(finish_code: 0):
 
 
 #########################################################
-# Capturando argumentos passados na execução do script
+# Funções para envio de mensagens via telegram
 #########################################################
 
+# Função para inserir \\ na frente de caracteres especiais utilizados pelo MarkdownV2
+# (no caso de alguma informação utilizar esses caracteres)
+def escape_markdown_v2(text_to_escape):
+    # Convertendo a variável para texto
+    text_to_escape = str(text_to_escape)
+    # Gravando caracteres utilizados pelo MarkdownV2
+    escape_chars = r'\_*[]()~`>#+-=|{}.!'
+    # Inserindo \\ na frente dos caracteres e retornando o texto modificado
+    return ''.join(f'\\{char}' if char in escape_chars else char for char in text_to_escape)
+
+
+# Função para enviar a mensagem no telegram
+def send_telegram_message(is_success: bool, message_data: None):
+    # Capturando nome da máquina
+    message_data["nome_do_servidor"] = socket.gethostname()
+    # Capturando OS da máquina
+    message_data["os_do_servidor"] = platform.platform()
+    # Capturando data e hora atual
+    message_data["data_e_hora_atual"] = datetime.now().strftime(
+        "%d/%m/%Y - %H:%M:%S")
+    # Capturando e gravando o IP da máquina
+    # (esse método garante não pegar o ip da interface errada)
+    # Tenta conexão com um IP público
+    try:
+        # Cria uma conexão de teste para um IP público
+        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+            s.connect(('8.8.8.8', 80))
+            # Retorna o IP local utilizado
+            message_data["ip_do_servidor"] = s.getsockname()[0]
+    # Caso ocorra algum erro
+    except Exception:
+        # Tenta retornar o IP de qualquer interface encontrada
+        try:
+            # Captura o IP de alguma interface do servidor
+            message_data["ip_do_servidor"] = socket.gethostbyname(
+                message_data["nome_do_servidor"])
+        # Caso ocorra algum erro
+        except Exception:
+            # Salva na variável que não foi possível capturar um IP
+            message_data["ip_do_servidor"] = "Indisponível"
+    # Escapando caracteres especiais das variáveis utilizadas
+    message_data["nome_da_vm"] = escape_markdown_v2(message_data["nome_da_vm"])
+    message_data["nome_do_servidor"] = escape_markdown_v2(
+        message_data["nome_do_servidor"])
+    message_data["ip_do_servidor"] = escape_markdown_v2(
+        message_data["ip_do_servidor"])
+    message_data["os_do_servidor"] = escape_markdown_v2(
+        message_data["os_do_servidor"])
+    message_data["data_e_hora_atual"] = escape_markdown_v2(
+        message_data["data_e_hora_atual"])
+    message_data["duração"] = escape_markdown_v2(message_data["duração"])
+    message_data["nome_do_log"] = escape_markdown_v2(
+        message_data["nome_do_log"])
+    message_data["nome_do_backup"] = escape_markdown_v2(
+        message_data["nome_do_backup"])
+    # Criando mensagem baseado em se o backup foi um sucesso
+    mensagem = ""
+    if is_success:
+        mensagem = f"""─────────────────────────
+✅ BACKUP: *{message_data["nome_da_vm"]}*
+_Backup da VM realizado com sucesso\\!_
+─────────────────────────
+📦 *VM:* {message_data["nome_da_vm"]}
+🏢 *Servidor:* {message_data["nome_do_servidor"]}
+🌐 *IP:* {message_data["ip_do_servidor"]}
+💽 *OS:* {message_data["os_do_servidor"]}
+📅 *Data:* {message_data["data_e_hora_atual"]}
+⏳ *Duração:* {message_data["duração"]} minutos
+💾 *Backup:* {message_data["nome_do_backup"]}
+📄 *Log:* {message_data["nome_do_log"]}
+─────────────────────────"""
+    else:
+        mensagem = f"""─────────────────────────
+❌ BACKUP: *{message_data["nome_da_vm"]}*
+_Erro ao realizar backup da VM\\!_
+─────────────────────────
+📦 *VM:* {message_data["nome_da_vm"]}
+🏢 *Servidor:* {message_data["nome_do_servidor"]}
+🌐 *IP:* {message_data["ip_do_servidor"]}
+💽 *OS:* {message_data["os_do_servidor"]}
+📅 *Data:* {message_data["data_e_hora_atual"]}
+⏳ *Duração:* {message_data["duração"]} minutos
+💾 *Backup:* {message_data["nome_do_backup"]}
+📄 *Log:* {message_data["nome_do_log"]}
+─────────────────────────"""
+    # Informações para requisição do envio da mensagem ao bot
+    url = f"https://api.telegram.org/bot{message_data["token_do_bot"]}/sendMessage"
+    dados = {
+        'chat_id': message_data["id_do_chat"],
+        'text': mensagem,
+        'parse_mode': 'MarkdownV2'
+    }
+    # Realizando a requisição
+    resposta = requests.post(url, data=dados)
+
+    # Caso a mensagem foi enviada com sucesso
+    if resposta.status_code == 200:
+        # Informa ao usuário
+        print_and_log(
+            f"Código: {resposta.status_code}\nSucesso no envio da mensagem!")
+    # Caso ocorra algum erro
+    else:
+        # Informa ao usuário
+        print_and_log(
+            f"Código: {resposta.status_code}\nErro no envio da mensagem!\n{resposta.description}", "critical")
+
+
+#########################################################
+# Capturando argumentos passados na execução do script
+#########################################################
 # Configurando funcionamento da biblioteca
 parser = argparse.ArgumentParser(
     formatter_class=argparse.RawTextHelpFormatter,
@@ -134,6 +272,8 @@ parser.add_argument('-h', '--help', action='help', default=argparse.SUPPRESS,
 args = parser.parse_args()
 
 vm_to_backup = args.vm
+# Gravando informação para mensagem do telegram
+message_data["nome_da_vm"] = vm_to_backup
 make_zip_from_backup = args.zip
 # Iremos informar os argumentos passados ao usuário apenas após criar o arquivo de log (próximo bloco do script)
 # Pois assim poderemos gravar no log as informações passadas
@@ -150,11 +290,15 @@ log_dir = "logs"
 os.makedirs(log_dir, exist_ok=True)
 # Criando uma string com horário e id unico para essa execução do script
 unique_time_id = f"{datetime.now().strftime('%d-%m-%Y__%H-%M-%S')}__{uuid.uuid4().hex}"
-
 # Criando um nome para o log (formato: log__data__horário__id.log)
+log_name = f"log__{unique_time_id}.log"
+# Criando um caminho para o log
 log_filename = os.path.join(
     log_dir,
-    f"log__{unique_time_id}.log")
+    log_name)
+
+# Gravando informação para mensagem do telegram
+message_data["nome_do_log"] = log_name
 
 # Configurando o logging
 logging.basicConfig(
@@ -194,7 +338,7 @@ except IOError as error:
     print_and_log(f"""\nErro ao tentar abrir o arquivo settings.cfg:\n
         {error}\n
         #########################################################\n""", "critical")
-    end_script(1)
+    end_script(1, message_data)
 
 # Inicializando variáveis que serão lidas
 ftp_info = {}
@@ -209,7 +353,7 @@ try:
 except ValueError:
     print_and_log(
         "\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.", "critical")
-    end_script(1)
+    end_script(1, message_data)
 
 # Lendo e validando o parâmetro script_settings -> upload_backup_to_ftp
 try:
@@ -218,7 +362,7 @@ try:
 except ValueError:
     print_and_log(
         "\nErro: Parâmetro 'script_settings -> upload_backup_to_ftp' precisa ser um booleano.", "critical")
-    end_script(1)
+    end_script(1, message_data)
 
 # Lendo e validando o parâmetro script_settings -> clean_local_backup_after_upload
 try:
@@ -227,7 +371,7 @@ try:
 except ValueError:
     print_and_log(
         "\nErro: Parâmetro 'script_settings -> clean_local_backup_after_upload' precisa ser um booleano.", "critical")
-    end_script(1)
+    end_script(1, message_data)
 
 # Lendo e validando o parâmetro script_settings -> local_backups_base_folder_path
 try:
@@ -236,11 +380,47 @@ try:
     if local_backups_base_folder_path.strip() == "":
         print_and_log(
             "\nErro: Parâmetro 'script_settings -> local_backups_base_folder_path' não pode estar vazio.", "critical")
-        end_script(1)
+        end_script(1, message_data)
 except ValueError:
     print_and_log(
         "\nErro: Parâmetro 'script_settings -> local_backups_base_folder_path' precisa ser uma string.", "critical")
-    end_script(1)
+    end_script(1, message_data)
+
+# Lendo e validando o parâmetro script_settings -> send_telegram_message
+try:
+    message_data["enviar_mensagem_telegram"] = config.getboolean(
+        'script_settings', 'send_telegram_message')
+except ValueError:
+    print_and_log(
+        "\nErro: Parâmetro 'script_settings -> send_telegram_message' precisa ser um booleano.", "critical")
+    end_script(1, message_data)
+
+# Caso configurado para enviar mensagem via telegram
+if message_data["enviar_mensagem_telegram"] is True:
+    # Lendo e validando o parâmetro telegram_info -> token_do_bot
+    try:
+        message_data["token_do_bot"] = config.get(
+            'telegram_info', 'token_do_bot')
+        if message_data["token_do_bot"].strip() == "":
+            print_and_log(
+                "\nErro: Parâmetro 'telegram_info -> token_do_bot' não pode estar vazio.", "critical")
+            end_script(1, message_data)
+    except ValueError:
+        print_and_log(
+            "\nErro: Parâmetro 'telegram_info -> token_do_bot' precisa ser uma string.", "critical")
+        end_script(1, message_data)
+    # Lendo e validando o parâmetro telegram_info -> id_do_chat
+    try:
+        message_data["id_do_chat"] = config.get(
+            'telegram_info', 'id_do_chat')
+        if message_data["id_do_chat"].strip() == "":
+            print_and_log(
+                "\nErro: Parâmetro 'telegram_info -> id_do_chat' não pode estar vazio.", "critical")
+            end_script(1, message_data)
+    except ValueError:
+        print_and_log(
+            "\nErro: Parâmetro 'telegram_info -> id_do_chat' precisa ser uma string.", "critical")
+        end_script(1, message_data)
 
 # Caso configurado para fazer upload do backup pro servidor FTP
 if upload_backup_to_ftp is True:
@@ -250,11 +430,11 @@ if upload_backup_to_ftp is True:
         if ftp_info["host"].strip() == "":
             print_and_log(
                 "\nErro: Parâmetro 'ftp_info -> host' não pode estar vazio.", "critical")
-            end_script(1)
+            end_script(1, message_data)
     except ValueError:
         print_and_log(
             "\nErro: Parâmetro 'ftp_info -> host' precisa ser uma string.", "critical")
-        end_script(1)
+        end_script(1, message_data)
 
     # Lendo e validando o parâmetro ftp_info -> port
     try:
@@ -262,7 +442,7 @@ if upload_backup_to_ftp is True:
     except ValueError:
         print_and_log(
             "\nErro: Parâmetro 'ftp_info -> port' precisa ser um número inteiro.", "critical")
-        end_script(1)
+        end_script(1, message_data)
 
     # Lendo e validando o parâmetro ftp_info -> user
     try:
@@ -270,11 +450,11 @@ if upload_backup_to_ftp is True:
         if ftp_info["user"].strip() == "":
             print_and_log(
                 "\nErro: Parâmetro 'ftp_info -> user' não pode estar vazio.", "critical")
-            end_script(1)
+            end_script(1, message_data)
     except ValueError:
         print_and_log(
             "\nErro: Parâmetro 'ftp_info -> user' precisa ser uma string.", "critical")
-        end_script(1)
+        end_script(1, message_data)
 
     # Lendo e validando o parâmetro ftp_info -> pass
     try:
@@ -282,11 +462,11 @@ if upload_backup_to_ftp is True:
         if ftp_info["pass"].strip() == "":
             print_and_log(
                 "\nErro: Parâmetro 'ftp_info -> pass' não pode estar vazio.", "critical")
-            end_script(1)
+            end_script(1, message_data)
     except ValueError:
         print_and_log(
             "\nErro: Parâmetro 'ftp_info -> pass' precisa ser uma string.", "critical")
-        end_script(1)
+        end_script(1, message_data)
 
     # Lendo e validando o parâmetro ftp_info -> backups_base_folder_path
     try:
@@ -295,11 +475,11 @@ if upload_backup_to_ftp is True:
         if ftp_info["backups_base_folder_path"].strip() == "":
             print_and_log(
                 "\nErro: Parâmetro 'ftp_info -> backups_base_folder_path' não pode estar vazio.", "critical")
-            end_script(1)
+            end_script(1, message_data)
     except ValueError:
         print_and_log(
             "\nErro: Parâmetro 'ftp_info -> backups_base_folder_path' precisa ser uma string.", "critical")
-        end_script(1)
+        end_script(1, message_data)
 
 print_and_log(f"""
 Configurações:
@@ -309,6 +489,7 @@ Número máximo de logs -> {max_logs}
 Deve enviar backup para o SFTP? -> {upload_backup_to_ftp}
 Deve limpar backup local? -> {clean_local_backup_after_upload}
 Caminho local para o backup -> {local_backups_base_folder_path}
+Deve enviar mensagem no telegram? -> {message_data["enviar_mensagem_telegram"]}
 ---> Configurações do servidor SFTP:
 {"(Upload para o servidor desabilitado)" if not upload_backup_to_ftp else
  f"""Endereço -> {ftp_info['host']}
@@ -316,11 +497,13 @@ Porta -> {ftp_info['port']}
 Usuário -> {ftp_info['user']}
 Senha -> {ftp_info['pass']}
 Caminho para salvar backup no SFTP -> {ftp_info['backups_base_folder_path']}"""}
+---> Configurações do bot telegram:
+{"(Envio de mensagem desabilitado)" if not message_data["enviar_mensagem_telegram"] else
+ f"""Token do bot -> {message_data["token_do_bot"]}
+ID do chat -> {message_data["id_do_chat"]}"""}
 """)
 
-
 print_and_log(f"""Configurações lidas com sucesso!""")
-
 
 #########################################################
 # Limpando logs antigos caso excedido o número máximo de logs
@@ -362,11 +545,14 @@ path = os.getcwd()
 # vai rodar com sucesso porém os acentos no log vão ficar bugados.)
 encoding = os.device_encoding(1)
 # Nome da pasta raiz onde será armazenado todos os backups
-backup_script_name = "script_teste"
+backup_script_name = "pwsh_backup"
 # Nome da pasta que será armazenado este backup da VM
 backup_folder_name = f"{vm_to_backup}__{unique_time_id}"
 # Armazenando o caminho completo do backup para usar depois
 backup_folder_full_path = f"{local_backups_base_folder_path}{backup_folder_name}"
+
+# Gravando informação para mensagem do telegram
+message_data["nome_do_backup"] = backup_folder_name
 
 print_and_log(f"""Abrindo o script de backup no powershell...""")
 
@@ -383,7 +569,7 @@ if p.stderr:
     print_and_log(
         f"\nRetorno da execução do powershell:\n\n{p.stdout}", "critical")
     print_and_log(f"\nErro:\n{p.stderr}", "critical")
-    end_script(1)
+    end_script(1, message_data)
 else:
     print_and_log("\nBackup concluído com sucesso!")
     print_and_log(
@@ -397,6 +583,8 @@ else:
 
 if make_zip_from_backup:
     backup_zip_name = f"{vm_to_backup}__{unique_time_id}"
+    # Gravando informação para mensagem do telegram
+    message_data["nome_do_backup"] = f"{backup_zip_name}.zip"
     backup_zip_file_with_full_path = f"{local_backups_base_folder_path}{backup_zip_name}"
     print_and_log(f"""\n*********************************************************\n
                 Compactando backup para o arquivo: {backup_zip_file_with_full_path}.zip""")
@@ -457,7 +645,7 @@ if upload_backup_to_ftp:
         print_and_log(
             f"\nRetorno da execução do upload no script WinSCP:\n\n{output}", "critical")
         print_and_log(f"\nErro:\n{err}", "critical")
-        end_script(1)
+        end_script(1, message_data)
     # Caso retorne com sucesso
     else:
         # Informar ao usuário
@@ -547,27 +735,9 @@ else:
     print_and_log(f"""\n*********************************************************\n
                 Script configurado para não limpar o backup salvo localmente...""")
 
-#########################################################
-# Limpando o backup local
-# (caso habilitado nas configurações: "settings.cfg")
-#########################################################
-
-telegram_bot_token = "7264342339:AAHkYJaFgkQNQmYcIVY2KX6zYN4FzNgLW5s"
-telegram_group_chat_id = 6674522493
-message = f"(TESTE)\n✅ SUCESSO: Backup da VM {vm_to_backup} realizado com sucesso!\n(*￣▽￣*)ブ"
-url = f"https://api.telegram.org/bot{telegram_bot_token}/sendMessage"
-
-response = requests.post(
-    url=url, data={'chat_id': telegram_group_chat_id, 'text': message})
-
-# Throw an exception if Telegram API fails
-response.raise_for_status()
-
-print(response.json())
-
 # --------------------------------------------------------
 # Finalizando o programa
 # --------------------------------------------------------
 
 # Finaliza o script
-end_script(0)
+end_script(0, message_data)

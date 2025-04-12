@@ -22,7 +22,7 @@ echo Verificando a existência da pasta %backups_base_folder_path% no host %host
 echo --------------------------------------------------------------
 echo Comunicando com o servidor SFTP:
 rem Verificando a existência da pasta raiz informado no servidor SFTP
-"winscp\WinSCP.com" /ini=nul /log=log_winscp.log /command "open %host_address% -certificate="*"" "stat ""%backups_base_folder_path%""" "exit"
+"winscp\WinSCP.com" /ini=nul /command "open %host_address% -certificate="*"" "stat ""%backups_base_folder_path%""" "exit"
 echo Comunicação finalizada!
 echo --------------------------------------------------------------
 rem Caso a pasta já exista
@@ -35,7 +35,7 @@ rem Caso a pasta não exista
   echo --------------------------------------------------------------
   echo Comunicando com o servidor SFTP:
   rem Cria a pasta que irá guardar todos os backups no servidor SFTP
-  "winscp\WinSCP.com" /ini=nul /log=log_winscp.log /command "open %host_address% -certificate="*"" "mkdir ""%backups_base_folder_path%""" "exit"
+  "winscp\WinSCP.com" /ini=nul /command "open %host_address% -certificate="*"" "mkdir ""%backups_base_folder_path%""" "exit"
   echo Comunicação finalizada!
   echo --------------------------------------------------------------
   rem Caso a criação da pasta ocorra sem nenhuma falha
@@ -54,7 +54,7 @@ echo Verificando a existência da pasta %backup_folder_path% no host %host_addre
 echo --------------------------------------------------------------
 echo Comunicando com o servidor SFTP:
 rem Verificando a existência da pasta informada no servidor SFTP
-"winscp\WinSCP.com" /ini=nul /log=log_winscp.log /command "open %host_address% -certificate="*"" "stat ""%backup_folder_path%""" "exit"
+"winscp\WinSCP.com" /ini=nul /command "open %host_address% -certificate="*"" "stat ""%backup_folder_path%""" "exit"
 echo Comunicação finalizada!
 echo --------------------------------------------------------------
 rem Caso a pasta já exista
@@ -67,7 +67,7 @@ rem Caso a pasta não exista
   echo --------------------------------------------------------------
   echo Comunicando com o servidor SFTP:
   rem Cria a pasta que irá guardar o item no servidor SFTP
-  "winscp\WinSCP.com" /ini=nul /log=log_winscp.log /command "open %host_address% -certificate="*"" "mkdir ""%backup_folder_path%""" "exit"
+  "winscp\WinSCP.com" /ini=nul /command "open %host_address% -certificate="*"" "mkdir ""%backup_folder_path%""" "exit"
   echo Comunicação finalizada!
   echo --------------------------------------------------------------
   rem Caso a criação da pasta ocorra sem nenhuma falha
@@ -85,7 +85,7 @@ echo Enviando arquivo %file_to_upload% para %backup_folder_path%...
 echo --------------------------------------------------------------
 echo Comunicando com o servidor SFTP:
 rem Realizando o upload do item para o caminho informado no servidor SFTP
-"winscp\WinSCP.com" /ini=nul /log=log_winscp.log /command "open %host_address% -certificate="*"" "put ""%file_to_upload%"" ""%backup_folder_path%""" "exit"
+"winscp\WinSCP.com" /ini=nul /command "open %host_address% -certificate="*"" "put ""%file_to_upload%"" ""%backup_folder_path%""" "exit"
 echo Comunicação finalizada!
 echo --------------------------------------------------------------
 

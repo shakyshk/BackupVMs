@@ -1,19 +1,19 @@
-2025-04-08 22:29:30,129 - INFO:
+2025-04-12 15:45:29,492 - INFO:
 Arquivo de log iniciado com sucesso!
 
-2025-04-08 22:29:30,129 - INFO:
-/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
+2025-04-12 15:45:29,493 - INFO:
+*********************************************************
 
 ---> Argumentos passados para o script:
 Nome da VM para realizar backup -> ZABBIX OLT
-Deve comprimir o backup em zip? -> True
+Deve comprimir o backup em zip? -> False
 
-2025-04-08 22:29:30,129 - INFO:
+2025-04-12 15:45:29,493 - INFO:
 *********************************************************
 
 Iniciando leitura das configurações...
 
-2025-04-08 22:29:30,130 - INFO:
+2025-04-12 15:45:29,494 - INFO:
 Configurações:
 ---> Configurações de logs:
 Número máximo de logs -> 40
@@ -21,43 +21,52 @@ Número máximo de logs -> 40
 Deve enviar backup para o SFTP? -> True
 Deve limpar backup local? -> True
 Caminho local para o backup -> C:/VM_BACKUPS/
+Deve enviar mensagem no telegram? -> False
 ---> Configurações do servidor SFTP:
-Endereço -> 160.238.226.1
+Endereço -> 160.238.224.1
 Porta -> 2230
-Usuário -> backups-ftp
-Senha -> Conexaoba123
-Caminho para salvar backup no SFTP -> /home/backups-ftp/BACKUPS/
+Usuário -> bkp
+Senha -> backup
+Caminho para salvar backup no SFTP -> /home/bkp/BACKUPS/
+---> Configurações do bot telegram:
+(Envio de mensagem desabilitado)
 
-2025-04-08 22:29:30,139 - INFO:
+2025-04-12 15:45:29,503 - INFO:
 Configurações lidas com sucesso!
 
-2025-04-08 22:29:30,140 - INFO:
+2025-04-12 15:45:29,504 - INFO:
 *********************************************************
 
 Iniciando limpeza dos logs antigos...
 
-2025-04-08 22:29:30,142 - INFO:
+2025-04-12 15:45:29,508 - INFO:
+Quantidade de logs excedida!
+
+2025-04-12 15:45:29,508 - INFO:
+Log removido: logs\log__08-04-2025__22-35-38__c1f7f1fc272647f7b5229b5c0fa1f8b9.log
+
+2025-04-12 15:45:29,509 - INFO:
 Limpeza dos logs antigos finalizada com sucesso!
 
-2025-04-08 22:29:30,142 - INFO:
+2025-04-12 15:45:29,510 - INFO:
 *********************************************************
 
 Inciando backup da VM: ZABBIX OLT
 
-2025-04-08 22:29:30,143 - INFO:
+2025-04-12 15:45:29,510 - INFO:
 Abrindo o script de backup no powershell...
 
-2025-04-08 22:29:31,751 - INFO:
+2025-04-12 15:45:31,191 - INFO:
 Backup concluído com sucesso!
 
-2025-04-08 22:29:31,751 - INFO:
+2025-04-12 15:45:31,192 - INFO:
 Retorno da execução do powershell:
 
 ##############################################################
 InformaÃ§Ãµes capturadas:
 VM que serÃ¡ realizado backup:  + ZABBIX OLT
 Caminho raiz dos backups:  + C:/VM_BACKUPS/
-Pasta para o backup da VM:  + ZABBIX OLT__08-04-2025__22-29-30__5e78f9e06d3f4b3fba847cb7cb47b6c5
+Pasta para o backup da VM:  + ZABBIX OLT__12-04-2025__15-45-29__a07aa8cf64014de492c588faf8b64fcf
 --------------------------------------------------------------
 Iniciando script de backup...
 --------------------------------------------------------------
@@ -73,96 +82,107 @@ Iniciando backup...
 Backup finalizado!
 ##############################################################
 
-2025-04-08 22:29:31,752 - INFO:
-*********************************************************
-
-Compactando backup para o arquivo: C:/VM_BACKUPS/ZABBIX OLT__08-04-2025__22-29-30__5e78f9e06d3f4b3fba847cb7cb47b6c5__backup.zip
-
-2025-04-08 22:29:31,758 - INFO:
-Backup compactado com sucesso!
-
-2025-04-08 22:29:31,758 - INFO:
+2025-04-12 15:45:31,192 - INFO:
 *********************************************************
 
 Realizando upload do backup da VM ZABBIX OLT para o servidor SFTP...
 
-2025-04-08 22:29:31,758 - INFO:
+2025-04-12 15:45:31,192 - INFO:
 Servidor SFTP configurado: 
-Host: 160.238.226.1
+Host: 160.238.224.1
 Port: 2230
-User: backups-ftp
-Pass: Conexaoba123
-Backups folder path: /home/backups-ftp/BACKUPS/
+User: bkp
+Pass: backup
+Backups folder path: /home/bkp/BACKUPS/
 
-2025-04-08 22:29:31,758 - INFO:
+2025-04-12 15:45:31,193 - INFO:
 Realizando upload do backup no script WinSCP...
 
-2025-04-08 22:29:32,979 - INFO:
+2025-04-12 15:45:33,070 - INFO:
 Upload no script WinSCP concluído com sucesso!
 
-2025-04-08 22:29:32,980 - INFO:
+2025-04-12 15:45:33,071 - INFO:
 Retorno da execução do upload no script WinSCP:
 
 ##############################################################
 Informa├º├Áes capturadas:
-Endere├ºo do servidor SFTP: sftp://backups-ftp:Conexaoba123@160.238.226.1:2230/
-Item que ser├í feito upload: C:\vm_backups\bla.zip
-Caminho do arquivo no servidor SFTP: /home/backups-ftp/BACKUPS/ZABBIX OLT/
+Endere├ºo do servidor SFTP: sftp://bkp:backup@160.238.224.1:2230/
+Item que ser├í feito upload: C:\VM_BACKUPS\ZABBIX OLT__12-04-2025__15-45-29__a07aa8cf64014de492c588faf8b64fcf
+Caminho do arquivo no servidor SFTP: /home/bkp/BACKUPS/ZABBIX OLT/
+Caminho base dos backups no servidor SFTP: /home/bkp/BACKUPS/
 --------------------------------------------------------------
-Verificando a exist├¬ncia da pasta /home/backups-ftp/BACKUPS/ZABBIX OLT/ no host sftp://backups-ftp:Conexaoba123@160.238.226.1:2230/
+Verificando a exist├¬ncia da pasta /home/bkp/BACKUPS/ no host sftp://bkp:backup@160.238.224.1:2230/
 --------------------------------------------------------------
 Comunicando com o servidor SFTP:
 Searching for host...
 Connecting to host...
 Authenticating...
 WARNING! Giving up security and accepting any host key as configured!
-Using username "backups-ftp".
+Using username "bkp".
 Authenticating with pre-entered password.
 Authenticated.
 Starting the session...
 Session started.
-Active session: [1] backups-ftp@160.238.226.1
-Drwxr-xr-x   0                        4096 Apr  8 22:28:07 2025 ZABBIX OLT
+Active session: [1] bkp@160.238.224.1
+Drwxr-xr-x   0                        4096 Apr 11 17:56:57 2025 BACKUPS
 Comunica├º├úo finalizada!
 --------------------------------------------------------------
-Pasta /home/backups-ftp/BACKUPS/ZABBIX OLT/ j├í existe...
-Enviando arquivo C:\vm_backups\bla.zip para /home/backups-ftp/BACKUPS/ZABBIX OLT/...
+Pasta /home/bkp/BACKUPS/ j├í existe...
+--------------------------------------------------------------
+Verificando a exist├¬ncia da pasta /home/bkp/BACKUPS/ZABBIX OLT/ no host sftp://bkp:backup@160.238.224.1:2230/
 --------------------------------------------------------------
 Comunicando com o servidor SFTP:
 Searching for host...
 Connecting to host...
 Authenticating...
 WARNING! Giving up security and accepting any host key as configured!
-Using username "backups-ftp".
+Using username "bkp".
 Authenticating with pre-entered password.
 Authenticated.
 Starting the session...
 Session started.
-Active session: [1] backups-ftp@160.238.226.1
-C:\vm_backups\bla.zip     |           1 KB |    0,0 KB/s | binary | 100%
+Active session: [1] bkp@160.238.224.1
+Drwxr-xr-x   0                        4096 Apr 12 15:43:58 2025 ZABBIX OLT
+Comunica├º├úo finalizada!
+--------------------------------------------------------------
+Pasta /home/bkp/BACKUPS/ZABBIX OLT/ j├í existe...
+Enviando arquivo C:\VM_BACKUPS\ZABBIX OLT__12-04-2025__15-45-29__a07aa8cf64014de492c588faf8b64fcf para /home/bkp/BACKUPS/ZABBIX OLT/...
+--------------------------------------------------------------
+Comunicando com o servidor SFTP:
+Searching for host...
+Connecting to host...
+Authenticating...
+WARNING! Giving up security and accepting any host key as configured!
+Using username "bkp".
+Authenticating with pre-entered password.
+Authenticated.
+Starting the session...
+Session started.
+Active session: [1] bkp@160.238.224.1
+C:\VM_BACKUPS\ZABBIX OLT__12-04-2025__15-45-29__a07aa8cf64014de492c588faf8b64fcf |            0 B |    0,0 KB/s | binary |   0%
 Comunica├º├úo finalizada!
 --------------------------------------------------------------
 Upload finalizado com sucesso!
 ##############################################################
 
-2025-04-08 22:29:32,980 - INFO:
+2025-04-12 15:45:33,072 - INFO:
 *********************************************************
 
 Limpando o backup realizado localmente...
 
-2025-04-08 22:29:32,980 - INFO:
+2025-04-12 15:45:33,072 - INFO:
 Esvaziando a pasta do backup...
 
-2025-04-08 22:29:32,980 - INFO:
+2025-04-12 15:45:33,072 - INFO:
 Pasta do backup esvaziada com sucesso!
 
-2025-04-08 22:29:32,980 - INFO:
+2025-04-12 15:45:33,072 - INFO:
 Removendo a pasta do backup...
 
-2025-04-08 22:29:32,980 - INFO:
+2025-04-12 15:45:33,072 - INFO:
 Pasta do backup removida com sucesso!
 
-2025-04-08 22:29:32,980 - INFO:
+2025-04-12 15:45:33,072 - INFO:
 *********************************************************
 
 Programa finalizado com sucesso!

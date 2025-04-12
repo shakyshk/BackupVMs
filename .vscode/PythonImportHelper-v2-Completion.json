@@ -98,6 +98,33 @@
         "documentation": {}
     },
     {
+        "label": "platform",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "platform",
+        "description": "platform",
+        "detail": "platform",
+        "documentation": {}
+    },
+    {
+        "label": "socket",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "socket",
+        "description": "socket",
+        "detail": "socket",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
         "label": "print_and_log",
         "kind": 2,
         "importPath": "backup_vm",
@@ -111,7 +138,43 @@
         "kind": 2,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "def end_script(finish_code: 0):\n    match finish_code:\n        case 0:\n            print_and_log(f\"\"\"\\n*********************************************************\\n\n                        Programa finalizado com sucesso!\n                        \\n/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/\\n\"\"\")\n            sys.exit(0)\n        case 1:\n            print_and_log(f\"\"\"\\n*********************************************************\\n\n                        Programa finalizado com erro!",
+        "peekOfCode": "def end_script(finish_code: 0, message_data: None):\n    # Gravando o horário em que o backup foi finalizado\n    # (para calcular a duração da execução)\n    message_data[\"hora_final\"] = time.time()\n    # Calculando e gravando o tempo total da execução do script de backup\n    message_data[\"duração\"] = round(\n        (message_data[\"hora_final\"] - message_data[\"hora_inicio\"])/60, 2)\n    match finish_code:\n        case 0:\n            if message_data[\"enviar_mensagem_telegram\"]:",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "escape_markdown_v2",
+        "kind": 2,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "def escape_markdown_v2(text_to_escape):\n    # Convertendo a variável para texto\n    text_to_escape = str(text_to_escape)\n    # Gravando caracteres utilizados pelo MarkdownV2\n    escape_chars = r'\\_*[]()~`>#+-=|{}.!'\n    # Inserindo \\\\ na frente dos caracteres e retornando o texto modificado\n    return ''.join(f'\\\\{char}' if char in escape_chars else char for char in text_to_escape)\n# Função para enviar a mensagem no telegram\ndef send_telegram_message(is_success: bool, message_data: None):\n    # Capturando nome da máquina",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "send_telegram_message",
+        "kind": 2,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "def send_telegram_message(is_success: bool, message_data: None):\n    # Capturando nome da máquina\n    message_data[\"nome_do_servidor\"] = socket.gethostname()\n    # Capturando OS da máquina\n    message_data[\"os_do_servidor\"] = platform.platform()\n    # Capturando data e hora atual\n    message_data[\"data_e_hora_atual\"] = datetime.now().strftime(\n        \"%d/%m/%Y - %H:%M:%S\")\n    # Capturando e gravando o IP da máquina\n    # (esse método garante não pegar o ip da interface errada)",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "message_data",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "message_data = {\n    \"nome_da_vm\": \"\",\n    \"nome_do_servidor\": \"\",\n    \"os_do_servidor\": \"\",\n    \"data_e_hora_atual\": \"\",\n    \"nome_do_log\": \"\",\n    \"nome_do_backup\": \"\",\n    \"ip_do_servidor\": \"\",\n    \"duração\": \"\",\n    \"hora_inicio\": \"\",",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "message_data[\"hora_inicio\"]",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "message_data[\"hora_inicio\"] = time.time()\n#########################################################\n# Declarando função para imprimir mensagem na tela e salvar nos logs.\n# (Para evitar redundância)\n# A função recebe uma mensagem e um level de log (opcional).\n# Padrão: \"info\"\n# Valores possíveis: \"info\", \"debug\", \"warning\", \"error\", \"critical\".\n#########################################################\ndef print_and_log(message, level=\"info\"):\n    # Removendo qualquer espaço em branco no início da mensagem",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -129,7 +192,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "args = parser.parse_args()\nvm_to_backup = args.vm\nmake_zip_from_backup = args.zip\n# Iremos informar os argumentos passados ao usuário apenas após criar o arquivo de log (próximo bloco do script)\n# Pois assim poderemos gravar no log as informações passadas\n#########################################################\n# Configurando os logs do script\n#########################################################\nprint(f\"\"\"\\n/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/\\n\\nIniciando arquivo de log...\"\"\")\n# Diretório onde os logs serão armazenados",
+        "peekOfCode": "args = parser.parse_args()\nvm_to_backup = args.vm\n# Gravando informação para mensagem do telegram\nmessage_data[\"nome_da_vm\"] = vm_to_backup\nmake_zip_from_backup = args.zip\n# Iremos informar os argumentos passados ao usuário apenas após criar o arquivo de log (próximo bloco do script)\n# Pois assim poderemos gravar no log as informações passadas\n#########################################################\n# Configurando os logs do script\n#########################################################",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -138,7 +201,16 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "vm_to_backup = args.vm\nmake_zip_from_backup = args.zip\n# Iremos informar os argumentos passados ao usuário apenas após criar o arquivo de log (próximo bloco do script)\n# Pois assim poderemos gravar no log as informações passadas\n#########################################################\n# Configurando os logs do script\n#########################################################\nprint(f\"\"\"\\n/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/\\n\\nIniciando arquivo de log...\"\"\")\n# Diretório onde os logs serão armazenados\nlog_dir = \"logs\"",
+        "peekOfCode": "vm_to_backup = args.vm\n# Gravando informação para mensagem do telegram\nmessage_data[\"nome_da_vm\"] = vm_to_backup\nmake_zip_from_backup = args.zip\n# Iremos informar os argumentos passados ao usuário apenas após criar o arquivo de log (próximo bloco do script)\n# Pois assim poderemos gravar no log as informações passadas\n#########################################################\n# Configurando os logs do script\n#########################################################\nprint(f\"\"\"\\n/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/\\n\\nIniciando arquivo de log...\"\"\")",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "message_data[\"nome_da_vm\"]",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "message_data[\"nome_da_vm\"] = vm_to_backup\nmake_zip_from_backup = args.zip\n# Iremos informar os argumentos passados ao usuário apenas após criar o arquivo de log (próximo bloco do script)\n# Pois assim poderemos gravar no log as informações passadas\n#########################################################\n# Configurando os logs do script\n#########################################################\nprint(f\"\"\"\\n/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/\\n\\nIniciando arquivo de log...\"\"\")\n# Diretório onde os logs serão armazenados\nlog_dir = \"logs\"",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -156,7 +228,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "log_dir = \"logs\"\n# Criando o diretório caso não exista\nos.makedirs(log_dir, exist_ok=True)\n# Criando uma string com horário e id unico para essa execução do script\nunique_time_id = f\"{datetime.now().strftime('%d-%m-%Y__%H-%M-%S')}__{uuid.uuid4().hex}\"\n# Criando um nome para o log (formato: log__data__horário__id.log)\nlog_filename = os.path.join(\n    log_dir,\n    f\"log__{unique_time_id}.log\")\n# Configurando o logging",
+        "peekOfCode": "log_dir = \"logs\"\n# Criando o diretório caso não exista\nos.makedirs(log_dir, exist_ok=True)\n# Criando uma string com horário e id unico para essa execução do script\nunique_time_id = f\"{datetime.now().strftime('%d-%m-%Y__%H-%M-%S')}__{uuid.uuid4().hex}\"\n# Criando um nome para o log (formato: log__data__horário__id.log)\nlog_name = f\"log__{unique_time_id}.log\"\n# Criando um caminho para o log\nlog_filename = os.path.join(\n    log_dir,",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -165,7 +237,16 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "unique_time_id = f\"{datetime.now().strftime('%d-%m-%Y__%H-%M-%S')}__{uuid.uuid4().hex}\"\n# Criando um nome para o log (formato: log__data__horário__id.log)\nlog_filename = os.path.join(\n    log_dir,\n    f\"log__{unique_time_id}.log\")\n# Configurando o logging\nlogging.basicConfig(\n    filename=log_filename,\n    level=logging.INFO,\n    encoding=\"utf-8\",",
+        "peekOfCode": "unique_time_id = f\"{datetime.now().strftime('%d-%m-%Y__%H-%M-%S')}__{uuid.uuid4().hex}\"\n# Criando um nome para o log (formato: log__data__horário__id.log)\nlog_name = f\"log__{unique_time_id}.log\"\n# Criando um caminho para o log\nlog_filename = os.path.join(\n    log_dir,\n    log_name)\n# Gravando informação para mensagem do telegram\nmessage_data[\"nome_do_log\"] = log_name\n# Configurando o logging",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "log_name",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "log_name = f\"log__{unique_time_id}.log\"\n# Criando um caminho para o log\nlog_filename = os.path.join(\n    log_dir,\n    log_name)\n# Gravando informação para mensagem do telegram\nmessage_data[\"nome_do_log\"] = log_name\n# Configurando o logging\nlogging.basicConfig(\n    filename=log_filename,",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -174,7 +255,16 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "log_filename = os.path.join(\n    log_dir,\n    f\"log__{unique_time_id}.log\")\n# Configurando o logging\nlogging.basicConfig(\n    filename=log_filename,\n    level=logging.INFO,\n    encoding=\"utf-8\",\n    format=\"%(asctime)s - %(levelname)s:\\n%(message)s\\n\"\n)",
+        "peekOfCode": "log_filename = os.path.join(\n    log_dir,\n    log_name)\n# Gravando informação para mensagem do telegram\nmessage_data[\"nome_do_log\"] = log_name\n# Configurando o logging\nlogging.basicConfig(\n    filename=log_filename,\n    level=logging.INFO,\n    encoding=\"utf-8\",",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "message_data[\"nome_do_log\"]",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "message_data[\"nome_do_log\"] = log_name\n# Configurando o logging\nlogging.basicConfig(\n    filename=log_filename,\n    level=logging.INFO,\n    encoding=\"utf-8\",\n    format=\"%(asctime)s - %(levelname)s:\\n%(message)s\\n\"\n)\nprint_and_log(f\"\"\"Arquivo de log iniciado com sucesso!\"\"\")\n# Informando os argumentos passados na chamada do script para o usuário",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -210,7 +300,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "clean_local_backup_after_upload = None\nmax_logs = None\nlocal_backups_base_folder_path = \"\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1)",
+        "peekOfCode": "clean_local_backup_after_upload = None\nmax_logs = None\nlocal_backups_base_folder_path = \"\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1, message_data)",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -219,7 +309,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "max_logs = None\nlocal_backups_base_folder_path = \"\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1)\n# Lendo e validando o parâmetro script_settings -> upload_backup_to_ftp",
+        "peekOfCode": "max_logs = None\nlocal_backups_base_folder_path = \"\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1, message_data)\n# Lendo e validando o parâmetro script_settings -> upload_backup_to_ftp",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -228,7 +318,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "local_backups_base_folder_path = \"\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1)\n# Lendo e validando o parâmetro script_settings -> upload_backup_to_ftp\ntry:",
+        "peekOfCode": "local_backups_base_folder_path = \"\"\n# Lendo e validando o parâmetro log_settings -> max_logs\ntry:\n    max_logs = config.getint('log_settings', 'max_logs')\nexcept ValueError:\n    print_and_log(\n        \"\\nErro: Parâmetro 'log_settings -> max_logs' precisa ser um número inteiro.\", \"critical\")\n    end_script(1, message_data)\n# Lendo e validando o parâmetro script_settings -> upload_backup_to_ftp\ntry:",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -246,7 +336,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "path = os.getcwd()\n# Arazendando o modo de encoding do sistema em que o script está rodando\n# (normalmente UTF-8, porém o UTF-8 dá erro no powershell,\n# se o script rodar no windows vai retornar encoding: CodePage850,\n# vai rodar com sucesso porém os acentos no log vão ficar bugados.)\nencoding = os.device_encoding(1)\n# Nome da pasta raiz onde será armazenado todos os backups\nbackup_script_name = \"script_teste\"\n# Nome da pasta que será armazenado este backup da VM\nbackup_folder_name = f\"{vm_to_backup}__{unique_time_id}\"",
+        "peekOfCode": "path = os.getcwd()\n# Arazendando o modo de encoding do sistema em que o script está rodando\n# (normalmente UTF-8, porém o UTF-8 dá erro no powershell,\n# se o script rodar no windows vai retornar encoding: CodePage850,\n# vai rodar com sucesso porém os acentos no log vão ficar bugados.)\nencoding = os.device_encoding(1)\n# Nome da pasta raiz onde será armazenado todos os backups\nbackup_script_name = \"pwsh_backup\"\n# Nome da pasta que será armazenado este backup da VM\nbackup_folder_name = f\"{vm_to_backup}__{unique_time_id}\"",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -255,7 +345,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "encoding = os.device_encoding(1)\n# Nome da pasta raiz onde será armazenado todos os backups\nbackup_script_name = \"script_teste\"\n# Nome da pasta que será armazenado este backup da VM\nbackup_folder_name = f\"{vm_to_backup}__{unique_time_id}\"\n# Armazenando o caminho completo do backup para usar depois\nbackup_folder_full_path = f\"{local_backups_base_folder_path}{backup_folder_name}\"\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")\np = subprocess.run(\n    [\"powershell.exe\",",
+        "peekOfCode": "encoding = os.device_encoding(1)\n# Nome da pasta raiz onde será armazenado todos os backups\nbackup_script_name = \"pwsh_backup\"\n# Nome da pasta que será armazenado este backup da VM\nbackup_folder_name = f\"{vm_to_backup}__{unique_time_id}\"\n# Armazenando o caminho completo do backup para usar depois\nbackup_folder_full_path = f\"{local_backups_base_folder_path}{backup_folder_name}\"\n# Gravando informação para mensagem do telegram\nmessage_data[\"nome_do_backup\"] = backup_folder_name\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -264,7 +354,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "backup_script_name = \"script_teste\"\n# Nome da pasta que será armazenado este backup da VM\nbackup_folder_name = f\"{vm_to_backup}__{unique_time_id}\"\n# Armazenando o caminho completo do backup para usar depois\nbackup_folder_full_path = f\"{local_backups_base_folder_path}{backup_folder_name}\"\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",",
+        "peekOfCode": "backup_script_name = \"pwsh_backup\"\n# Nome da pasta que será armazenado este backup da VM\nbackup_folder_name = f\"{vm_to_backup}__{unique_time_id}\"\n# Armazenando o caminho completo do backup para usar depois\nbackup_folder_full_path = f\"{local_backups_base_folder_path}{backup_folder_name}\"\n# Gravando informação para mensagem do telegram\nmessage_data[\"nome_do_backup\"] = backup_folder_name\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")\np = subprocess.run(\n    [\"powershell.exe\",",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -273,7 +363,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "backup_folder_name = f\"{vm_to_backup}__{unique_time_id}\"\n# Armazenando o caminho completo do backup para usar depois\nbackup_folder_full_path = f\"{local_backups_base_folder_path}{backup_folder_name}\"\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vm_to_backup}\", f\"{local_backups_base_folder_path}\", f\"{backup_folder_name}\"],\n    capture_output=True, text=True, encoding=encoding",
+        "peekOfCode": "backup_folder_name = f\"{vm_to_backup}__{unique_time_id}\"\n# Armazenando o caminho completo do backup para usar depois\nbackup_folder_full_path = f\"{local_backups_base_folder_path}{backup_folder_name}\"\n# Gravando informação para mensagem do telegram\nmessage_data[\"nome_do_backup\"] = backup_folder_name\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -282,7 +372,16 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "backup_folder_full_path = f\"{local_backups_base_folder_path}{backup_folder_name}\"\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vm_to_backup}\", f\"{local_backups_base_folder_path}\", f\"{backup_folder_name}\"],\n    capture_output=True, text=True, encoding=encoding\n)\nif p.stderr:",
+        "peekOfCode": "backup_folder_full_path = f\"{local_backups_base_folder_path}{backup_folder_name}\"\n# Gravando informação para mensagem do telegram\nmessage_data[\"nome_do_backup\"] = backup_folder_name\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vm_to_backup}\", f\"{local_backups_base_folder_path}\", f\"{backup_folder_name}\"],\n    capture_output=True, text=True, encoding=encoding",
+        "detail": "backup_vm",
+        "documentation": {}
+    },
+    {
+        "label": "message_data[\"nome_do_backup\"]",
+        "kind": 5,
+        "importPath": "backup_vm",
+        "description": "backup_vm",
+        "peekOfCode": "message_data[\"nome_do_backup\"] = backup_folder_name\nprint_and_log(f\"\"\"Abrindo o script de backup no powershell...\"\"\")\np = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vm_to_backup}\", f\"{local_backups_base_folder_path}\", f\"{backup_folder_name}\"],\n    capture_output=True, text=True, encoding=encoding\n)\nif p.stderr:",
         "detail": "backup_vm",
         "documentation": {}
     },
@@ -293,69 +392,6 @@
         "description": "backup_vm",
         "peekOfCode": "p = subprocess.run(\n    [\"powershell.exe\",\n     \"-NoProfile\",\n     \"-ExecutionPolicy\", \"Bypass\",\n     \"-File\", f\"{path}\\\\{backup_script_name}.ps1\", f\"{vm_to_backup}\", f\"{local_backups_base_folder_path}\", f\"{backup_folder_name}\"],\n    capture_output=True, text=True, encoding=encoding\n)\nif p.stderr:\n    print_and_log(\"\\nErro ao executar backup!\", \"critical\")\n    print_and_log(",
         "detail": "backup_vm",
-        "documentation": {}
-    },
-    {
-        "label": "telegram_bot_token",
-        "kind": 5,
-        "importPath": "backup_vm",
-        "description": "backup_vm",
-        "peekOfCode": "telegram_bot_token = \"7264342339:AAHkYJaFgkQNQmYcIVY2KX6zYN4FzNgLW5s\"\ntelegram_group_chat_id = 6674522493\nmessage = f\"(TESTE)\\n✅ SUCESSO: Backup da VM {vm_to_backup} realizado com sucesso!\\n(*￣▽￣*)ブ\"\nurl = f\"https://api.telegram.org/bot{telegram_bot_token}/sendMessage\"\nresponse = requests.post(\n    url=url, data={'chat_id': telegram_group_chat_id, 'text': message})\n# Throw an exception if Telegram API fails\nresponse.raise_for_status()\nprint(response.json())\n# --------------------------------------------------------",
-        "detail": "backup_vm",
-        "documentation": {}
-    },
-    {
-        "label": "telegram_group_chat_id",
-        "kind": 5,
-        "importPath": "backup_vm",
-        "description": "backup_vm",
-        "peekOfCode": "telegram_group_chat_id = 6674522493\nmessage = f\"(TESTE)\\n✅ SUCESSO: Backup da VM {vm_to_backup} realizado com sucesso!\\n(*￣▽￣*)ブ\"\nurl = f\"https://api.telegram.org/bot{telegram_bot_token}/sendMessage\"\nresponse = requests.post(\n    url=url, data={'chat_id': telegram_group_chat_id, 'text': message})\n# Throw an exception if Telegram API fails\nresponse.raise_for_status()\nprint(response.json())\n# --------------------------------------------------------\n# Finalizando o programa",
-        "detail": "backup_vm",
-        "documentation": {}
-    },
-    {
-        "label": "message",
-        "kind": 5,
-        "importPath": "backup_vm",
-        "description": "backup_vm",
-        "peekOfCode": "message = f\"(TESTE)\\n✅ SUCESSO: Backup da VM {vm_to_backup} realizado com sucesso!\\n(*￣▽￣*)ブ\"\nurl = f\"https://api.telegram.org/bot{telegram_bot_token}/sendMessage\"\nresponse = requests.post(\n    url=url, data={'chat_id': telegram_group_chat_id, 'text': message})\n# Throw an exception if Telegram API fails\nresponse.raise_for_status()\nprint(response.json())\n# --------------------------------------------------------\n# Finalizando o programa\n# --------------------------------------------------------",
-        "detail": "backup_vm",
-        "documentation": {}
-    },
-    {
-        "label": "url",
-        "kind": 5,
-        "importPath": "backup_vm",
-        "description": "backup_vm",
-        "peekOfCode": "url = f\"https://api.telegram.org/bot{telegram_bot_token}/sendMessage\"\nresponse = requests.post(\n    url=url, data={'chat_id': telegram_group_chat_id, 'text': message})\n# Throw an exception if Telegram API fails\nresponse.raise_for_status()\nprint(response.json())\n# --------------------------------------------------------\n# Finalizando o programa\n# --------------------------------------------------------\n# Finaliza o script",
-        "detail": "backup_vm",
-        "documentation": {}
-    },
-    {
-        "label": "response",
-        "kind": 5,
-        "importPath": "backup_vm",
-        "description": "backup_vm",
-        "peekOfCode": "response = requests.post(\n    url=url, data={'chat_id': telegram_group_chat_id, 'text': message})\n# Throw an exception if Telegram API fails\nresponse.raise_for_status()\nprint(response.json())\n# --------------------------------------------------------\n# Finalizando o programa\n# --------------------------------------------------------\n# Finaliza o script\nend_script(0)",
-        "detail": "backup_vm",
-        "documentation": {}
-    },
-    {
-        "label": "parser",
-        "kind": 5,
-        "importPath": "test_args",
-        "description": "test_args",
-        "peekOfCode": "parser = argparse.ArgumentParser(\n    formatter_class=argparse.RawTextHelpFormatter,\n    allow_abbrev=False,\n    add_help=False,\n    prog='Backup VMs',\n    usage='python backup_vm.py --vm \"NOME DA VM\" [--zip]',\n    description=\"O script realiza backup da VM informada e envia para o servidor SFTP que foi configurado no arquivo settings.cfg.\",\n    epilog=':)')\nparser.add_argument('--vm', required=True, metavar='\"NOME DA VM\"',\n                    help='(Obrigatório) Nome da VM que deseja fazer backup.')",
-        "detail": "test_args",
-        "documentation": {}
-    },
-    {
-        "label": "args",
-        "kind": 5,
-        "importPath": "test_args",
-        "description": "test_args",
-        "peekOfCode": "args = parser.parse_args()\nprint(f\"\"\"---> Argumentos passados para o script:\nNome da VM para realizar backup -> {args.vm}\nDeve comprimir o backup em zip? -> {args.zip}\"\"\")",
-        "detail": "test_args",
         "documentation": {}
     }
 ]
