@@ -1,0 +1,159 @@
+2025-04-15 16:01:56,590 - INFO:
+Arquivo de log iniciado com sucesso!
+
+2025-04-15 16:01:56,591 - INFO:
+*********************************************************
+
+---> Argumentos passados para o script:
+Nome da VM para realizar backup -> VM DE TESTE
+Deve comprimir o backup em zip? -> False
+
+2025-04-15 16:01:56,591 - INFO:
+*********************************************************
+
+Iniciando leitura das configurações...
+
+2025-04-15 16:01:56,592 - INFO:
+Configurações:
+---> Configurações de logs:
+Número máximo de logs -> 40
+---> Configurações do script:
+Deve enviar backup para o FTP? -> True
+Deve limpar backup local? -> True
+Caminho local para o backup -> C:/VM_BACKUPS/
+Deve enviar mensagem no telegram? -> False
+---> Configurações do servidor FTP:
+Endereço -> 160.238.224.1
+Porta -> 2230
+Usuário -> bkp
+Senha -> backup
+Caminho para salvar backup no FTP -> /bkp/BACKUPS/
+---> Configurações do bot telegram:
+(Envio de mensagem desabilitado)
+
+2025-04-15 16:01:56,593 - INFO:
+Configurações lidas com sucesso!
+
+2025-04-15 16:01:56,593 - INFO:
+*********************************************************
+
+Iniciando limpeza dos logs antigos...
+
+2025-04-15 16:01:56,595 - INFO:
+Quantidade de logs excedida!
+
+2025-04-15 16:01:56,595 - INFO:
+Log removido: logs\log__08-04-2025__23-15-25__a2a27c3094cf46f1bd76ca0683ec2ed1.log
+
+2025-04-15 16:01:56,595 - INFO:
+Limpeza dos logs antigos finalizada com sucesso!
+
+2025-04-15 16:01:56,595 - INFO:
+*********************************************************
+
+Inciando backup da VM: VM DE TESTE
+
+2025-04-15 16:01:56,595 - INFO:
+Abrindo o script de backup no powershell...
+
+2025-04-15 16:01:58,628 - INFO:
+Backup concluído com sucesso!
+
+2025-04-15 16:01:58,628 - INFO:
+Retorno da execução do powershell:
+
+##############################################################
+InformaÃ§Ãµes capturadas:
+VM que serÃ¡ realizado backup:  + VM DE TESTE
+Caminho raiz dos backups:  + C:/VM_BACKUPS/
+Pasta para o backup da VM:  + VM DE TESTE__15-04-2025__16-01-56__35a243c4576044d4bbbc85516911e981
+--------------------------------------------------------------
+Iniciando script de backup...
+--------------------------------------------------------------
+Elevando acesso do script para Administrador...
+--------------------------------------------------------------
+Verificando existÃªncia da pasta raiz dos backups...
+Pasta jÃ¡ existe...
+--------------------------------------------------------------
+Verificando existÃªncia da pasta que guardarÃ¡ o backup...
+Pasta nÃ£o existe, criando...
+--------------------------------------------------------------
+Iniciando backup...
+Backup finalizado!
+##############################################################
+
+2025-04-15 16:01:58,629 - INFO:
+*********************************************************
+
+Realizando upload do backup da VM VM DE TESTE para o servidor FTP...
+
+2025-04-15 16:01:58,629 - INFO:
+Servidor FTP configurado: 
+Host: 160.238.224.1
+Port: 2230
+User: bkp
+Pass: backup
+Backups folder path: /bkp/BACKUPS/
+
+2025-04-15 16:01:58,629 - INFO:
+Realizando upload do backup no script WinSCP...
+
+2025-04-15 16:02:00,575 - CRITICAL:
+Erro ao executar upload no script WinSCP!
+
+2025-04-15 16:02:00,575 - CRITICAL:
+Retorno da execução do upload no script WinSCP:
+
+##############################################################
+Informa├º├Áes capturadas:
+Endere├ºo do servidor FTP: ftp://bkp:backup@160.238.224.1:2230/
+Item que ser├í feito upload: C:\VM_BACKUPS\VM DE TESTE__15-04-2025__16-01-56__35a243c4576044d4bbbc85516911e981
+Caminho do arquivo no servidor FTP: /bkp/BACKUPS/VM DE TESTE/
+Caminho base dos backups no servidor FTP: /bkp/BACKUPS/
+--------------------------------------------------------------
+Verificando a exist├¬ncia da pasta /bkp/BACKUPS/ no host ftp://bkp:backup@160.238.224.1:2230/
+--------------------------------------------------------------
+Comunicando com o servidor FTP:
+Too many parameters for command 'open'.
+Comunica├º├úo finalizada!
+--------------------------------------------------------------
+Pasta /bkp/BACKUPS/ n├úo existe, criando...
+--------------------------------------------------------------
+Comunicando com o servidor FTP:
+Too many parameters for command 'open'.
+Comunica├º├úo finalizada!
+--------------------------------------------------------------
+Erro ao criar a pasta /bkp/BACKUPS/!
+--------------------------------------------------------------
+Verificando a exist├¬ncia da pasta /bkp/BACKUPS/VM DE TESTE/ no host ftp://bkp:backup@160.238.224.1:2230/
+--------------------------------------------------------------
+Comunicando com o servidor FTP:
+Too many parameters for command 'open'.
+Comunica├º├úo finalizada!
+--------------------------------------------------------------
+Pasta /bkp/BACKUPS/VM DE TESTE/ n├úo existe, criando...
+--------------------------------------------------------------
+Comunicando com o servidor FTP:
+Too many parameters for command 'open'.
+Comunica├º├úo finalizada!
+--------------------------------------------------------------
+Erro ao criar a pasta /bkp/BACKUPS/VM DE TESTE/!
+Enviando arquivo C:\VM_BACKUPS\VM DE TESTE__15-04-2025__16-01-56__35a243c4576044d4bbbc85516911e981 para /bkp/BACKUPS/VM DE TESTE/...
+--------------------------------------------------------------
+Comunicando com o servidor FTP:
+Too many parameters for command 'open'.
+Comunica├º├úo finalizada!
+--------------------------------------------------------------
+Upload finalizado com erro!
+##############################################################
+
+2025-04-15 16:02:00,576 - CRITICAL:
+Erro:
+
+2025-04-15 16:02:00,576 - CRITICAL:
+*********************************************************
+
+Programa finalizado com erro!
+
+/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
+

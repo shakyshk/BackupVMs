@@ -1,0 +1,100 @@
+2025-04-15 15:56:12,214 - INFO:
+Arquivo de log iniciado com sucesso!
+
+2025-04-15 15:56:12,214 - INFO:
+*********************************************************
+
+---> Argumentos passados para o script:
+Nome da VM para realizar backup -> VM DE TESTE
+Deve comprimir o backup em zip? -> False
+
+2025-04-15 15:56:12,214 - INFO:
+*********************************************************
+
+Iniciando leitura das configurações...
+
+2025-04-15 15:56:12,216 - INFO:
+Configurações:
+---> Configurações de logs:
+Número máximo de logs -> 40
+---> Configurações do script:
+Deve enviar backup para o SFTP? -> True
+Deve limpar backup local? -> True
+Caminho local para o backup -> C:/VM_BACKUPS/
+Deve enviar mensagem no telegram? -> False
+---> Configurações do servidor SFTP:
+Endereço -> 160.238.224.1
+Porta -> 2230
+Usuário -> bkp
+Senha -> backups
+Caminho para salvar backup no SFTP -> /bkp/BACKUPS/
+---> Configurações do bot telegram:
+(Envio de mensagem desabilitado)
+
+2025-04-15 15:56:12,224 - INFO:
+Configurações lidas com sucesso!
+
+2025-04-15 15:56:12,225 - INFO:
+*********************************************************
+
+Iniciando limpeza dos logs antigos...
+
+2025-04-15 15:56:12,226 - INFO:
+Quantidade de logs excedida!
+
+2025-04-15 15:56:12,227 - INFO:
+Log removido: logs\log__08-04-2025__22-43-29__879e2ba62d0e47d0980183538b0801ae.log
+
+2025-04-15 15:56:12,227 - INFO:
+Limpeza dos logs antigos finalizada com sucesso!
+
+2025-04-15 15:56:12,227 - INFO:
+*********************************************************
+
+Inciando backup da VM: VM DE TESTE
+
+2025-04-15 15:56:12,227 - INFO:
+Abrindo o script de backup no powershell...
+
+2025-04-15 15:56:13,928 - INFO:
+Backup concluído com sucesso!
+
+2025-04-15 15:56:13,929 - INFO:
+Retorno da execução do powershell:
+
+##############################################################
+InformaÃ§Ãµes capturadas:
+VM que serÃ¡ realizado backup:  + VM DE TESTE
+Caminho raiz dos backups:  + C:/VM_BACKUPS/
+Pasta para o backup da VM:  + VM DE TESTE__15-04-2025__15-56-12__f1dc53281b07401389814a32dacaca8b
+--------------------------------------------------------------
+Iniciando script de backup...
+--------------------------------------------------------------
+Elevando acesso do script para Administrador...
+--------------------------------------------------------------
+Verificando existÃªncia da pasta raiz dos backups...
+Pasta jÃ¡ existe...
+--------------------------------------------------------------
+Verificando existÃªncia da pasta que guardarÃ¡ o backup...
+Pasta nÃ£o existe, criando...
+--------------------------------------------------------------
+Iniciando backup...
+Backup finalizado!
+##############################################################
+
+2025-04-15 15:56:13,929 - INFO:
+*********************************************************
+
+Realizando upload do backup da VM VM DE TESTE para o servidor SFTP...
+
+2025-04-15 15:56:13,929 - INFO:
+Servidor SFTP configurado: 
+Host: 160.238.224.1
+Port: 2230
+User: bkp
+Pass: backups
+Backups folder path: /bkp/BACKUPS/
+
+2025-04-15 15:56:13,929 - INFO:
+Realizando upload do backup no script WinSCP...
+

@@ -1,0 +1,179 @@
+2025-04-15 16:06:38,141 - INFO:
+Arquivo de log iniciado com sucesso!
+
+2025-04-15 16:06:38,142 - INFO:
+*********************************************************
+
+---> Argumentos passados para o script:
+Nome da VM para realizar backup -> VM DE TESTE
+Deve comprimir o backup em zip? -> False
+
+2025-04-15 16:06:38,143 - INFO:
+*********************************************************
+
+Iniciando leitura das configurações...
+
+2025-04-15 16:06:38,144 - INFO:
+Configurações:
+---> Configurações de logs:
+Número máximo de logs -> 40
+---> Configurações do script:
+Deve enviar backup para o FTP? -> True
+Deve limpar backup local? -> True
+Caminho local para o backup -> C:/VM_BACKUPS/
+Deve enviar mensagem no telegram? -> False
+---> Configurações do servidor FTP:
+Endereço -> 160.238.224.1
+Porta -> 2230
+Usuário -> bkp
+Senha -> backup
+Caminho para salvar backup no FTP -> /bkp/BACKUPS/
+---> Configurações do bot telegram:
+(Envio de mensagem desabilitado)
+
+2025-04-15 16:06:38,153 - INFO:
+Configurações lidas com sucesso!
+
+2025-04-15 16:06:38,154 - INFO:
+*********************************************************
+
+Iniciando limpeza dos logs antigos...
+
+2025-04-15 16:06:38,158 - INFO:
+Quantidade de logs excedida!
+
+2025-04-15 16:06:38,158 - INFO:
+Log removido: logs\log__08-04-2025__23-23-05__1cc8e2f743f84f5b8285218911452ad3.log
+
+2025-04-15 16:06:38,158 - INFO:
+Limpeza dos logs antigos finalizada com sucesso!
+
+2025-04-15 16:06:38,159 - INFO:
+*********************************************************
+
+Inciando backup da VM: VM DE TESTE
+
+2025-04-15 16:06:38,159 - INFO:
+Abrindo o script de backup no powershell...
+
+2025-04-15 16:06:39,329 - INFO:
+Backup concluído com sucesso!
+
+2025-04-15 16:06:39,330 - INFO:
+Retorno da execução do powershell:
+
+##############################################################
+InformaÃ§Ãµes capturadas:
+VM que serÃ¡ realizado backup:  + VM DE TESTE
+Caminho raiz dos backups:  + C:/VM_BACKUPS/
+Pasta para o backup da VM:  + VM DE TESTE__15-04-2025__16-06-38__9a61a987938545129848b563e2d4c971
+--------------------------------------------------------------
+Iniciando script de backup...
+--------------------------------------------------------------
+Elevando acesso do script para Administrador...
+--------------------------------------------------------------
+Verificando existÃªncia da pasta raiz dos backups...
+Pasta jÃ¡ existe...
+--------------------------------------------------------------
+Verificando existÃªncia da pasta que guardarÃ¡ o backup...
+Pasta nÃ£o existe, criando...
+--------------------------------------------------------------
+Iniciando backup...
+Backup finalizado!
+##############################################################
+
+2025-04-15 16:06:39,330 - INFO:
+*********************************************************
+
+Realizando upload do backup da VM VM DE TESTE para o servidor FTP...
+
+2025-04-15 16:06:39,330 - INFO:
+Servidor FTP configurado: 
+Host: 160.238.224.1
+Port: 2230
+User: bkp
+Pass: backup
+Backups folder path: /bkp/BACKUPS/
+
+2025-04-15 16:06:39,330 - INFO:
+Realizando upload do backup no script WinSCP...
+
+2025-04-15 16:06:41,526 - CRITICAL:
+Erro ao executar upload no script WinSCP!
+
+2025-04-15 16:06:41,526 - CRITICAL:
+Retorno da execução do upload no script WinSCP:
+
+##############################################################
+Informa├º├Áes capturadas:
+Endere├ºo do servidor FTP: ftp://bkp:backup@160.238.224.1:2230/
+Item que ser├í feito upload: C:\VM_BACKUPS\VM DE TESTE__15-04-2025__16-06-38__9a61a987938545129848b563e2d4c971
+Caminho do arquivo no servidor FTP: /bkp/BACKUPS/VM DE TESTE/
+Caminho base dos backups no servidor FTP: /bkp/BACKUPS/
+--------------------------------------------------------------
+Verificando a exist├¬ncia da pasta /bkp/BACKUPS/ no host ftp://bkp:backup@160.238.224.1:2230/
+--------------------------------------------------------------
+Comunicando com o servidor FTP:
+Connecting to 160.238.224.1:2230 ...
+WARNING! Giving up security and accepting any certificate as configured!
+TLS connection established. Waiting for welcome message...
+Access denied.
+Authentication failed.
+Comunica├º├úo finalizada!
+--------------------------------------------------------------
+Pasta /bkp/BACKUPS/ n├úo existe, criando...
+--------------------------------------------------------------
+Comunicando com o servidor FTP:
+Connecting to 160.238.224.1:2230 ...
+WARNING! Giving up security and accepting any certificate as configured!
+TLS connection established. Waiting for welcome message...
+Access denied.
+Authentication failed.
+Comunica├º├úo finalizada!
+--------------------------------------------------------------
+Erro ao criar a pasta /bkp/BACKUPS/!
+--------------------------------------------------------------
+Verificando a exist├¬ncia da pasta /bkp/BACKUPS/VM DE TESTE/ no host ftp://bkp:backup@160.238.224.1:2230/
+--------------------------------------------------------------
+Comunicando com o servidor FTP:
+Connecting to 160.238.224.1:2230 ...
+WARNING! Giving up security and accepting any certificate as configured!
+TLS connection established. Waiting for welcome message...
+Access denied.
+Authentication failed.
+Comunica├º├úo finalizada!
+--------------------------------------------------------------
+Pasta /bkp/BACKUPS/VM DE TESTE/ n├úo existe, criando...
+--------------------------------------------------------------
+Comunicando com o servidor FTP:
+Connecting to 160.238.224.1:2230 ...
+WARNING! Giving up security and accepting any certificate as configured!
+TLS connection established. Waiting for welcome message...
+Access denied.
+Authentication failed.
+Comunica├º├úo finalizada!
+--------------------------------------------------------------
+Erro ao criar a pasta /bkp/BACKUPS/VM DE TESTE/!
+Enviando arquivo C:\VM_BACKUPS\VM DE TESTE__15-04-2025__16-06-38__9a61a987938545129848b563e2d4c971 para /bkp/BACKUPS/VM DE TESTE/...
+--------------------------------------------------------------
+Comunicando com o servidor FTP:
+Connecting to 160.238.224.1:2230 ...
+WARNING! Giving up security and accepting any certificate as configured!
+TLS connection established. Waiting for welcome message...
+Access denied.
+Authentication failed.
+Comunica├º├úo finalizada!
+--------------------------------------------------------------
+Upload finalizado com erro!
+##############################################################
+
+2025-04-15 16:06:41,527 - CRITICAL:
+Erro:
+
+2025-04-15 16:06:41,527 - CRITICAL:
+*********************************************************
+
+Programa finalizado com erro!
+
+/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
+

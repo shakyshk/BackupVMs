@@ -1,0 +1,101 @@
+2025-04-15 14:14:14,572 - INFO:
+Arquivo de log iniciado com sucesso!
+
+2025-04-15 14:14:14,572 - INFO:
+*********************************************************
+
+---> Argumentos passados para o script:
+Nome da VM para realizar backup -> ZABBIX OLT
+Deve comprimir o backup em zip? -> False
+
+2025-04-15 14:14:14,573 - INFO:
+*********************************************************
+
+Iniciando leitura das configurações...
+
+2025-04-15 14:14:14,588 - INFO:
+Configurações:
+---> Configurações de logs:
+Número máximo de logs -> 40
+---> Configurações do script:
+Deve enviar backup para o SFTP? -> True
+Deve limpar backup local? -> True
+Caminho local para o backup -> C:/VM_BACKUPS/
+Deve enviar mensagem no telegram? -> True
+---> Configurações do servidor SFTP:
+Endereço -> 160.238.224.1
+Porta -> 2230
+Usuário -> bkp
+Senha -> backup
+Caminho para salvar backup no SFTP -> /home/bkp/BACKUPS/
+---> Configurações do bot telegram:
+Token do bot -> 7264342339:AAHkYJaFgkQNQmYcIVY2KX6zYN4FzNgLW5s
+ID do chat -> 6674522493
+
+2025-04-15 14:14:14,588 - INFO:
+Configurações lidas com sucesso!
+
+2025-04-15 14:14:14,588 - INFO:
+*********************************************************
+
+Iniciando limpeza dos logs antigos...
+
+2025-04-15 14:14:14,590 - INFO:
+Quantidade de logs excedida!
+
+2025-04-15 14:14:14,590 - INFO:
+Log removido: logs\log__08-04-2025__22-35-47__1d236522447647c8841df1e8a8a579c6.log
+
+2025-04-15 14:14:14,591 - INFO:
+Limpeza dos logs antigos finalizada com sucesso!
+
+2025-04-15 14:14:14,591 - INFO:
+*********************************************************
+
+Inciando backup da VM: ZABBIX OLT
+
+2025-04-15 14:14:14,591 - INFO:
+Abrindo o script de backup no powershell...
+
+2025-04-15 14:14:16,653 - INFO:
+Backup concluído com sucesso!
+
+2025-04-15 14:14:16,653 - INFO:
+Retorno da execução do powershell:
+
+##############################################################
+InformaÃ§Ãµes capturadas:
+VM que serÃ¡ realizado backup:  + ZABBIX OLT
+Caminho raiz dos backups:  + C:/VM_BACKUPS/
+Pasta para o backup da VM:  + ZABBIX OLT__15-04-2025__14-14-14__7e4eea82777e485482a5b578fe4d5431
+--------------------------------------------------------------
+Iniciando script de backup...
+--------------------------------------------------------------
+Elevando acesso do script para Administrador...
+--------------------------------------------------------------
+Verificando existÃªncia da pasta raiz dos backups...
+Pasta jÃ¡ existe...
+--------------------------------------------------------------
+Verificando existÃªncia da pasta que guardarÃ¡ o backup...
+Pasta nÃ£o existe, criando...
+--------------------------------------------------------------
+Iniciando backup...
+Backup finalizado!
+##############################################################
+
+2025-04-15 14:14:16,654 - INFO:
+*********************************************************
+
+Realizando upload do backup da VM ZABBIX OLT para o servidor SFTP...
+
+2025-04-15 14:14:16,654 - INFO:
+Servidor SFTP configurado: 
+Host: 160.238.224.1
+Port: 2230
+User: bkp
+Pass: backup
+Backups folder path: /home/bkp/BACKUPS/
+
+2025-04-15 14:14:16,654 - INFO:
+Realizando upload do backup no script WinSCP...
+

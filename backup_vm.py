@@ -234,7 +234,12 @@ _Erro ao realizar backup da VM\\!_
     }
     # Realizando a requisição
     resposta = requests.post(url, data=dados)
-
+    try:
+        resposta.raise_for_status()
+    except:
+        # Informa ao usuário
+        print_and_log(
+            f"Código: {resposta.status_code}\nErro no envio da mensagem!\n{resposta.description}", "critical")
     # Caso a mensagem foi enviada com sucesso
     if resposta.status_code == 200:
         # Informa ao usuário
@@ -257,13 +262,13 @@ parser = argparse.ArgumentParser(
     add_help=False,
     prog='Backup VMs',
     usage='python backup_vm.py --vm "NOME DA VM" [--zip]',
-    description="O script realiza backup da VM informada e envia para o servidor SFTP que foi configurado no arquivo settings.cfg.",
+    description="O script realiza backup da VM informada e envia para o servidor FTP que foi configurado no arquivo settings.cfg.",
     epilog=':)')
 
 # Configurando argumentos que podem ser passados
 parser.add_argument('--vm', required=True, metavar='"NOME DA VM"',
                     help='(Obrigatório) Nome da VM que deseja fazer backup.')
-parser.add_argument('--zip', help='(Opcional) Caso queira compactar o backup em zip antes de enviar ao servidor SFTP.',
+parser.add_argument('--zip', help='(Opcional) Caso queira compactar o backup em zip antes de enviar ao servidor FTP.',
                     action='store_true')
 parser.add_argument('-h', '--help', action='help', default=argparse.SUPPRESS,
                     help='Mostra essa mensagem e finaliza o script.')
@@ -486,17 +491,17 @@ Configurações:
 ---> Configurações de logs:
 Número máximo de logs -> {max_logs}
 ---> Configurações do script:
-Deve enviar backup para o SFTP? -> {upload_backup_to_ftp}
+Deve enviar backup para o FTP? -> {upload_backup_to_ftp}
 Deve limpar backup local? -> {clean_local_backup_after_upload}
 Caminho local para o backup -> {local_backups_base_folder_path}
 Deve enviar mensagem no telegram? -> {message_data["enviar_mensagem_telegram"]}
----> Configurações do servidor SFTP:
+---> Configurações do servidor FTP:
 {"(Upload para o servidor desabilitado)" if not upload_backup_to_ftp else
  f"""Endereço -> {ftp_info['host']}
 Porta -> {ftp_info['port']}
 Usuário -> {ftp_info['user']}
 Senha -> {ftp_info['pass']}
-Caminho para salvar backup no SFTP -> {ftp_info['backups_base_folder_path']}"""}
+Caminho para salvar backup no FTP -> {ftp_info['backups_base_folder_path']}"""}
 ---> Configurações do bot telegram:
 {"(Envio de mensagem desabilitado)" if not message_data["enviar_mensagem_telegram"] else
  f"""Token do bot -> {message_data["token_do_bot"]}
@@ -603,20 +608,20 @@ if make_zip_from_backup:
 # (caso habilitado nas configurações: "settings.cfg")
 #########################################################
 
-# Caso configurado para fazer upload do backup para o servidor SFTP
+# Caso configurado para fazer upload do backup para o servidor FTP
 if upload_backup_to_ftp:
     print_and_log(f"""\n*********************************************************\n
-                Realizando upload do backup da VM {vm_to_backup} para o servidor SFTP...""")
+                Realizando upload do backup da VM {vm_to_backup} para o servidor FTP...""")
     print_and_log(
-        f"\nServidor SFTP configurado: \nHost: {ftp_info['host']}\nPort: {ftp_info['port']}\nUser: {ftp_info['user']}\nPass: {ftp_info['pass']}\nBackups folder path: {ftp_info['backups_base_folder_path']}\n")
+        f"\nServidor FTP configurado: \nHost: {ftp_info['host']}\nPort: {ftp_info['port']}\nUser: {ftp_info['user']}\nPass: {ftp_info['pass']}\nBackups folder path: {ftp_info['backups_base_folder_path']}\n")
 
     # Arazendando o modo de encoding do sistema em que o script está rodando
     # (normalmente UTF-8, porém o UTF-8 dá erro no powershell,
     # se o script rodar no windows vai retornar encoding: CodePage850,
     # vai rodar com sucesso porém os acentos no log vão ficar bugados.)
     encoding = os.device_encoding(1)
-    # Criando URL para conexão com o servidor SFTP
-    host_address = f"sftp://{ftp_info['user']}:{ftp_info['pass']}@{ftp_info['host']}:{ftp_info['port']}/"
+    # Criando URL para conexão com o servidor FTP
+    host_address = f"ftp://{ftp_info['user']}:{ftp_info['pass']}@{ftp_info['host']}:{ftp_info['port']}/"
     # Caso informado para não compactar a pasta
     if not make_zip_from_backup:
         # Criando caminho da pasta usando barra invertida pq o Windows é assim...
@@ -625,11 +630,11 @@ if upload_backup_to_ftp:
     else:
         item_to_upload = f"{backup_zip_file_with_full_path}.zip".replace(
             "/", "\\")
-    # Criando o caminho onde o backup será armazenado no servidor SFTP
+    # Criando o caminho onde o backup será armazenado no servidor FTP
     backup_folder_path = f"{ftp_info["backups_base_folder_path"]}{vm_to_backup}/"
 
     print_and_log(f"""Realizando upload do backup no script WinSCP...""")
-    # Rodando o script BAT que irá enviar o backup para o servidor SFTP utilizando o WinSCP
+    # Rodando o script BAT que irá enviar o backup para o servidor FTP utilizando o WinSCP
     p = subprocess.Popen(f'''{path}\\winscp_upload.bat "{host_address}" "{item_to_upload}" "{backup_folder_path}" "{ftp_info["backups_base_folder_path"]}"''',
                          stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding=encoding)
     # Capturando o retorno do script
@@ -652,11 +657,11 @@ if upload_backup_to_ftp:
         print_and_log("\nUpload no script WinSCP concluído com sucesso!")
         print_and_log(
             f"\nRetorno da execução do upload no script WinSCP:\n\n{output}")
-# Caso configurado para não fazer upload para o servidor SFTP
+# Caso configurado para não fazer upload para o servidor FTP
 else:
     # Informa ao usuário
     print_and_log(f"""\n*********************************************************\n
-                Script configurado para não fazer upload para o servidor SFTP...""")
+                Script configurado para não fazer upload para o servidor FTP...""")
 
 #########################################################
 # Limpando o backup local

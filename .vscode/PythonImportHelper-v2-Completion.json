@@ -183,7 +183,7 @@
         "kind": 5,
         "importPath": "backup_vm",
         "description": "backup_vm",
-        "peekOfCode": "parser = argparse.ArgumentParser(\n    formatter_class=argparse.RawTextHelpFormatter,\n    allow_abbrev=False,\n    add_help=False,\n    prog='Backup VMs',\n    usage='python backup_vm.py --vm \"NOME DA VM\" [--zip]',\n    description=\"O script realiza backup da VM informada e envia para o servidor SFTP que foi configurado no arquivo settings.cfg.\",\n    epilog=':)')\n# Configurando argumentos que podem ser passados\nparser.add_argument('--vm', required=True, metavar='\"NOME DA VM\"',",
+        "peekOfCode": "parser = argparse.ArgumentParser(\n    formatter_class=argparse.RawTextHelpFormatter,\n    allow_abbrev=False,\n    add_help=False,\n    prog='Backup VMs',\n    usage='python backup_vm.py --vm \"NOME DA VM\" [--zip]',\n    description=\"O script realiza backup da VM informada e envia para o servidor FTP que foi configurado no arquivo settings.cfg.\",\n    epilog=':)')\n# Configurando argumentos que podem ser passados\nparser.add_argument('--vm', required=True, metavar='\"NOME DA VM\"',",
         "detail": "backup_vm",
         "documentation": {}
     },

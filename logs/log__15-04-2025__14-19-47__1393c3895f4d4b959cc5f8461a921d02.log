@@ -1,0 +1,103 @@
+2025-04-15 14:19:47,963 - INFO:
+Arquivo de log iniciado com sucesso!
+
+2025-04-15 14:19:47,963 - INFO:
+*********************************************************
+
+---> Argumentos passados para o script:
+Nome da VM para realizar backup -> ZABBIX OLT
+Deve comprimir o backup em zip? -> False
+
+2025-04-15 14:19:47,963 - INFO:
+*********************************************************
+
+Iniciando leitura das configurações...
+
+2025-04-15 14:19:47,964 - INFO:
+Configurações:
+---> Configurações de logs:
+Número máximo de logs -> 40
+---> Configurações do script:
+Deve enviar backup para o SFTP? -> False
+Deve limpar backup local? -> True
+Caminho local para o backup -> C:/VM_BACKUPS/
+Deve enviar mensagem no telegram? -> True
+---> Configurações do servidor SFTP:
+(Upload para o servidor desabilitado)
+---> Configurações do bot telegram:
+Token do bot -> 7264342339:AAHkYJaFgkQNQmYcIVY2KX6zYN4FzNgLW5s
+ID do chat -> 6674522493
+
+2025-04-15 14:19:47,965 - INFO:
+Configurações lidas com sucesso!
+
+2025-04-15 14:19:47,965 - INFO:
+*********************************************************
+
+Iniciando limpeza dos logs antigos...
+
+2025-04-15 14:19:47,967 - INFO:
+Quantidade de logs excedida!
+
+2025-04-15 14:19:47,968 - INFO:
+Log removido: logs\log__08-04-2025__22-36-22__ce611267281b4f7587edec43b3eae2a7.log
+
+2025-04-15 14:19:47,969 - INFO:
+Limpeza dos logs antigos finalizada com sucesso!
+
+2025-04-15 14:19:47,971 - INFO:
+*********************************************************
+
+Inciando backup da VM: ZABBIX OLT
+
+2025-04-15 14:19:47,971 - INFO:
+Abrindo o script de backup no powershell...
+
+2025-04-15 14:19:49,348 - INFO:
+Backup concluído com sucesso!
+
+2025-04-15 14:19:49,349 - INFO:
+Retorno da execução do powershell:
+
+##############################################################
+InformaÃ§Ãµes capturadas:
+VM que serÃ¡ realizado backup:  + ZABBIX OLT
+Caminho raiz dos backups:  + C:/VM_BACKUPS/
+Pasta para o backup da VM:  + ZABBIX OLT__15-04-2025__14-19-47__1393c3895f4d4b959cc5f8461a921d02
+--------------------------------------------------------------
+Iniciando script de backup...
+--------------------------------------------------------------
+Elevando acesso do script para Administrador...
+--------------------------------------------------------------
+Verificando existÃªncia da pasta raiz dos backups...
+Pasta jÃ¡ existe...
+--------------------------------------------------------------
+Verificando existÃªncia da pasta que guardarÃ¡ o backup...
+Pasta nÃ£o existe, criando...
+--------------------------------------------------------------
+Iniciando backup...
+Backup finalizado!
+##############################################################
+
+2025-04-15 14:19:49,349 - INFO:
+*********************************************************
+
+Script configurado para não fazer upload para o servidor SFTP...
+
+2025-04-15 14:19:49,349 - INFO:
+*********************************************************
+
+Limpando o backup realizado localmente...
+
+2025-04-15 14:19:49,349 - INFO:
+Esvaziando a pasta do backup...
+
+2025-04-15 14:19:49,350 - INFO:
+Pasta do backup esvaziada com sucesso!
+
+2025-04-15 14:19:49,350 - INFO:
+Removendo a pasta do backup...
+
+2025-04-15 14:19:49,350 - INFO:
+Pasta do backup removida com sucesso!
+

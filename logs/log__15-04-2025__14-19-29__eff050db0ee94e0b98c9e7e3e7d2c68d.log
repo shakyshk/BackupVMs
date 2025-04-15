@@ -1,0 +1,91 @@
+2025-04-15 14:19:29,107 - INFO:
+Arquivo de log iniciado com sucesso!
+
+2025-04-15 14:19:29,108 - INFO:
+*********************************************************
+
+---> Argumentos passados para o script:
+Nome da VM para realizar backup -> ZABBIX OLT
+Deve comprimir o backup em zip? -> False
+
+2025-04-15 14:19:29,108 - INFO:
+*********************************************************
+
+Iniciando leitura das configurações...
+
+2025-04-15 14:19:29,110 - INFO:
+Configurações:
+---> Configurações de logs:
+Número máximo de logs -> 40
+---> Configurações do script:
+Deve enviar backup para o SFTP? -> False
+Deve limpar backup local? -> True
+Caminho local para o backup -> C:/VM_BACKUPS/
+Deve enviar mensagem no telegram? -> True
+---> Configurações do servidor SFTP:
+(Upload para o servidor desabilitado)
+---> Configurações do bot telegram:
+Token do bot -> 7264342339:AAHkYJaFgkQNQmYcIVY2KX6zYN4FzNgLW5s
+ID do chat -> 6674522493
+
+2025-04-15 14:19:29,111 - INFO:
+Configurações lidas com sucesso!
+
+2025-04-15 14:19:29,111 - INFO:
+*********************************************************
+
+Iniciando limpeza dos logs antigos...
+
+2025-04-15 14:19:29,113 - INFO:
+Quantidade de logs excedida!
+
+2025-04-15 14:19:29,114 - INFO:
+Log removido: logs\log__08-04-2025__22-36-17__61149bc2f0334378a169739a033f9296.log
+
+2025-04-15 14:19:29,115 - INFO:
+Limpeza dos logs antigos finalizada com sucesso!
+
+2025-04-15 14:19:29,115 - INFO:
+*********************************************************
+
+Inciando backup da VM: ZABBIX OLT
+
+2025-04-15 14:19:29,116 - INFO:
+Abrindo o script de backup no powershell...
+
+2025-04-15 14:19:30,726 - CRITICAL:
+Erro ao executar backup!
+
+2025-04-15 14:19:30,727 - CRITICAL:
+Retorno da execução do powershell:
+
+##############################################################
+InformaÃ§Ãµes capturadas:
+VM que serÃ¡ realizado backup:  + ZABBIX OLT
+Caminho raiz dos backups:  + C:/VM_BACKUPS/
+Pasta para o backup da VM:  + ZABBIX OLT__15-04-2025__14-19-29__eff050db0ee94e0b98c9e7e3e7d2c68d
+--------------------------------------------------------------
+Iniciando script de backup...
+--------------------------------------------------------------
+Elevando acesso do script para Administrador...
+--------------------------------------------------------------
+Verificando existÃªncia da pasta raiz dos backups...
+Pasta jÃ¡ existe...
+--------------------------------------------------------------
+Verificando existÃªncia da pasta que guardarÃ¡ o backup...
+Pasta nÃ£o existe, criando...
+--------------------------------------------------------------
+Iniciando backup...
+Backup finalizado!
+##############################################################
+
+2025-04-15 14:19:30,727 - CRITICAL:
+Erro:
+Export-VM : O termo 'Export-VM' não é reconhecido como nome de cmdlet, função, arquivo de script ou programa operável. Verifique a grafia do nome ou, se um caminho tiver sido 
+incluído, veja se o caminho está correto e tente novamente.
+No C:\Users\conec\Development\BackupVMs\pwsh_backup.ps1:77 caractere:1
++ Export-VM -Name $vm_to_backup -Path $path_for_backup
++ ~~~~~~~~~
++ CategoryInfo          : ObjectNotFound: (Export-VM:String) [], CommandNotFoundException
++ FullyQualifiedErrorId : CommandNotFoundException
+
