@@ -635,7 +635,7 @@ if upload_backup_to_ftp:
 
     print_and_log(f"""Realizando upload do backup no script WinSCP...""")
     # Rodando o script BAT que irá enviar o backup para o servidor FTP utilizando o WinSCP
-    p = subprocess.Popen(f'''{path}\\winscp_upload.bat "{host_address}" "{item_to_upload}" "{backup_folder_path}" "{ftp_info["backups_base_folder_path"]}"''',
+    p = subprocess.Popen(f'''{path}\\winscp_upload.bat "{host_address}" "{item_to_upload}" "{backup_folder_path}" "{ftp_info["backups_base_folder_path"]}" "{path}/winscp/log_winscp.log"''',
                          stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding=encoding)
     # Capturando o retorno do script
     output, err = p.communicate()

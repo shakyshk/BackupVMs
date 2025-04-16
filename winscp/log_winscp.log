@@ -1,0 +1,618 @@
+. 2025-04-16 14:55:14.208 --------------------------------------------------------------------------
+. 2025-04-16 14:55:14.209 WinSCP Version 6.5 (Build 16288 2025-03-31) (OS 10.0.22631 – Windows 11 Pro)
+. 2025-04-16 14:55:14.209 Configuration: nul
+. 2025-04-16 14:55:14.209 Log level: Normal
+. 2025-04-16 14:55:14.209 Local account: CONEXÃO\conec
+. 2025-04-16 14:55:14.209 Working directory: C:\Users\conec\Development\BackupVMs
+. 2025-04-16 14:55:14.209 Process ID: 4464
+. 2025-04-16 14:55:14.222 Ancestor processes: WinSCP, cmd, python, powershell, Code, Code, explorer, ...
+. 2025-04-16 14:55:14.222 Command-line: "C:\Users\conec\Development\BackupVMs\winscp\WinSCP.exe" /console=6.5.0 /consoleinstance=_18452_332 "/ini=nul" "/log=""C:\Users\conec\Development\BackupVMs/winscp/log_winscp.log""" "/command=option batch abort" "option confirm off" "open ftp://bkp:***@160.238.224.1:2230/ -explicittls -certificate=*""" "stat ""/bkp/BACKUPS/""" "exit"
+. 2025-04-16 14:55:14.232 Time zone: Current: GMT-3 (Hora oficial do Brasil), No DST
+. 2025-04-16 14:55:14.232 Login time: quarta-feira, 16 de abril de 2025 14:55:14
+. 2025-04-16 14:55:14.232 --------------------------------------------------------------------------
+. 2025-04-16 14:55:14.232 Script: Retrospectively logging previous script records:
+> 2025-04-16 14:55:14.232 Script: option confirm off
+< 2025-04-16 14:55:14.232 Script: confirm         off       
+> 2025-04-16 14:55:14.232 Script: open ftp://bkp:***@160.238.224.1:2230/ -explicittls -certificate=*"
+. 2025-04-16 14:55:14.232 --------------------------------------------------------------------------
+. 2025-04-16 14:55:14.232 Session name: bkp@160.238.224.1 (Ad-Hoc site)
+. 2025-04-16 14:55:14.232 Host name: 160.238.224.1 (Port: 2230)
+. 2025-04-16 14:55:14.232 User name: bkp (Password: Yes, Key file: No, Passphrase: No)
+. 2025-04-16 14:55:14.232 Transfer Protocol: FTP
+. 2025-04-16 14:55:14.232 Ping type: Dummy, Ping interval: 30 sec; Timeout: 15 sec
+. 2025-04-16 14:55:14.232 Disable Nagle: No
+. 2025-04-16 14:55:14.232 Proxy: None
+. 2025-04-16 14:55:14.232 Send buffer: 262144
+. 2025-04-16 14:55:14.232 UTF: Auto
+. 2025-04-16 14:55:14.232 FTPS: Explicit TLS/SSL [Client certificate: No]
+. 2025-04-16 14:55:14.232 FTP: Passive: Yes [Force IP: Auto]; MLSD: Auto [List all: Auto]; HOST: Auto
+. 2025-04-16 14:55:14.232 Session reuse: Yes
+. 2025-04-16 14:55:14.232 TLS/SSL versions: TLSv1.2-TLSv1.3
+. 2025-04-16 14:55:14.232 Local directory: default, Remote directory: home, Update: Yes, Cache: Yes
+. 2025-04-16 14:55:14.232 Cache directory changes: Yes, Permanent: Yes
+. 2025-04-16 14:55:14.232 Recycle bin: Delete to: No, Overwritten to: No, Bin path: 
+. 2025-04-16 14:55:14.232 Timezone offset: 0h 0m
+. 2025-04-16 14:55:14.232 --------------------------------------------------------------------------
+< 2025-04-16 14:55:14.253 Script: Connecting to 160.238.224.1:2230 ...
+. 2025-04-16 14:55:14.253 Connecting to 160.238.224.1:2230 ...
+. 2025-04-16 14:55:14.258 Connected with 160.238.224.1:2230, negotiating TLS connection...
+< 2025-04-16 14:55:14.261 220-FileZilla Server 1.10.3
+< 2025-04-16 14:55:14.261 220 Please visit https://filezilla-project.org/
+> 2025-04-16 14:55:14.261 AUTH TLS
+< 2025-04-16 14:55:14.267 234 Using authentication type TLS.
+. 2025-04-16 14:55:14.278 Verifying certificate for "" with fingerprint a2:1c:5b:00:3c:94:df:a1:70:3e:5d:0f:39:4c:23:dc:77:b5:21:e3:20:1c:97:cb:aa:50:09:9a:f1:19:b7:97 and 18 failures
+< 2025-04-16 14:55:14.278 Script: WARNING! Giving up security and accepting any certificate as configured!
+* 2025-04-16 14:55:14.279 WARNING! Giving up security and accepting any certificate as configured!
+. 2025-04-16 14:55:14.279 Using TLSv1.3, cipher TLSv1.3: TLS_AES_256_GCM_SHA384, , TLS_AES_256_GCM_SHA384         TLSv1.3 Kx=any      Au=any   Enc=AESGCM(256)            Mac=AEAD
+< 2025-04-16 14:55:14.279 Script: TLS connection established. Waiting for welcome message...
+. 2025-04-16 14:55:14.279 TLS connection established. Waiting for welcome message...
+> 2025-04-16 14:55:14.279 USER bkp
+< 2025-04-16 14:55:14.304 331 Please, specify the password.
+> 2025-04-16 14:55:14.304 PASS *******
+< 2025-04-16 14:55:14.487 230 Login successful.
+> 2025-04-16 14:55:14.487 SYST
+. 2025-04-16 14:55:14.491 FileZilla server detected.
+< 2025-04-16 14:55:14.491 215 UNIX emulated by FileZilla.
+> 2025-04-16 14:55:14.491 FEAT
+< 2025-04-16 14:55:14.494 211-Features:
+< 2025-04-16 14:55:14.494  MDTM
+< 2025-04-16 14:55:14.494  REST STREAM
+< 2025-04-16 14:55:14.494  SIZE
+< 2025-04-16 14:55:14.494  MLST type*;size*;modify*;perm*;
+< 2025-04-16 14:55:14.494  MLSD
+< 2025-04-16 14:55:14.494  AUTH SSL
+< 2025-04-16 14:55:14.494  AUTH TLS
+< 2025-04-16 14:55:14.494  PROT
+< 2025-04-16 14:55:14.494  PBSZ
+< 2025-04-16 14:55:14.494  UTF8
+< 2025-04-16 14:55:14.494  TVFS
+< 2025-04-16 14:55:14.494  EPSV
+< 2025-04-16 14:55:14.494  EPRT
+< 2025-04-16 14:55:14.494  MFMT
+< 2025-04-16 14:55:14.494 211 End
+> 2025-04-16 14:55:14.494 PBSZ 0
+< 2025-04-16 14:55:14.498 200 PBSZ=0
+> 2025-04-16 14:55:14.498 PROT P
+< 2025-04-16 14:55:14.501 200 Protection level set to P
+< 2025-04-16 14:55:14.501 Script: Connected
+. 2025-04-16 14:55:14.502 Connected
+. 2025-04-16 14:55:14.502 --------------------------------------------------------------------------
+. 2025-04-16 14:55:14.502 Using FTP protocol.
+. 2025-04-16 14:55:14.502 Doing startup conversation with host.
+< 2025-04-16 14:55:14.502 Script: Starting the session...
+> 2025-04-16 14:55:14.503 PWD
+< 2025-04-16 14:55:14.506 257 "/" is current directory.
+. 2025-04-16 14:55:14.507 Getting current directory name.
+. 2025-04-16 14:55:14.507 Startup conversation with host finished.
+< 2025-04-16 14:55:14.507 Script: Session started.
+< 2025-04-16 14:55:14.507 Script: Active session: [1] bkp@160.238.224.1
+> 2025-04-16 14:55:14.508 Script: stat "/bkp/BACKUPS/"
+. 2025-04-16 14:55:14.508 Listing file "/bkp/BACKUPS".
+. 2025-04-16 14:55:14.508 Retrieving file information...
+> 2025-04-16 14:55:14.508 MLST /bkp/BACKUPS
+< 2025-04-16 14:55:14.511 250-Listing /bkp/BACKUPS
+< 2025-04-16 14:55:14.511  type=dir;modify=20250416173711.580;perms=cplemfd; /bkp/BACKUPS
+< 2025-04-16 14:55:14.511 250 End
+. 2025-04-16 14:55:14.511  type=dir;modify=20250416173711.580;perms=cplemfd; /bkp/BACKUPS
+. 2025-04-16 14:55:14.511 Retrieving file information successful
+. 2025-04-16 14:55:14.511 BACKUPS;D;0;2025-04-16T17:37:11.000Z;4;"" [0];"" [0];---------;0
+< 2025-04-16 14:55:14.511 Script: D---------   0                           0 Apr 16 14:37:11 2025 BACKUPS
+> 2025-04-16 14:55:14.513 Script: exit
+. 2025-04-16 14:55:14.513 Script: Exit code: 0
+. 2025-04-16 14:55:14.516 Disconnected from server
+. 2025-04-16 14:55:14.640 --------------------------------------------------------------------------
+. 2025-04-16 14:55:14.642 WinSCP Version 6.5 (Build 16288 2025-03-31) (OS 10.0.22631 – Windows 11 Pro)
+. 2025-04-16 14:55:14.642 Configuration: nul
+. 2025-04-16 14:55:14.642 Log level: Normal
+. 2025-04-16 14:55:14.642 Local account: CONEXÃO\conec
+. 2025-04-16 14:55:14.642 Working directory: C:\Users\conec\Development\BackupVMs
+. 2025-04-16 14:55:14.642 Process ID: 3700
+. 2025-04-16 14:55:14.655 Ancestor processes: WinSCP, cmd, python, powershell, Code, Code, explorer, ...
+. 2025-04-16 14:55:14.655 Command-line: "C:\Users\conec\Development\BackupVMs\winscp\WinSCP.exe" /console=6.5.0 /consoleinstance=_20580_332 "/ini=nul" "/log=""C:\Users\conec\Development\BackupVMs/winscp/log_winscp.log""" "/command=option batch abort" "option confirm off" "open ftp://bkp:***@160.238.224.1:2230/ -explicittls -certificate=*""" "stat ""/bkp/BACKUPS/TESTE/""" "exit"
+. 2025-04-16 14:55:14.655 Time zone: Current: GMT-3 (Hora oficial do Brasil), No DST
+. 2025-04-16 14:55:14.655 Login time: quarta-feira, 16 de abril de 2025 14:55:14
+. 2025-04-16 14:55:14.655 --------------------------------------------------------------------------
+. 2025-04-16 14:55:14.655 Script: Retrospectively logging previous script records:
+> 2025-04-16 14:55:14.655 Script: option confirm off
+< 2025-04-16 14:55:14.655 Script: confirm         off       
+> 2025-04-16 14:55:14.655 Script: open ftp://bkp:***@160.238.224.1:2230/ -explicittls -certificate=*"
+. 2025-04-16 14:55:14.655 --------------------------------------------------------------------------
+. 2025-04-16 14:55:14.655 Session name: bkp@160.238.224.1 (Ad-Hoc site)
+. 2025-04-16 14:55:14.655 Host name: 160.238.224.1 (Port: 2230)
+. 2025-04-16 14:55:14.655 User name: bkp (Password: Yes, Key file: No, Passphrase: No)
+. 2025-04-16 14:55:14.655 Transfer Protocol: FTP
+. 2025-04-16 14:55:14.655 Ping type: Dummy, Ping interval: 30 sec; Timeout: 15 sec
+. 2025-04-16 14:55:14.655 Disable Nagle: No
+. 2025-04-16 14:55:14.655 Proxy: None
+. 2025-04-16 14:55:14.655 Send buffer: 262144
+. 2025-04-16 14:55:14.655 UTF: Auto
+. 2025-04-16 14:55:14.655 FTPS: Explicit TLS/SSL [Client certificate: No]
+. 2025-04-16 14:55:14.655 FTP: Passive: Yes [Force IP: Auto]; MLSD: Auto [List all: Auto]; HOST: Auto
+. 2025-04-16 14:55:14.655 Session reuse: Yes
+. 2025-04-16 14:55:14.655 TLS/SSL versions: TLSv1.2-TLSv1.3
+. 2025-04-16 14:55:14.655 Local directory: default, Remote directory: home, Update: Yes, Cache: Yes
+. 2025-04-16 14:55:14.655 Cache directory changes: Yes, Permanent: Yes
+. 2025-04-16 14:55:14.655 Recycle bin: Delete to: No, Overwritten to: No, Bin path: 
+. 2025-04-16 14:55:14.655 Timezone offset: 0h 0m
+. 2025-04-16 14:55:14.655 --------------------------------------------------------------------------
+< 2025-04-16 14:55:14.684 Script: Connecting to 160.238.224.1:2230 ...
+. 2025-04-16 14:55:14.684 Connecting to 160.238.224.1:2230 ...
+. 2025-04-16 14:55:14.688 Connected with 160.238.224.1:2230, negotiating TLS connection...
+< 2025-04-16 14:55:14.691 220-FileZilla Server 1.10.3
+< 2025-04-16 14:55:14.691 220 Please visit https://filezilla-project.org/
+> 2025-04-16 14:55:14.691 AUTH TLS
+< 2025-04-16 14:55:14.701 234 Using authentication type TLS.
+. 2025-04-16 14:55:14.714 Verifying certificate for "" with fingerprint a2:1c:5b:00:3c:94:df:a1:70:3e:5d:0f:39:4c:23:dc:77:b5:21:e3:20:1c:97:cb:aa:50:09:9a:f1:19:b7:97 and 18 failures
+< 2025-04-16 14:55:14.714 Script: WARNING! Giving up security and accepting any certificate as configured!
+* 2025-04-16 14:55:14.715 WARNING! Giving up security and accepting any certificate as configured!
+. 2025-04-16 14:55:14.715 Using TLSv1.3, cipher TLSv1.3: TLS_AES_256_GCM_SHA384, , TLS_AES_256_GCM_SHA384         TLSv1.3 Kx=any      Au=any   Enc=AESGCM(256)            Mac=AEAD
+< 2025-04-16 14:55:14.715 Script: TLS connection established. Waiting for welcome message...
+. 2025-04-16 14:55:14.715 TLS connection established. Waiting for welcome message...
+> 2025-04-16 14:55:14.715 USER bkp
+< 2025-04-16 14:55:14.729 331 Please, specify the password.
+> 2025-04-16 14:55:14.729 PASS *******
+< 2025-04-16 14:55:14.929 230 Login successful.
+> 2025-04-16 14:55:14.929 SYST
+. 2025-04-16 14:55:14.931 FileZilla server detected.
+< 2025-04-16 14:55:14.931 215 UNIX emulated by FileZilla.
+> 2025-04-16 14:55:14.931 FEAT
+< 2025-04-16 14:55:14.934 211-Features:
+< 2025-04-16 14:55:14.934  MDTM
+< 2025-04-16 14:55:14.934  REST STREAM
+< 2025-04-16 14:55:14.934  SIZE
+< 2025-04-16 14:55:14.934  MLST type*;size*;modify*;perm*;
+< 2025-04-16 14:55:14.934  MLSD
+< 2025-04-16 14:55:14.934  AUTH SSL
+< 2025-04-16 14:55:14.934  AUTH TLS
+< 2025-04-16 14:55:14.935  PROT
+< 2025-04-16 14:55:14.935  PBSZ
+< 2025-04-16 14:55:14.935  UTF8
+< 2025-04-16 14:55:14.935  TVFS
+< 2025-04-16 14:55:14.935  EPSV
+< 2025-04-16 14:55:14.935  EPRT
+< 2025-04-16 14:55:14.935  MFMT
+< 2025-04-16 14:55:14.935 211 End
+> 2025-04-16 14:55:14.935 PBSZ 0
+< 2025-04-16 14:55:14.937 200 PBSZ=0
+> 2025-04-16 14:55:14.937 PROT P
+< 2025-04-16 14:55:14.939 200 Protection level set to P
+< 2025-04-16 14:55:14.939 Script: Connected
+. 2025-04-16 14:55:14.940 Connected
+. 2025-04-16 14:55:14.940 --------------------------------------------------------------------------
+. 2025-04-16 14:55:14.940 Using FTP protocol.
+. 2025-04-16 14:55:14.940 Doing startup conversation with host.
+< 2025-04-16 14:55:14.940 Script: Starting the session...
+> 2025-04-16 14:55:14.940 PWD
+< 2025-04-16 14:55:14.943 257 "/" is current directory.
+. 2025-04-16 14:55:14.943 Getting current directory name.
+. 2025-04-16 14:55:14.943 Startup conversation with host finished.
+< 2025-04-16 14:55:14.943 Script: Session started.
+< 2025-04-16 14:55:14.943 Script: Active session: [1] bkp@160.238.224.1
+> 2025-04-16 14:55:14.943 Script: stat "/bkp/BACKUPS/TESTE/"
+. 2025-04-16 14:55:14.943 Listing file "/bkp/BACKUPS/TESTE".
+. 2025-04-16 14:55:14.944 Retrieving file information...
+> 2025-04-16 14:55:14.944 MLST /bkp/BACKUPS/TESTE
+< 2025-04-16 14:55:14.946 250-Listing /bkp/BACKUPS/TESTE
+< 2025-04-16 14:55:14.946  type=dir;modify=20250416173722.074;perms=cplemfd; /bkp/BACKUPS/TESTE
+< 2025-04-16 14:55:14.946 250 End
+. 2025-04-16 14:55:14.947  type=dir;modify=20250416173722.074;perms=cplemfd; /bkp/BACKUPS/TESTE
+. 2025-04-16 14:55:14.947 Retrieving file information successful
+. 2025-04-16 14:55:14.947 TESTE;D;0;2025-04-16T17:37:22.000Z;4;"" [0];"" [0];---------;0
+< 2025-04-16 14:55:14.947 Script: D---------   0                           0 Apr 16 14:37:22 2025 TESTE
+> 2025-04-16 14:55:14.947 Script: exit
+. 2025-04-16 14:55:14.947 Script: Exit code: 0
+. 2025-04-16 14:55:14.950 Disconnected from server
+. 2025-04-16 14:55:15.070 --------------------------------------------------------------------------
+. 2025-04-16 14:55:15.071 WinSCP Version 6.5 (Build 16288 2025-03-31) (OS 10.0.22631 – Windows 11 Pro)
+. 2025-04-16 14:55:15.071 Configuration: nul
+. 2025-04-16 14:55:15.071 Log level: Normal
+. 2025-04-16 14:55:15.071 Local account: CONEXÃO\conec
+. 2025-04-16 14:55:15.071 Working directory: C:\Users\conec\Development\BackupVMs
+. 2025-04-16 14:55:15.071 Process ID: 1424
+. 2025-04-16 14:55:15.084 Ancestor processes: WinSCP, cmd, python, powershell, Code, Code, explorer, ...
+. 2025-04-16 14:55:15.084 Command-line: "C:\Users\conec\Development\BackupVMs\winscp\WinSCP.exe" /console=6.5.0 /consoleinstance=_9056_332 "/ini=nul" "/log=""C:\Users\conec\Development\BackupVMs/winscp/log_winscp.log""" "/command=option batch abort" "option confirm off" "open ftp://bkp:***@160.238.224.1:2230/ -explicittls -certificate=*""" "put ""C:\VM_BACKUPS\TESTE__16-04-2025__14-55-12__124044053f4c4f45844a6e7bd6b96367"" ""/bkp/BACKUPS/TESTE/""" "exit"
+. 2025-04-16 14:55:15.084 Time zone: Current: GMT-3 (Hora oficial do Brasil), No DST
+. 2025-04-16 14:55:15.085 Login time: quarta-feira, 16 de abril de 2025 14:55:15
+. 2025-04-16 14:55:15.085 --------------------------------------------------------------------------
+. 2025-04-16 14:55:15.085 Script: Retrospectively logging previous script records:
+> 2025-04-16 14:55:15.085 Script: option confirm off
+< 2025-04-16 14:55:15.085 Script: confirm         off       
+> 2025-04-16 14:55:15.085 Script: open ftp://bkp:***@160.238.224.1:2230/ -explicittls -certificate=*"
+. 2025-04-16 14:55:15.085 --------------------------------------------------------------------------
+. 2025-04-16 14:55:15.085 Session name: bkp@160.238.224.1 (Ad-Hoc site)
+. 2025-04-16 14:55:15.085 Host name: 160.238.224.1 (Port: 2230)
+. 2025-04-16 14:55:15.085 User name: bkp (Password: Yes, Key file: No, Passphrase: No)
+. 2025-04-16 14:55:15.085 Transfer Protocol: FTP
+. 2025-04-16 14:55:15.085 Ping type: Dummy, Ping interval: 30 sec; Timeout: 15 sec
+. 2025-04-16 14:55:15.085 Disable Nagle: No
+. 2025-04-16 14:55:15.085 Proxy: None
+. 2025-04-16 14:55:15.085 Send buffer: 262144
+. 2025-04-16 14:55:15.085 UTF: Auto
+. 2025-04-16 14:55:15.085 FTPS: Explicit TLS/SSL [Client certificate: No]
+. 2025-04-16 14:55:15.085 FTP: Passive: Yes [Force IP: Auto]; MLSD: Auto [List all: Auto]; HOST: Auto
+. 2025-04-16 14:55:15.085 Session reuse: Yes
+. 2025-04-16 14:55:15.085 TLS/SSL versions: TLSv1.2-TLSv1.3
+. 2025-04-16 14:55:15.085 Local directory: default, Remote directory: home, Update: Yes, Cache: Yes
+. 2025-04-16 14:55:15.085 Cache directory changes: Yes, Permanent: Yes
+. 2025-04-16 14:55:15.085 Recycle bin: Delete to: No, Overwritten to: No, Bin path: 
+. 2025-04-16 14:55:15.085 Timezone offset: 0h 0m
+. 2025-04-16 14:55:15.085 --------------------------------------------------------------------------
+< 2025-04-16 14:55:15.104 Script: Connecting to 160.238.224.1:2230 ...
+. 2025-04-16 14:55:15.104 Connecting to 160.238.224.1:2230 ...
+. 2025-04-16 14:55:15.108 Connected with 160.238.224.1:2230, negotiating TLS connection...
+< 2025-04-16 14:55:15.111 220-FileZilla Server 1.10.3
+< 2025-04-16 14:55:15.111 220 Please visit https://filezilla-project.org/
+> 2025-04-16 14:55:15.111 AUTH TLS
+< 2025-04-16 14:55:15.121 234 Using authentication type TLS.
+. 2025-04-16 14:55:15.132 Verifying certificate for "" with fingerprint a2:1c:5b:00:3c:94:df:a1:70:3e:5d:0f:39:4c:23:dc:77:b5:21:e3:20:1c:97:cb:aa:50:09:9a:f1:19:b7:97 and 18 failures
+< 2025-04-16 14:55:15.132 Script: WARNING! Giving up security and accepting any certificate as configured!
+* 2025-04-16 14:55:15.133 WARNING! Giving up security and accepting any certificate as configured!
+. 2025-04-16 14:55:15.133 Using TLSv1.3, cipher TLSv1.3: TLS_AES_256_GCM_SHA384, , TLS_AES_256_GCM_SHA384         TLSv1.3 Kx=any      Au=any   Enc=AESGCM(256)            Mac=AEAD
+< 2025-04-16 14:55:15.133 Script: TLS connection established. Waiting for welcome message...
+. 2025-04-16 14:55:15.133 TLS connection established. Waiting for welcome message...
+> 2025-04-16 14:55:15.133 USER bkp
+< 2025-04-16 14:55:15.158 331 Please, specify the password.
+> 2025-04-16 14:55:15.159 PASS *******
+< 2025-04-16 14:55:15.335 230 Login successful.
+> 2025-04-16 14:55:15.335 SYST
+. 2025-04-16 14:55:15.338 FileZilla server detected.
+< 2025-04-16 14:55:15.338 215 UNIX emulated by FileZilla.
+> 2025-04-16 14:55:15.338 FEAT
+< 2025-04-16 14:55:15.341 211-Features:
+< 2025-04-16 14:55:15.341  MDTM
+< 2025-04-16 14:55:15.341  REST STREAM
+< 2025-04-16 14:55:15.341  SIZE
+< 2025-04-16 14:55:15.341  MLST type*;size*;modify*;perm*;
+< 2025-04-16 14:55:15.341  MLSD
+< 2025-04-16 14:55:15.366  AUTH SSL
+< 2025-04-16 14:55:15.366  AUTH TLS
+< 2025-04-16 14:55:15.366  PROT
+< 2025-04-16 14:55:15.366  PBSZ
+< 2025-04-16 14:55:15.366  UTF8
+< 2025-04-16 14:55:15.366  TVFS
+< 2025-04-16 14:55:15.366  EPSV
+< 2025-04-16 14:55:15.366  EPRT
+< 2025-04-16 14:55:15.366  MFMT
+< 2025-04-16 14:55:15.366 211 End
+> 2025-04-16 14:55:15.366 PBSZ 0
+< 2025-04-16 14:55:15.366 200 PBSZ=0
+> 2025-04-16 14:55:15.366 PROT P
+< 2025-04-16 14:55:15.366 200 Protection level set to P
+< 2025-04-16 14:55:15.366 Script: Connected
+. 2025-04-16 14:55:15.366 Connected
+. 2025-04-16 14:55:15.366 --------------------------------------------------------------------------
+. 2025-04-16 14:55:15.366 Using FTP protocol.
+. 2025-04-16 14:55:15.366 Doing startup conversation with host.
+< 2025-04-16 14:55:15.367 Script: Starting the session...
+> 2025-04-16 14:55:15.367 PWD
+< 2025-04-16 14:55:15.369 257 "/" is current directory.
+. 2025-04-16 14:55:15.369 Getting current directory name.
+. 2025-04-16 14:55:15.369 Startup conversation with host finished.
+< 2025-04-16 14:55:15.369 Script: Session started.
+< 2025-04-16 14:55:15.369 Script: Active session: [1] bkp@160.238.224.1
+> 2025-04-16 14:55:15.370 Script: put "C:\VM_BACKUPS\TESTE__16-04-2025__14-55-12__124044053f4c4f45844a6e7bd6b96367" "/bkp/BACKUPS/TESTE/"
+. 2025-04-16 14:55:15.370 Copying 1 files/directories to remote directory "/bkp/BACKUPS/TESTE/"
+. 2025-04-16 14:55:15.371   PrTime: Yes; PrRO: No; Rght: rw-r--r--; PrR: No (No); FnCs: N; RIC: 0001; Resume: S (102400); CalcS: No; Mask: 
+. 2025-04-16 14:55:15.371   TM: B; ClAr: No; RemEOF: No; RemBOM: No; CPS: 0; NewerOnly: No; EncryptNewFiles: Yes; ExcludeHiddenFiles: No; ExcludeEmptyDirectories: No; InclM: ; ResumeL: 0
+. 2025-04-16 14:55:15.371   AscM: *.*html; *.htm; *.txt; *.php; *.php3; *.cgi; *.c; *.cpp; *.h; *.pas; *.bas; *.tex; *.pl; *.js; .htaccess; *.xtml; *.css; *.cfg; *.ini; *.sh; *.xml
+. 2025-04-16 14:55:15.371 File: 'C:\VM_BACKUPS\TESTE__16-04-2025__14-55-12__124044053f4c4f45844a6e7bd6b96367' [2025-04-16T17:55:14.063Z] [0]
+. 2025-04-16 14:55:15.372 Listing file "/bkp/BACKUPS/TESTE/TESTE__16-04-2025__14-55-12__124044053f4c4f45844a6e7bd6b96367".
+. 2025-04-16 14:55:15.372 Retrieving file information...
+> 2025-04-16 14:55:15.372 MLST /bkp/BACKUPS/TESTE/TESTE__16-04-2025__14-55-12__124044053f4c4f45844a6e7bd6b96367
+< 2025-04-16 14:55:15.376 550 Unknown error
+. 2025-04-16 14:55:15.376 Could not retrieve file information
+. 2025-04-16 14:55:15.381 Creating directory "/bkp/BACKUPS/TESTE/TESTE__16-04-2025__14-55-12__124044053f4c4f45844a6e7bd6b96367".
+> 2025-04-16 14:55:15.381 CWD /bkp/BACKUPS/TESTE
+< 2025-04-16 14:55:15.384 250 CWD command successful
+> 2025-04-16 14:55:15.384 MKD TESTE__16-04-2025__14-55-12__124044053f4c4f45844a6e7bd6b96367
+< 2025-04-16 14:55:15.388 257 "/bkp/BACKUPS/TESTE/TESTE__16-04-2025__14-55-12__124044053f4c4f45844a6e7bd6b96367" created successfully.
+. 2025-04-16 14:55:15.388 Copying finished: Transferred: 0, Elapsed: 0:00:00, CPS: 0/s
+> 2025-04-16 14:55:15.388 Script: exit
+. 2025-04-16 14:55:15.389 Script: Exit code: 0
+. 2025-04-16 14:55:15.392 Disconnected from server
+. 2025-04-16 14:56:24.392 --------------------------------------------------------------------------
+. 2025-04-16 14:56:24.393 WinSCP Version 6.5 (Build 16288 2025-03-31) (OS 10.0.22631 – Windows 11 Pro)
+. 2025-04-16 14:56:24.393 Configuration: nul
+. 2025-04-16 14:56:24.393 Log level: Normal
+. 2025-04-16 14:56:24.393 Local account: CONEXÃO\conec
+. 2025-04-16 14:56:24.393 Working directory: C:\Users\conec\Development\BackupVMs
+. 2025-04-16 14:56:24.393 Process ID: 7384
+. 2025-04-16 14:56:24.406 Ancestor processes: WinSCP, cmd, python, powershell, Code, Code, explorer, ...
+. 2025-04-16 14:56:24.407 Command-line: "C:\Users\conec\Development\BackupVMs\winscp\WinSCP.exe" /console=6.5.0 /consoleinstance=_20004_257 "/ini=nul" "/log=""C:\Users\conec\Development\BackupVMs/winscp/log_winscp.log""" "/command=option batch abort" "open ftp://bkp:***@160.238.224.1:2230/ -explicittls -certificate=*""" "stat ""/bkp/BACKUPS/""" "exit"
+. 2025-04-16 14:56:24.407 Time zone: Current: GMT-3 (Hora oficial do Brasil), No DST
+. 2025-04-16 14:56:24.407 Login time: quarta-feira, 16 de abril de 2025 14:56:24
+. 2025-04-16 14:56:24.407 --------------------------------------------------------------------------
+. 2025-04-16 14:56:24.407 Script: Retrospectively logging previous script records:
+> 2025-04-16 14:56:24.407 Script: open ftp://bkp:***@160.238.224.1:2230/ -explicittls -certificate=*"
+. 2025-04-16 14:56:24.407 --------------------------------------------------------------------------
+. 2025-04-16 14:56:24.407 Session name: bkp@160.238.224.1 (Ad-Hoc site)
+. 2025-04-16 14:56:24.407 Host name: 160.238.224.1 (Port: 2230)
+. 2025-04-16 14:56:24.407 User name: bkp (Password: Yes, Key file: No, Passphrase: No)
+. 2025-04-16 14:56:24.407 Transfer Protocol: FTP
+. 2025-04-16 14:56:24.407 Ping type: Dummy, Ping interval: 30 sec; Timeout: 15 sec
+. 2025-04-16 14:56:24.407 Disable Nagle: No
+. 2025-04-16 14:56:24.407 Proxy: None
+. 2025-04-16 14:56:24.407 Send buffer: 262144
+. 2025-04-16 14:56:24.407 UTF: Auto
+. 2025-04-16 14:56:24.407 FTPS: Explicit TLS/SSL [Client certificate: No]
+. 2025-04-16 14:56:24.407 FTP: Passive: Yes [Force IP: Auto]; MLSD: Auto [List all: Auto]; HOST: Auto
+. 2025-04-16 14:56:24.407 Session reuse: Yes
+. 2025-04-16 14:56:24.407 TLS/SSL versions: TLSv1.2-TLSv1.3
+. 2025-04-16 14:56:24.407 Local directory: default, Remote directory: home, Update: Yes, Cache: Yes
+. 2025-04-16 14:56:24.407 Cache directory changes: Yes, Permanent: Yes
+. 2025-04-16 14:56:24.407 Recycle bin: Delete to: No, Overwritten to: No, Bin path: 
+. 2025-04-16 14:56:24.407 Timezone offset: 0h 0m
+. 2025-04-16 14:56:24.407 --------------------------------------------------------------------------
+< 2025-04-16 14:56:24.435 Script: Connecting to 160.238.224.1:2230 ...
+. 2025-04-16 14:56:24.435 Connecting to 160.238.224.1:2230 ...
+. 2025-04-16 14:56:24.440 Connected with 160.238.224.1:2230, negotiating TLS connection...
+< 2025-04-16 14:56:24.443 220-FileZilla Server 1.10.3
+< 2025-04-16 14:56:24.443 220 Please visit https://filezilla-project.org/
+> 2025-04-16 14:56:24.443 AUTH TLS
+< 2025-04-16 14:56:24.447 234 Using authentication type TLS.
+. 2025-04-16 14:56:24.454 Verifying certificate for "" with fingerprint a2:1c:5b:00:3c:94:df:a1:70:3e:5d:0f:39:4c:23:dc:77:b5:21:e3:20:1c:97:cb:aa:50:09:9a:f1:19:b7:97 and 18 failures
+< 2025-04-16 14:56:24.454 Script: WARNING! Giving up security and accepting any certificate as configured!
+* 2025-04-16 14:56:24.455 WARNING! Giving up security and accepting any certificate as configured!
+. 2025-04-16 14:56:24.455 Using TLSv1.3, cipher TLSv1.3: TLS_AES_256_GCM_SHA384, , TLS_AES_256_GCM_SHA384         TLSv1.3 Kx=any      Au=any   Enc=AESGCM(256)            Mac=AEAD
+< 2025-04-16 14:56:24.455 Script: TLS connection established. Waiting for welcome message...
+. 2025-04-16 14:56:24.455 TLS connection established. Waiting for welcome message...
+> 2025-04-16 14:56:24.455 USER bkp
+< 2025-04-16 14:56:24.479 331 Please, specify the password.
+> 2025-04-16 14:56:24.479 PASS *******
+< 2025-04-16 14:56:24.676 230 Login successful.
+> 2025-04-16 14:56:24.676 SYST
+. 2025-04-16 14:56:24.679 FileZilla server detected.
+< 2025-04-16 14:56:24.679 215 UNIX emulated by FileZilla.
+> 2025-04-16 14:56:24.679 FEAT
+< 2025-04-16 14:56:24.682 211-Features:
+< 2025-04-16 14:56:24.682  MDTM
+< 2025-04-16 14:56:24.682  REST STREAM
+< 2025-04-16 14:56:24.682  SIZE
+< 2025-04-16 14:56:24.682  MLST type*;size*;modify*;perm*;
+< 2025-04-16 14:56:24.682  MLSD
+< 2025-04-16 14:56:24.682  AUTH SSL
+< 2025-04-16 14:56:24.682  AUTH TLS
+< 2025-04-16 14:56:24.682  PROT
+< 2025-04-16 14:56:24.682  PBSZ
+< 2025-04-16 14:56:24.682  UTF8
+< 2025-04-16 14:56:24.683  TVFS
+< 2025-04-16 14:56:24.683  EPSV
+< 2025-04-16 14:56:24.683  EPRT
+< 2025-04-16 14:56:24.683  MFMT
+< 2025-04-16 14:56:24.683 211 End
+> 2025-04-16 14:56:24.683 PBSZ 0
+< 2025-04-16 14:56:24.689 200 PBSZ=0
+> 2025-04-16 14:56:24.689 PROT P
+< 2025-04-16 14:56:24.692 200 Protection level set to P
+< 2025-04-16 14:56:24.692 Script: Connected
+. 2025-04-16 14:56:24.692 Connected
+. 2025-04-16 14:56:24.692 --------------------------------------------------------------------------
+. 2025-04-16 14:56:24.692 Using FTP protocol.
+. 2025-04-16 14:56:24.692 Doing startup conversation with host.
+< 2025-04-16 14:56:24.692 Script: Starting the session...
+> 2025-04-16 14:56:24.694 PWD
+< 2025-04-16 14:56:24.699 257 "/" is current directory.
+. 2025-04-16 14:56:24.699 Getting current directory name.
+. 2025-04-16 14:56:24.699 Startup conversation with host finished.
+< 2025-04-16 14:56:24.699 Script: Session started.
+< 2025-04-16 14:56:24.699 Script: Active session: [1] bkp@160.238.224.1
+> 2025-04-16 14:56:24.700 Script: stat "/bkp/BACKUPS/"
+. 2025-04-16 14:56:24.700 Listing file "/bkp/BACKUPS".
+. 2025-04-16 14:56:24.700 Retrieving file information...
+> 2025-04-16 14:56:24.700 MLST /bkp/BACKUPS
+< 2025-04-16 14:56:24.704 250-Listing /bkp/BACKUPS
+< 2025-04-16 14:56:24.704  type=dir;modify=20250416173711.580;perms=cplemfd; /bkp/BACKUPS
+< 2025-04-16 14:56:24.704 250 End
+. 2025-04-16 14:56:24.704  type=dir;modify=20250416173711.580;perms=cplemfd; /bkp/BACKUPS
+. 2025-04-16 14:56:24.704 Retrieving file information successful
+. 2025-04-16 14:56:24.704 BACKUPS;D;0;2025-04-16T17:37:11.000Z;4;"" [0];"" [0];---------;0
+< 2025-04-16 14:56:24.704 Script: D---------   0                           0 Apr 16 14:37:11 2025 BACKUPS
+> 2025-04-16 14:56:24.705 Script: exit
+. 2025-04-16 14:56:24.705 Script: Exit code: 0
+. 2025-04-16 14:56:24.707 Disconnected from server
+. 2025-04-16 14:56:24.832 --------------------------------------------------------------------------
+. 2025-04-16 14:56:24.833 WinSCP Version 6.5 (Build 16288 2025-03-31) (OS 10.0.22631 – Windows 11 Pro)
+. 2025-04-16 14:56:24.833 Configuration: nul
+. 2025-04-16 14:56:24.834 Log level: Normal
+. 2025-04-16 14:56:24.834 Local account: CONEXÃO\conec
+. 2025-04-16 14:56:24.834 Working directory: C:\Users\conec\Development\BackupVMs
+. 2025-04-16 14:56:24.834 Process ID: 21284
+. 2025-04-16 14:56:24.848 Ancestor processes: WinSCP, cmd, python, powershell, Code, Code, explorer, ...
+. 2025-04-16 14:56:24.849 Command-line: "C:\Users\conec\Development\BackupVMs\winscp\WinSCP.exe" /console=6.5.0 /consoleinstance=_21012_257 "/ini=nul" "/log=""C:\Users\conec\Development\BackupVMs/winscp/log_winscp.log""" "/command=option batch abort" "open ftp://bkp:***@160.238.224.1:2230/ -explicittls -certificate=*""" "stat ""/bkp/BACKUPS/TESTE/""" "exit"
+. 2025-04-16 14:56:24.849 Time zone: Current: GMT-3 (Hora oficial do Brasil), No DST
+. 2025-04-16 14:56:24.849 Login time: quarta-feira, 16 de abril de 2025 14:56:24
+. 2025-04-16 14:56:24.849 --------------------------------------------------------------------------
+. 2025-04-16 14:56:24.849 Script: Retrospectively logging previous script records:
+> 2025-04-16 14:56:24.849 Script: open ftp://bkp:***@160.238.224.1:2230/ -explicittls -certificate=*"
+. 2025-04-16 14:56:24.849 --------------------------------------------------------------------------
+. 2025-04-16 14:56:24.849 Session name: bkp@160.238.224.1 (Ad-Hoc site)
+. 2025-04-16 14:56:24.849 Host name: 160.238.224.1 (Port: 2230)
+. 2025-04-16 14:56:24.849 User name: bkp (Password: Yes, Key file: No, Passphrase: No)
+. 2025-04-16 14:56:24.849 Transfer Protocol: FTP
+. 2025-04-16 14:56:24.849 Ping type: Dummy, Ping interval: 30 sec; Timeout: 15 sec
+. 2025-04-16 14:56:24.849 Disable Nagle: No
+. 2025-04-16 14:56:24.849 Proxy: None
+. 2025-04-16 14:56:24.849 Send buffer: 262144
+. 2025-04-16 14:56:24.849 UTF: Auto
+. 2025-04-16 14:56:24.849 FTPS: Explicit TLS/SSL [Client certificate: No]
+. 2025-04-16 14:56:24.849 FTP: Passive: Yes [Force IP: Auto]; MLSD: Auto [List all: Auto]; HOST: Auto
+. 2025-04-16 14:56:24.849 Session reuse: Yes
+. 2025-04-16 14:56:24.849 TLS/SSL versions: TLSv1.2-TLSv1.3
+. 2025-04-16 14:56:24.849 Local directory: default, Remote directory: home, Update: Yes, Cache: Yes
+. 2025-04-16 14:56:24.849 Cache directory changes: Yes, Permanent: Yes
+. 2025-04-16 14:56:24.849 Recycle bin: Delete to: No, Overwritten to: No, Bin path: 
+. 2025-04-16 14:56:24.849 Timezone offset: 0h 0m
+. 2025-04-16 14:56:24.849 --------------------------------------------------------------------------
+< 2025-04-16 14:56:24.867 Script: Connecting to 160.238.224.1:2230 ...
+. 2025-04-16 14:56:24.867 Connecting to 160.238.224.1:2230 ...
+. 2025-04-16 14:56:24.874 Connected with 160.238.224.1:2230, negotiating TLS connection...
+< 2025-04-16 14:56:24.885 220-FileZilla Server 1.10.3
+< 2025-04-16 14:56:24.885 220 Please visit https://filezilla-project.org/
+> 2025-04-16 14:56:24.885 AUTH TLS
+< 2025-04-16 14:56:24.892 234 Using authentication type TLS.
+. 2025-04-16 14:56:24.901 Verifying certificate for "" with fingerprint a2:1c:5b:00:3c:94:df:a1:70:3e:5d:0f:39:4c:23:dc:77:b5:21:e3:20:1c:97:cb:aa:50:09:9a:f1:19:b7:97 and 18 failures
+< 2025-04-16 14:56:24.901 Script: WARNING! Giving up security and accepting any certificate as configured!
+* 2025-04-16 14:56:24.901 WARNING! Giving up security and accepting any certificate as configured!
+. 2025-04-16 14:56:24.901 Using TLSv1.3, cipher TLSv1.3: TLS_AES_256_GCM_SHA384, , TLS_AES_256_GCM_SHA384         TLSv1.3 Kx=any      Au=any   Enc=AESGCM(256)            Mac=AEAD
+< 2025-04-16 14:56:24.901 Script: TLS connection established. Waiting for welcome message...
+. 2025-04-16 14:56:24.902 TLS connection established. Waiting for welcome message...
+> 2025-04-16 14:56:24.902 USER bkp
+< 2025-04-16 14:56:24.921 331 Please, specify the password.
+> 2025-04-16 14:56:24.921 PASS *******
+< 2025-04-16 14:56:25.114 230 Login successful.
+> 2025-04-16 14:56:25.115 SYST
+. 2025-04-16 14:56:25.117 FileZilla server detected.
+< 2025-04-16 14:56:25.117 215 UNIX emulated by FileZilla.
+> 2025-04-16 14:56:25.117 FEAT
+< 2025-04-16 14:56:25.120 211-Features:
+< 2025-04-16 14:56:25.120  MDTM
+< 2025-04-16 14:56:25.120  REST STREAM
+< 2025-04-16 14:56:25.120  SIZE
+< 2025-04-16 14:56:25.120  MLST type*;size*;modify*;perm*;
+< 2025-04-16 14:56:25.120  MLSD
+< 2025-04-16 14:56:25.120  AUTH SSL
+< 2025-04-16 14:56:25.120  AUTH TLS
+< 2025-04-16 14:56:25.120  PROT
+< 2025-04-16 14:56:25.131  PBSZ
+< 2025-04-16 14:56:25.131  UTF8
+< 2025-04-16 14:56:25.131  TVFS
+< 2025-04-16 14:56:25.131  EPSV
+< 2025-04-16 14:56:25.132  EPRT
+< 2025-04-16 14:56:25.132  MFMT
+< 2025-04-16 14:56:25.132 211 End
+> 2025-04-16 14:56:25.132 PBSZ 0
+< 2025-04-16 14:56:25.134 200 PBSZ=0
+> 2025-04-16 14:56:25.134 PROT P
+< 2025-04-16 14:56:25.138 200 Protection level set to P
+< 2025-04-16 14:56:25.138 Script: Connected
+. 2025-04-16 14:56:25.138 Connected
+. 2025-04-16 14:56:25.138 --------------------------------------------------------------------------
+. 2025-04-16 14:56:25.138 Using FTP protocol.
+. 2025-04-16 14:56:25.138 Doing startup conversation with host.
+< 2025-04-16 14:56:25.138 Script: Starting the session...
+> 2025-04-16 14:56:25.139 PWD
+< 2025-04-16 14:56:25.143 257 "/" is current directory.
+. 2025-04-16 14:56:25.143 Getting current directory name.
+. 2025-04-16 14:56:25.143 Startup conversation with host finished.
+< 2025-04-16 14:56:25.143 Script: Session started.
+< 2025-04-16 14:56:25.143 Script: Active session: [1] bkp@160.238.224.1
+> 2025-04-16 14:56:25.145 Script: stat "/bkp/BACKUPS/TESTE/"
+. 2025-04-16 14:56:25.145 Listing file "/bkp/BACKUPS/TESTE".
+. 2025-04-16 14:56:25.145 Retrieving file information...
+> 2025-04-16 14:56:25.145 MLST /bkp/BACKUPS/TESTE
+< 2025-04-16 14:56:25.149 250-Listing /bkp/BACKUPS/TESTE
+< 2025-04-16 14:56:25.149  type=dir;modify=20250416175444.700;perms=cplemfd; /bkp/BACKUPS/TESTE
+< 2025-04-16 14:56:25.149 250 End
+. 2025-04-16 14:56:25.150  type=dir;modify=20250416175444.700;perms=cplemfd; /bkp/BACKUPS/TESTE
+. 2025-04-16 14:56:25.150 Retrieving file information successful
+. 2025-04-16 14:56:25.150 TESTE;D;0;2025-04-16T17:54:44.000Z;4;"" [0];"" [0];---------;0
+< 2025-04-16 14:56:25.150 Script: D---------   0                           0 Apr 16 14:54:44 2025 TESTE
+> 2025-04-16 14:56:25.151 Script: exit
+. 2025-04-16 14:56:25.151 Script: Exit code: 0
+. 2025-04-16 14:56:25.154 Disconnected from server
+. 2025-04-16 14:56:25.278 --------------------------------------------------------------------------
+. 2025-04-16 14:56:25.279 WinSCP Version 6.5 (Build 16288 2025-03-31) (OS 10.0.22631 – Windows 11 Pro)
+. 2025-04-16 14:56:25.279 Configuration: nul
+. 2025-04-16 14:56:25.279 Log level: Normal
+. 2025-04-16 14:56:25.279 Local account: CONEXÃO\conec
+. 2025-04-16 14:56:25.279 Working directory: C:\Users\conec\Development\BackupVMs
+. 2025-04-16 14:56:25.279 Process ID: 19916
+. 2025-04-16 14:56:25.296 Ancestor processes: WinSCP, cmd, python, powershell, Code, Code, explorer, ...
+. 2025-04-16 14:56:25.296 Command-line: "C:\Users\conec\Development\BackupVMs\winscp\WinSCP.exe" /console=6.5.0 /consoleinstance=_9812_184 "/ini=nul" "/log=""C:\Users\conec\Development\BackupVMs/winscp/log_winscp.log""" "/command=option batch abort" "open ftp://bkp:***@160.238.224.1:2230/ -explicittls -certificate=*""" "put ""C:\VM_BACKUPS\TESTE__16-04-2025__14-56-22__daf8e3c57ef94cc4b3d8ca9e0e8936fb"" ""/bkp/BACKUPS/TESTE/""" "exit"
+. 2025-04-16 14:56:25.296 Time zone: Current: GMT-3 (Hora oficial do Brasil), No DST
+. 2025-04-16 14:56:25.296 Login time: quarta-feira, 16 de abril de 2025 14:56:25
+. 2025-04-16 14:56:25.296 --------------------------------------------------------------------------
+. 2025-04-16 14:56:25.296 Script: Retrospectively logging previous script records:
+> 2025-04-16 14:56:25.296 Script: open ftp://bkp:***@160.238.224.1:2230/ -explicittls -certificate=*"
+. 2025-04-16 14:56:25.296 --------------------------------------------------------------------------
+. 2025-04-16 14:56:25.296 Session name: bkp@160.238.224.1 (Ad-Hoc site)
+. 2025-04-16 14:56:25.296 Host name: 160.238.224.1 (Port: 2230)
+. 2025-04-16 14:56:25.296 User name: bkp (Password: Yes, Key file: No, Passphrase: No)
+. 2025-04-16 14:56:25.296 Transfer Protocol: FTP
+. 2025-04-16 14:56:25.296 Ping type: Dummy, Ping interval: 30 sec; Timeout: 15 sec
+. 2025-04-16 14:56:25.296 Disable Nagle: No
+. 2025-04-16 14:56:25.296 Proxy: None
+. 2025-04-16 14:56:25.296 Send buffer: 262144
+. 2025-04-16 14:56:25.296 UTF: Auto
+. 2025-04-16 14:56:25.296 FTPS: Explicit TLS/SSL [Client certificate: No]
+. 2025-04-16 14:56:25.296 FTP: Passive: Yes [Force IP: Auto]; MLSD: Auto [List all: Auto]; HOST: Auto
+. 2025-04-16 14:56:25.296 Session reuse: Yes
+. 2025-04-16 14:56:25.296 TLS/SSL versions: TLSv1.2-TLSv1.3
+. 2025-04-16 14:56:25.296 Local directory: default, Remote directory: home, Update: Yes, Cache: Yes
+. 2025-04-16 14:56:25.296 Cache directory changes: Yes, Permanent: Yes
+. 2025-04-16 14:56:25.296 Recycle bin: Delete to: No, Overwritten to: No, Bin path: 
+. 2025-04-16 14:56:25.296 Timezone offset: 0h 0m
+. 2025-04-16 14:56:25.296 --------------------------------------------------------------------------
+< 2025-04-16 14:56:25.322 Script: Connecting to 160.238.224.1:2230 ...
+. 2025-04-16 14:56:25.322 Connecting to 160.238.224.1:2230 ...
+. 2025-04-16 14:56:25.326 Connected with 160.238.224.1:2230, negotiating TLS connection...
+< 2025-04-16 14:56:25.330 220-FileZilla Server 1.10.3
+< 2025-04-16 14:56:25.330 220 Please visit https://filezilla-project.org/
+> 2025-04-16 14:56:25.330 AUTH TLS
+< 2025-04-16 14:56:25.334 234 Using authentication type TLS.
+. 2025-04-16 14:56:25.344 Verifying certificate for "" with fingerprint a2:1c:5b:00:3c:94:df:a1:70:3e:5d:0f:39:4c:23:dc:77:b5:21:e3:20:1c:97:cb:aa:50:09:9a:f1:19:b7:97 and 18 failures
+< 2025-04-16 14:56:25.344 Script: WARNING! Giving up security and accepting any certificate as configured!
+* 2025-04-16 14:56:25.345 WARNING! Giving up security and accepting any certificate as configured!
+. 2025-04-16 14:56:25.345 Using TLSv1.3, cipher TLSv1.3: TLS_AES_256_GCM_SHA384, , TLS_AES_256_GCM_SHA384         TLSv1.3 Kx=any      Au=any   Enc=AESGCM(256)            Mac=AEAD
+< 2025-04-16 14:56:25.345 Script: TLS connection established. Waiting for welcome message...
+. 2025-04-16 14:56:25.345 TLS connection established. Waiting for welcome message...
+> 2025-04-16 14:56:25.345 USER bkp
+< 2025-04-16 14:56:25.371 331 Please, specify the password.
+> 2025-04-16 14:56:25.371 PASS *******
+< 2025-04-16 14:56:25.538 230 Login successful.
+> 2025-04-16 14:56:25.538 SYST
+. 2025-04-16 14:56:25.541 FileZilla server detected.
+< 2025-04-16 14:56:25.541 215 UNIX emulated by FileZilla.
+> 2025-04-16 14:56:25.541 FEAT
+< 2025-04-16 14:56:25.545 211-Features:
+< 2025-04-16 14:56:25.545  MDTM
+< 2025-04-16 14:56:25.545  REST STREAM
+< 2025-04-16 14:56:25.567  SIZE
+< 2025-04-16 14:56:25.567  MLST type*;size*;modify*;perm*;
+< 2025-04-16 14:56:25.567  MLSD
+< 2025-04-16 14:56:25.567  AUTH SSL
+< 2025-04-16 14:56:25.567  AUTH TLS
+< 2025-04-16 14:56:25.567  PROT
+< 2025-04-16 14:56:25.567  PBSZ
+< 2025-04-16 14:56:25.567  UTF8
+< 2025-04-16 14:56:25.567  TVFS
+< 2025-04-16 14:56:25.567  EPSV
+< 2025-04-16 14:56:25.567  EPRT
+< 2025-04-16 14:56:25.567  MFMT
+< 2025-04-16 14:56:25.567 211 End
+> 2025-04-16 14:56:25.567 PBSZ 0
+< 2025-04-16 14:56:25.567 200 PBSZ=0
+> 2025-04-16 14:56:25.567 PROT P
+< 2025-04-16 14:56:25.567 200 Protection level set to P
+< 2025-04-16 14:56:25.567 Script: Connected
+. 2025-04-16 14:56:25.567 Connected
+. 2025-04-16 14:56:25.567 --------------------------------------------------------------------------
+. 2025-04-16 14:56:25.567 Using FTP protocol.
+. 2025-04-16 14:56:25.567 Doing startup conversation with host.
+< 2025-04-16 14:56:25.567 Script: Starting the session...
+> 2025-04-16 14:56:25.568 PWD
+< 2025-04-16 14:56:25.571 257 "/" is current directory.
+. 2025-04-16 14:56:25.571 Getting current directory name.
+. 2025-04-16 14:56:25.571 Startup conversation with host finished.
+< 2025-04-16 14:56:25.571 Script: Session started.
+< 2025-04-16 14:56:25.571 Script: Active session: [1] bkp@160.238.224.1
+> 2025-04-16 14:56:25.573 Script: put "C:\VM_BACKUPS\TESTE__16-04-2025__14-56-22__daf8e3c57ef94cc4b3d8ca9e0e8936fb" "/bkp/BACKUPS/TESTE/"
+. 2025-04-16 14:56:25.573 Copying 1 files/directories to remote directory "/bkp/BACKUPS/TESTE/"
+. 2025-04-16 14:56:25.573   PrTime: Yes; PrRO: No; Rght: rw-r--r--; PrR: No (No); FnCs: N; RIC: 0001; Resume: S (102400); CalcS: No; Mask: 
+. 2025-04-16 14:56:25.574   TM: B; ClAr: No; RemEOF: No; RemBOM: No; CPS: 0; NewerOnly: No; EncryptNewFiles: Yes; ExcludeHiddenFiles: No; ExcludeEmptyDirectories: No; InclM: ; ResumeL: 0
+. 2025-04-16 14:56:25.574   AscM: *.*html; *.htm; *.txt; *.php; *.php3; *.cgi; *.c; *.cpp; *.h; *.pas; *.bas; *.tex; *.pl; *.js; .htaccess; *.xtml; *.css; *.cfg; *.ini; *.sh; *.xml
+. 2025-04-16 14:56:25.574 File: 'C:\VM_BACKUPS\TESTE__16-04-2025__14-56-22__daf8e3c57ef94cc4b3d8ca9e0e8936fb' [2025-04-16T17:56:24.225Z] [0]
+. 2025-04-16 14:56:25.575 Listing file "/bkp/BACKUPS/TESTE/TESTE__16-04-2025__14-56-22__daf8e3c57ef94cc4b3d8ca9e0e8936fb".
+. 2025-04-16 14:56:25.575 Retrieving file information...
+> 2025-04-16 14:56:25.575 MLST /bkp/BACKUPS/TESTE/TESTE__16-04-2025__14-56-22__daf8e3c57ef94cc4b3d8ca9e0e8936fb
+< 2025-04-16 14:56:25.578 550 Unknown error
+. 2025-04-16 14:56:25.578 Could not retrieve file information
+. 2025-04-16 14:56:25.585 Creating directory "/bkp/BACKUPS/TESTE/TESTE__16-04-2025__14-56-22__daf8e3c57ef94cc4b3d8ca9e0e8936fb".
+> 2025-04-16 14:56:25.585 CWD /bkp/BACKUPS/TESTE
+< 2025-04-16 14:56:25.588 250 CWD command successful
+> 2025-04-16 14:56:25.588 MKD TESTE__16-04-2025__14-56-22__daf8e3c57ef94cc4b3d8ca9e0e8936fb
+< 2025-04-16 14:56:25.593 257 "/bkp/BACKUPS/TESTE/TESTE__16-04-2025__14-56-22__daf8e3c57ef94cc4b3d8ca9e0e8936fb" created successfully.
+. 2025-04-16 14:56:25.593 Copying finished: Transferred: 0, Elapsed: 0:00:00, CPS: 0/s
+> 2025-04-16 14:56:25.594 Script: exit
+. 2025-04-16 14:56:25.594 Script: Exit code: 0
+. 2025-04-16 14:56:25.598 Disconnected from server
